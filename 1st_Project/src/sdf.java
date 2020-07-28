@@ -5,6 +5,7 @@ public class sdf {
 		// TODO Auto-generated method stub
 			System.out.println("dddd");
 			System.out.println("sdfsdf");
+			System.out.println("v=ir");
 	}
 
 }
