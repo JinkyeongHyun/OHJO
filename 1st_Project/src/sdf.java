@@ -6,6 +6,7 @@ public class sdf {
 			System.out.println("dddd");
 			System.out.println("sdfsdf");
 			System.out.println("v=ir");
+			System.out.println("¡ÿ»£");
 	}
 
 }
