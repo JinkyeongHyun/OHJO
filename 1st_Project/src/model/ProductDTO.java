@@ -11,7 +11,7 @@ public class ProductDTO {
 	private String p_img;		//제품이미지파일경로
 	
 	public ProductDTO(String p_model, String p_name, String p_category, String p_class, String p_maxEv, String p_eCost,
-			int p_price, String p_img) {
+		int p_price, String p_img) {
 		this.p_model = p_model;
 		this.p_name = p_name;
 		this.p_category = p_category;
