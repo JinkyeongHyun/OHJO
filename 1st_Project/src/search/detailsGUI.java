@@ -1,20 +1,18 @@
 package search;
 
-import java.awt.EventQueue;
+import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 import model.ProductDTO;
-
-import javax.swing.JTextField;
-import javax.swing.JButton;
-import javax.swing.JPanel;
-import java.awt.Color;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+import view.PurchaseGUI;
 
 public class detailsGUI {
 
@@ -155,6 +153,7 @@ public class detailsGUI {
 		JButton btn_buy = new JButton("\uAD6C\uB9E4\uD558\uAE30");
 		btn_buy.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				PurchaseGUI pur = new PurchaseGUI(model);
 				
 			}
 		});

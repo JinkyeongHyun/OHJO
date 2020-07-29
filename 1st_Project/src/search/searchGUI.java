@@ -128,7 +128,18 @@ public class searchGUI {
 		TableModelChange change = new TableModelChange(dao.priceAsce());
 		Object[][] data = change.listTypeChange();
 
-		
+		table = new JTable(data, colName);
+		table.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				int row = table.getSelectedRow();	
+				
+				String model = (String) table.getValueAt(row,0);
+				
+				detailsGUI det = new detailsGUI(model);
+	
+			}
+		});
 		scrollPane.setViewportView(table);
 
 		tf_text = new JTextField();
@@ -176,8 +187,6 @@ public class searchGUI {
 		btnNewButton.setBounds(496, 455, 186, 58);
 		frame.getContentPane().add(btnNewButton);
 	}
-	
-	
 
 	private Object[][] listTypeChange() {
 		// TODO Auto-generated method stub
