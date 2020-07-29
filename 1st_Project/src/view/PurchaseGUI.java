@@ -5,6 +5,8 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Color;
 import javax.swing.JTextPane;
 import javax.swing.JTextField;
@@ -17,6 +19,7 @@ import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.ButtonGroup;
 
 public class PurchaseGUI {
 
@@ -25,6 +28,13 @@ public class PurchaseGUI {
 	private JTextField tf_cardnum3;
 	private JTextField tf_cardnum2;
 	private JTextField tf_cardnum1;
+	private JTextField textField;
+	private JTextField textField_1;
+	private JTextField tf_cell;
+	private JTextField tf_Postalcode;
+	private JTextField tf_name;
+	private JTextField tf_address;
+	private final ButtonGroup buttonGroup = new ButtonGroup();
 
 	/**
 	 * Launch the application.
@@ -58,7 +68,7 @@ public class PurchaseGUI {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		JLabel label_p_image = new JLabel("New label");
+		JLabel label_p_image = new JLabel("");
 		label_p_image.setForeground(Color.BLACK);
 		label_p_image.setBackground(Color.BLACK);
 		label_p_image.setBounds(12, 15, 217, 188);
@@ -77,7 +87,7 @@ public class PurchaseGUI {
 		frame.getContentPane().add(label_1);
 		
 		JLabel label_2 = new JLabel("\uACB0\uC81C \uAE08\uC561");
-		label_2.setBounds(258, 143, 63, 22);
+		label_2.setBounds(258, 147, 63, 22);
 		frame.getContentPane().add(label_2);
 		
 		JLabel label_3 = new JLabel("\uACB0\uC81C \uBC29\uBC95");
@@ -119,6 +129,13 @@ public class PurchaseGUI {
 		JButton btn_complete = new JButton("\uACB0\uC81C \uC644\uB8CC");
 		btn_complete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+			 int result = JOptionPane.showConfirmDialog(null, "결제하시겠습니까?","confirm",JOptionPane.YES_NO_OPTION);
+			 if(result == JOptionPane.YES_OPTION){
+				 JOptionPane.showMessageDialog(null, "결제가 완료 되었습니다.");
+				 frame.dispose();
+				 //결제완료 버튼을 누르면 결제창이 꺼지면서 구매 테이블에 정보가 기입된다. 구매테이블은 구매내역 의 항목에 기입되는 정보를 보관한다.
+				 // 주문 번호는 시퀸스로 자동생성, 주문일자는 sysdate로, 주문수량은 모르겠고
+			}
 			}
 		});
 		btn_complete.setBounds(460, 139, 97, 23);
@@ -141,6 +158,27 @@ public class PurchaseGUI {
 		
 		JPanel naverpay = new JPanel();
 		tabbedPane.addTab("네이버페이", null, naverpay, null);
+		naverpay.setLayout(null);
+		
+		JLabel lblNewLabel_3 = new JLabel("\uB124\uC774\uBC84 ID");
+		lblNewLabel_3.setFont(new Font("굴림", Font.PLAIN, 18));
+		lblNewLabel_3.setBounds(12, 29, 87, 36);
+		naverpay.add(lblNewLabel_3);
+		
+		textField = new JTextField();
+		textField.setBounds(111, 31, 167, 34);
+		naverpay.add(textField);
+		textField.setColumns(10);
+		
+		JLabel label_11 = new JLabel("\uBE44\uBC00\uBC88\uD638");
+		label_11.setFont(new Font("굴림", Font.PLAIN, 18));
+		label_11.setBounds(12, 98, 87, 36);
+		naverpay.add(label_11);
+		
+		textField_1 = new JTextField();
+		textField_1.setColumns(10);
+		textField_1.setBounds(111, 98, 167, 34);
+		naverpay.add(textField_1);
 		
 		JPanel kakaopay = new JPanel();
 		tabbedPane.addTab("카카오페이", null, kakaopay, null);
@@ -151,15 +189,15 @@ public class PurchaseGUI {
 		frame.getContentPane().add(label_4);
 		
 		JLabel label_5 = new JLabel("\uC774\uB984");
-		label_5.setBounds(40, 245, 63, 22);
+		label_5.setBounds(80, 245, 34, 22);
 		frame.getContentPane().add(label_5);
 		
 		JLabel label_6 = new JLabel("\uC5F0\uB77D\uCC98");
-		label_6.setBounds(40, 277, 63, 22);
+		label_6.setBounds(78, 276, 53, 22);
 		frame.getContentPane().add(label_6);
 		
 		JLabel label_7 = new JLabel("\uC8FC\uC18C");
-		label_7.setBounds(40, 308, 63, 22);
+		label_7.setBounds(80, 308, 34, 22);
 		frame.getContentPane().add(label_7);
 		
 		JLabel label_8 = new JLabel("\uBC30\uC1A1\uC2DC \uC694\uCCAD\uC0AC\uD56D");
@@ -176,33 +214,58 @@ public class PurchaseGUI {
 		cmb_request.setBounds(143, 371, 207, 21);
 		frame.getContentPane().add(cmb_request);
 		
-		JTextPane tp_cell1 = new JTextPane();
-		tp_cell1.setBounds(214, 277, 70, 22);
-		frame.getContentPane().add(tp_cell1);
-		
-		JTextPane tp_name = new JTextPane();
-		tp_name.setBounds(143, 246, 108, 21);
-		frame.getContentPane().add(tp_name);
-		
-		JTextPane tp_address = new JTextPane();
-		tp_address.setBounds(143, 339, 287, 21);
-		frame.getContentPane().add(tp_address);
-		
-		JTextPane tp_postalcode = new JTextPane();
-		tp_postalcode.setBounds(214, 309, 132, 21);
-		frame.getContentPane().add(tp_postalcode);
-		
 		JLabel lblNewLabel_2 = new JLabel("\uC6B0\uD3B8\uBC88\uD638");
 		lblNewLabel_2.setBounds(143, 312, 63, 15);
 		frame.getContentPane().add(lblNewLabel_2);
 		
-		JComboBox cmb_cell = new JComboBox();
-		cmb_cell.setModel(new DefaultComboBoxModel(new String[] {"010", "011", "016", "017", "018", "019"}));
-		cmb_cell.setBounds(143, 278, 48, 21);
-		frame.getContentPane().add(cmb_cell);
+		tf_cell = new JTextField();
+		tf_cell.setBounds(143, 277, 215, 21);
+		frame.getContentPane().add(tf_cell);
+		tf_cell.setColumns(10);
 		
-		JTextPane tp_cell2 = new JTextPane();
-		tp_cell2.setBounds(306, 277, 70, 22);
-		frame.getContentPane().add(tp_cell2);
+		tf_Postalcode = new JTextField();
+		tf_Postalcode.setBounds(205, 309, 116, 21);
+		frame.getContentPane().add(tf_Postalcode);
+		tf_Postalcode.setColumns(10);
+		
+		tf_name = new JTextField();
+		tf_name.setBounds(143, 246, 116, 21);
+		frame.getContentPane().add(tf_name);
+		tf_name.setColumns(10);
+		
+		tf_address = new JTextField();
+		tf_address.setBounds(143, 340, 383, 21);
+		frame.getContentPane().add(tf_address);
+		tf_address.setColumns(10);
+		
+		JLabel lblNewLabel_4 = new JLabel("New label");
+		lblNewLabel_4.setBounds(332, 47, 287, 22);
+		frame.getContentPane().add(lblNewLabel_4);
+		
+		JLabel label_12 = new JLabel("New label");
+		label_12.setBounds(333, 79, 287, 22);
+		frame.getContentPane().add(label_12);
+		
+		JLabel label_13 = new JLabel("New label");
+		label_13.setBounds(332, 111, 287, 22);
+		frame.getContentPane().add(label_13);
+		
+		JLabel label_14 = new JLabel("New label");
+		label_14.setBounds(333, 147, 287, 22);
+		frame.getContentPane().add(label_14);
+		
+		JLabel label_15 = new JLabel("\uD658\uAE09 \uC5EC\uBD80");
+		label_15.setBounds(72, 402, 59, 22);
+		frame.getContentPane().add(label_15);
+		
+		JRadioButton rdb_apply_yes = new JRadioButton("\uC2E0\uCCAD");
+		buttonGroup.add(rdb_apply_yes);
+		rdb_apply_yes.setBounds(143, 402, 63, 23);
+		frame.getContentPane().add(rdb_apply_yes);
+		
+		JRadioButton rdb_apply_no = new JRadioButton("\uBBF8\uC2E0\uCCAD");
+		buttonGroup.add(rdb_apply_no);
+		rdb_apply_no.setBounds(216, 402, 74, 23);
+		frame.getContentPane().add(rdb_apply_no);
 	}
 }
