@@ -7,6 +7,11 @@ import javax.swing.JFrame;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
+
+import model.CustomerDTO;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class MainGUI {
 
@@ -21,7 +26,6 @@ public class MainGUI {
 			public void run() {
 				try {
 					MainGUI window = new MainGUI();
-					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -34,6 +38,10 @@ public class MainGUI {
 	 */
 	public MainGUI() {
 		initialize();
+		frame.setVisible(true);
+		
+		//로그인 하지 않은 상태에서 로그아웃 버튼을 보이지 않게 함
+		btn_main_logout.setVisible(false);
 	}
 
 	/**
@@ -82,6 +90,48 @@ public class MainGUI {
 		
 		JMenuItem mntmNewMenuItem_3 = new JMenuItem("\uB0B4 \uAC00\uC804\uC81C\uD488");
 		mnNewMenu.add(mntmNewMenuItem_3);
+		frame.getContentPane().setLayout(null);
+		
+		//로그인버튼
+		btn_main_login = new JButton("\uB85C\uADF8\uC778");
+		btn_main_login.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//창 끄기
+				frame.dispose();
+				//login창 띄우기 (객체생성)
+				LoginGUI login = new LoginGUI();
+			}
+		});
+		btn_main_login.setBounds(718, 10, 97, 23);
+		frame.getContentPane().add(btn_main_login);
+		
+		//로그아웃버튼
+		btn_main_logout = new JButton("\uB85C\uADF8\uC544\uC6C3");
+		btn_main_logout.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				frame.dispose();
+				MainGUI main = new MainGUI();
+				main.logoutInfo();
+			}
+		});
+		btn_main_logout.setBounds(718, 10, 97, 23);
+		frame.getContentPane().add(btn_main_logout);
 	}
-
+	
+	//로그인 성공시 작동
+	public void loginInfo(CustomerDTO dto) {
+		//로그인 버튼을 보이지 않게, 로그아웃 버튼을 보이게 함
+		btn_main_login.setVisible(false);
+		btn_main_logout.setVisible(true);
+		
+		//다이얼로그 출력
+		JOptionPane.showMessageDialog(null, dto.getC_name()+"님 환영합니다.");
+	}
+	
+	//로그아웃 성공시 작동
+	public void logoutInfo() {	
+		//로그인 버튼을 보이게, 로그아웃 버튼을 보이지 않게 함
+		btn_main_login.setVisible(true);
+		btn_main_logout.setVisible(false);
+	}
 }
