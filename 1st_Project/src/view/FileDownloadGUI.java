@@ -4,7 +4,7 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 
-public class FileDownload {
+public class FileDownloadGUI {
 
 	private JFrame frame;
 
@@ -15,7 +15,7 @@ public class FileDownload {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					FileDownload window = new FileDownload();
+					FileDownloadGUI window = new FileDownloadGUI();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -27,7 +27,7 @@ public class FileDownload {
 	/**
 	 * Create the application.
 	 */
-	public FileDownload() {
+	public FileDownloadGUI() {
 		initialize();
 	}
 
