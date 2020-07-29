@@ -43,7 +43,7 @@ public class searchGUI {
 	private final ButtonGroup buttonGroup = new ButtonGroup();
 	private final Action action = new SwingAction();
 	private JTextField tf_text;
-
+	private String model;
 	private JTable table;
 
 	/**
@@ -132,11 +132,8 @@ public class searchGUI {
 		table.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				int row = table.getSelectedRow();	
-				
-				String model = (String) table.getValueAt(row,0);
-				
-				detailsGUI det = new detailsGUI(model);
+				int row = table.getSelectedRow();					
+				model = (String) table.getValueAt(row,0);				
 	
 			}
 		});
@@ -182,6 +179,7 @@ public class searchGUI {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
+				detailsGUI det = new detailsGUI(model);
 			}
 		});
 		btnNewButton.setBounds(496, 455, 186, 58);
