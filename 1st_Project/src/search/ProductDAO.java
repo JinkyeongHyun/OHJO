@@ -58,6 +58,35 @@ public class ProductDAO {
 		}
 	}
 	
+	public ArrayList<ProductDTO> select() {
+		getConnect();
+		String sql = "select * from product";
+		ArrayList<ProductDTO> modelList = new ArrayList<>();
+
+		try {
+			psmt = conn.prepareStatement(sql);
+			rs = psmt.executeQuery();
+
+			while (rs.next()) {
+				String p_model = rs.getString(1);
+				String p_name = rs.getString(2);
+				String p_category = rs.getString(3);
+				String p_class = rs.getString(4);
+				String p_maxEv = rs.getString(5);
+				String p_eCost = rs.getString(6);
+				int p_price = rs.getInt(7);
+				String p_img = rs.getString(8);
+				modelList.add(new ProductDTO(p_model, p_name, p_category, p_class, p_maxEv, p_eCost, p_price, p_img));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		return modelList;
+	}
+	
 	//°Ë»ö
 	public ArrayList<ProductDTO> search(String model) {
 		getConnect();

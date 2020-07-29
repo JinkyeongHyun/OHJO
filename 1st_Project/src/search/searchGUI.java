@@ -26,6 +26,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.AbstractAction;
 import javax.swing.Action;
 import javax.swing.SwingConstants;
+import javax.swing.table.TableModel;
 
 import model.ProductDTO;
 
@@ -79,7 +80,7 @@ public class searchGUI {
 		frame.getContentPane().setLayout(null);
 
 		JPanel panel = new JPanel();
-		panel.setBounds(12, 89, 126, 422);
+		panel.setBounds(12, 89, 126, 424);
 		frame.getContentPane().add(panel);
 		panel.setLayout(null);
 
@@ -119,7 +120,7 @@ public class searchGUI {
 		panel.add(checkBox_1);
 
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(150, 89, 532, 422);
+		scrollPane.setBounds(150, 89, 532, 356);
 		frame.getContentPane().add(scrollPane);
 
 		String[] colName = { "모델명", "제품명", "에너지 효율 등급 ", "가격" };
@@ -127,7 +128,7 @@ public class searchGUI {
 		TableModelChange change = new TableModelChange(dao.priceAsce());
 		Object[][] data = change.listTypeChange();
 
-		table = new JTable(data, colName);
+		
 		scrollPane.setViewportView(table);
 
 		tf_text = new JTextField();
@@ -144,7 +145,6 @@ public class searchGUI {
 					ProductDAO dao = new ProductDAO();
 					TableModelChange change = new TableModelChange(dao.priceDesc());
 					Object[][] data = change.listTypeChange();
-
 					table = new JTable(data, colName);
 					scrollPane.setViewportView(table);
 				}
@@ -166,7 +166,18 @@ public class searchGUI {
 		JLabel lblNewLabel_2 = new JLabel("\uBAA8\uB378\uBA85 \uC785\uB825 :");
 		lblNewLabel_2.setBounds(12, 46, 87, 33);
 		frame.getContentPane().add(lblNewLabel_2);
+		
+		JButton btnNewButton = new JButton("\uC81C\uD488 \uC0C1\uC138 \uC815\uBCF4 \uBCF4\uAE30");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
+		btnNewButton.setBounds(496, 455, 186, 58);
+		frame.getContentPane().add(btnNewButton);
 	}
+	
+	
 
 	private Object[][] listTypeChange() {
 		// TODO Auto-generated method stub

@@ -15,9 +15,14 @@ import javax.swing.JTabbedPane;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.SwingConstants;
+
+import model.ProductDTO;
+import search.ProductDAO;
+
 import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.ButtonGroup;
 
@@ -35,28 +40,38 @@ public class PurchaseGUI {
 	private JTextField tf_name;
 	private JTextField tf_address;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
+	private String model;
 
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					PurchaseGUI window = new PurchaseGUI();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+//	public static void main(String[] args) {
+//		EventQueue.invokeLater(new Runnable() {
+//			public void run() {
+//				try {
+//					PurchaseGUI window = new PurchaseGUI();
+//					window.frame.setVisible(true);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		});
+//	}
 
 	/**
 	 * Create the application.
 	 */
-	public PurchaseGUI() {
+	public PurchaseGUI(String model) {
+		this.model = model;
 		initialize();
+		frame.setVisible(true);
+	}
+	
+	public ArrayList<ProductDTO> model() {
+		ProductDAO dao = new ProductDAO();
+		ArrayList<ProductDTO> dto = dao.search(model);
+		
+		return dto;
 	}
 
 	/**
@@ -238,21 +253,23 @@ public class PurchaseGUI {
 		frame.getContentPane().add(tf_address);
 		tf_address.setColumns(10);
 		
-		JLabel lblNewLabel_4 = new JLabel("New label");
-		lblNewLabel_4.setBounds(332, 47, 287, 22);
-		frame.getContentPane().add(lblNewLabel_4);
+		JLabel lb_name = new JLabel(model().get(0).getP_name());
+		lb_name.setBounds(332, 47, 287, 22);
+		frame.getContentPane().add(lb_name);
 		
-		JLabel label_12 = new JLabel("New label");
+		JLabel label_12 = new JLabel("");
 		label_12.setBounds(333, 79, 287, 22);
 		frame.getContentPane().add(label_12);
 		
-		JLabel label_13 = new JLabel("New label");
+		JLabel label_13 = new JLabel("");
 		label_13.setBounds(332, 111, 287, 22);
 		frame.getContentPane().add(label_13);
 		
-		JLabel label_14 = new JLabel("New label");
-		label_14.setBounds(333, 147, 287, 22);
-		frame.getContentPane().add(label_14);
+		String price =Integer.toString((model().get(0).getP_price())*2);
+		
+		JLabel lb_price = new JLabel(price);
+		lb_price.setBounds(333, 147, 287, 22);
+		frame.getContentPane().add(lb_price);
 		
 		JLabel label_15 = new JLabel("\uD658\uAE09 \uC5EC\uBD80");
 		label_15.setBounds(72, 402, 59, 22);

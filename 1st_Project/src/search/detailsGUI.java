@@ -1,41 +1,64 @@
 package search;
 
 import java.awt.EventQueue;
+import java.util.ArrayList;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
+
+import model.ProductDTO;
+
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import java.awt.Color;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class detailsGUI {
 
 	private JFrame frame;
-
+	private String model;
+	
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					detailsGUI window = new detailsGUI();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+//	public static void main(String[] args) {
+//		EventQueue.invokeLater(new Runnable() {
+//			public void run() {
+//				try {
+//					detailsGUI window = new detailsGUI();
+//					window.frame.setVisible(true);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		});
+//	}
 
 	/**
 	 * Create the application.
 	 */
-	public detailsGUI() {
-		initialize();
+	
+	public detailsGUI(String model) {		
+		this.model=model;
+		initialize();		
+		frame.setVisible(true);
+		
 	}
+	
+	
+	public ArrayList<ProductDTO> model() {
+		ProductDAO dao = new ProductDAO();
+		ArrayList<ProductDTO> dto = dao.search(model);
+		
+		return dto;
+	}
+
+
+	
+	
 
 	/**
 	 * Initialize the contents of the frame.
@@ -93,31 +116,34 @@ public class detailsGUI {
 		label_5.setBounds(194, 402, 123, 35);
 		panel.add(label_5);
 		
-		JLabel lb_model = new JLabel("");
+		
+		JLabel lb_model = new JLabel(model().get(0).getP_model());
 		lb_model.setBounds(83, 253, 108, 41);
 		panel.add(lb_model);
 		
-		JLabel lb_name = new JLabel("");
+		JLabel lb_name = new JLabel(model().get(0).getP_name());
 		lb_name.setBounds(274, 258, 125, 41);
 		panel.add(lb_name);
 		
-		JLabel lb_cate = new JLabel("");
+		JLabel lb_cate = new JLabel(model().get(0).getP_category());
 		lb_cate.setBounds(83, 309, 82, 41);
 		panel.add(lb_cate);
 		
-		JLabel lb_rank = new JLabel("");
+		JLabel lb_rank = new JLabel(model().get(0).getP_class());
 		lb_rank.setBounds(342, 306, 57, 35);
 		panel.add(lb_rank);
 		
-		JLabel lb_ev = new JLabel("");
-		lb_ev.setBounds(132, 357, 57, 35);
+		JLabel lb_ev = new JLabel(model().get(0).getP_maxEv());
+		lb_ev.setBounds(132, 357, 81, 35);
 		panel.add(lb_ev);
 		
-		JLabel lb_yearCost = new JLabel("");
+		JLabel lb_yearCost = new JLabel(model().get(0).getP_eCost());
 		lb_yearCost.setBounds(329, 357, 79, 35);
 		panel.add(lb_yearCost);
 		
-		JLabel lb_cost = new JLabel("");
+		String price = Integer.toString(model().get(0).getP_price());
+		
+		JLabel lb_cost = new JLabel(price);
 		lb_cost.setBounds(342, 402, 57, 35);
 		panel.add(lb_cost);
 		
@@ -127,11 +153,16 @@ public class detailsGUI {
 		panel.add(label_3);
 		
 		JButton btn_buy = new JButton("\uAD6C\uB9E4\uD558\uAE30");
+		btn_buy.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
 		btn_buy.setBounds(12, 461, 108, 23);
 		panel.add(btn_buy);
 		
 		JButton btn_back = new JButton("\uB4A4\uB85C\uAC00\uAE30");
-		btn_back.setBounds(317, 461, 82, 23);
+		btn_back.setBounds(301, 461, 98, 23);
 		panel.add(btn_back);
 	}
 }
