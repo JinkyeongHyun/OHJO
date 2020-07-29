@@ -1,33 +1,25 @@
 package part3_jinkyeong;
 
+import java.awt.Button;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
-import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JTabbedPane;
-import javax.swing.JTable;
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
-import javax.swing.SwingConstants;
-import javax.swing.event.ChangeEvent;
-import javax.swing.JList;
 import javax.swing.JPanel;
-import javax.swing.JRadioButton;
-import javax.swing.JScrollPane;
-import javax.swing.JSlider;
-import javax.swing.JEditorPane;
+import javax.swing.JTabbedPane;
+import javax.swing.JTextField;
 import javax.swing.JTextPane;
+import javax.swing.SwingConstants;
 
 public class part3_applicationFullGUI {
 
@@ -122,7 +114,7 @@ public class part3_applicationFullGUI {
 		
 		JLabel lbl_docUpload = new JLabel("\uC704\uC784\uC7A5 \uC0AC\uBCF8");
 		lbl_docUpload.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 20));
-		lbl_docUpload.setBounds(31, 302, 313, 45);
+		lbl_docUpload.setBounds(485, 172, 313, 45);
 		screen2_fileUpload.add(lbl_docUpload);
 		
 		JLabel lbl_bankAccountUpload = new JLabel("\uD658\uAE09 \uBC1B\uC744 \uBCF8\uC778 \uBA85\uC758 \uACC4\uC88C\uBC88\uD638");
@@ -144,11 +136,58 @@ public class part3_applicationFullGUI {
 		screen2_fileUpload.add(tf_accountNumber);
 		tf_accountNumber.setColumns(30);
 		
-		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\SMT016\\Desktop\\\uD604\uC9C4\uACBD\\policyImage.jpg"));
-		lblNewLabel.setBounds(544, 77, 333, 278);
-		screen2_fileUpload.add(lblNewLabel);
+		JLabel lbl_previewUpload_1 = new JLabel("\uBBF8\uB9AC\uBCF4\uAE30");
+		lbl_previewUpload_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lbl_previewUpload_1.setBounds(31, 269, 385, 285);
+		screen2_fileUpload.add(lbl_previewUpload_1);
+		
+		JButton btn_fileUpload_1 = new JButton("\uC774\uBBF8\uC9C0 \uD30C\uC77C \uC5C5\uB85C\uB4DC");
+		btn_fileUpload_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JFileChooser chooser = new JFileChooser();
+				if (JFileChooser.APPROVE_OPTION == chooser.showOpenDialog(null)) {
+					lbl_previewUpload_1.setIcon(new ImageIcon(chooser.getSelectedFile().getAbsolutePath()));
+				}
+			}
+		});
+		btn_fileUpload_1.setBackground(new Color(95, 158, 160));
+		btn_fileUpload_1.setFont(new Font("¸¼Àº °íµñ", Font.PLAIN, 13));
+		btn_fileUpload_1.setBounds(31, 221, 171, 38);
+		screen2_fileUpload.add(btn_fileUpload_1);
+		
+		JLabel lbl_previewUpload_2 = new JLabel("\uBBF8\uB9AC\uBCF4\uAE30");
+		lbl_previewUpload_2.setHorizontalAlignment(SwingConstants.CENTER);
+		lbl_previewUpload_2.setBounds(485, 269, 385, 285);
+		screen2_fileUpload.add(lbl_previewUpload_2);
+		
+		JButton btn_fileUpload_2 = new JButton("\uC774\uBBF8\uC9C0 \uD30C\uC77C \uC5C5\uB85C\uB4DC");
+		btn_fileUpload_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JFileChooser chooser = new JFileChooser();
+				if (JFileChooser.APPROVE_OPTION == chooser.showOpenDialog(null)) {
+					lbl_previewUpload_2.setIcon(new ImageIcon(chooser.getSelectedFile().getAbsolutePath()));
+				}
+			}
+		});
+		btn_fileUpload_2.setBackground(new Color(95, 158, 160));
+		btn_fileUpload_2.setFont(new Font("¸¼Àº °íµñ", Font.PLAIN, 13));
+		btn_fileUpload_2.setBounds(485, 221, 171, 38);
+		screen2_fileUpload.add(btn_fileUpload_2);
+		
+		JButton btnNewButton = new JButton("\uC800\uC7A5");
+		btnNewButton.setFont(new Font("¸¼Àº °íµñ", Font.PLAIN, 13));
+		btnNewButton.setBounds(437, 108, 66, 30);
+		screen2_fileUpload.add(btnNewButton);
+		
+		JButton button_1 = new JButton("\uC800\uC7A5");
+		button_1.setFont(new Font("¸¼Àº °íµñ", Font.PLAIN, 13));
+		button_1.setBounds(351, 229, 66, 30);
+		screen2_fileUpload.add(button_1);
+		
+		JButton button_2 = new JButton("\uC800\uC7A5");
+		button_2.setFont(new Font("¸¼Àº °íµñ", Font.PLAIN, 13));
+		button_2.setBounds(804, 234, 66, 30);
+		screen2_fileUpload.add(button_2);
 		
 		JPanel screen3_energySavingSecret = new JPanel();
 		screen3_energySavingSecret.setBackground(new Color(255, 255, 255));
@@ -163,7 +202,7 @@ public class part3_applicationFullGUI {
 		JComboBox cb_sortOfProducts = new JComboBox();
 		cb_sortOfProducts.setBackground(new Color(255, 255, 255));
 		cb_sortOfProducts.setModel(new DefaultComboBoxModel(new String[] {"\uB0C9\uC7A5\uACE0", "\uAE40\uCE58\uB0C9\uC7A5\uACE0", "\uC5D0\uC5B4\uCEE8 (\uBCBD\uAC78\uC774)", "\uC5D0\uC5B4\uCEE8 (\uADF8 \uC678)", "\uC138\uD0C1\uAE30 (\uC77C\uBC18)", "\uC138\uD0C1\uAE30 (\uB4DC\uB7FC)", "\uB0C9\uC628\uC218\uAE30 (\uC800\uC7A5\uC2DD)", "\uB0C9\uC628\uC218\uAE30 (\uC9C1\uC218\uC2DD)", "\uC804\uAE30\uBC25\uC1A5", "\uC9C4\uACF5 \uCCAD\uC18C\uAE30", "\uACF5\uAE30\uCCAD\uC815\uAE30", "TV", "\uC81C\uC2B5\uAE30", "\uC758\uB958\uAC74\uC870\uAE30"}));
-		cb_sortOfProducts.setFont(new Font("¸¼Àº °íµñ", Font.PLAIN, 15));
+		cb_sortOfProducts.setFont(new Font("¸¼Àº °íµñ", Font.PLAIN, 14));
 		cb_sortOfProducts.setBounds(27, 124, 183, 32);
 		screen3_energySavingSecret.add(cb_sortOfProducts);
 		
@@ -185,7 +224,7 @@ public class part3_applicationFullGUI {
 		});
 		btn_goToApplication.setBackground(new Color(95, 158, 160));
 		btn_goToApplication.setForeground(new Color(0, 0, 0));
-		btn_goToApplication.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 15));
+		btn_goToApplication.setFont(new Font("¸¼Àº °íµñ", Font.PLAIN, 13));
 		btn_goToApplication.setBounds(472, 412, 168, 30);
 		screen1_policyInfo.add(btn_goToApplication);
 		
