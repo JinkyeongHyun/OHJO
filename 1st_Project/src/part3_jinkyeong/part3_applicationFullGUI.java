@@ -136,58 +136,58 @@ public class part3_applicationFullGUI {
 		screen2_fileUpload.add(tf_accountNumber);
 		tf_accountNumber.setColumns(30);
 		
-		JLabel lbl_previewUpload_1 = new JLabel("\uBBF8\uB9AC\uBCF4\uAE30");
-		lbl_previewUpload_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lbl_previewUpload_1.setBounds(31, 269, 385, 285);
-		screen2_fileUpload.add(lbl_previewUpload_1);
+		JLabel lbl_previewIdCard = new JLabel("\uBBF8\uB9AC\uBCF4\uAE30");
+		lbl_previewIdCard.setHorizontalAlignment(SwingConstants.CENTER);
+		lbl_previewIdCard.setBounds(31, 269, 385, 285);
+		screen2_fileUpload.add(lbl_previewIdCard);
 		
-		JButton btn_fileUpload_1 = new JButton("\uC774\uBBF8\uC9C0 \uD30C\uC77C \uC5C5\uB85C\uB4DC");
-		btn_fileUpload_1.addActionListener(new ActionListener() {
+		JButton btn_fileUpload_idCard = new JButton("\uC774\uBBF8\uC9C0 \uD30C\uC77C \uC5C5\uB85C\uB4DC");
+		btn_fileUpload_idCard.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JFileChooser chooser = new JFileChooser();
 				if (JFileChooser.APPROVE_OPTION == chooser.showOpenDialog(null)) {
-					lbl_previewUpload_1.setIcon(new ImageIcon(chooser.getSelectedFile().getAbsolutePath()));
+					lbl_previewIdCard.setIcon(new ImageIcon(chooser.getSelectedFile().getAbsolutePath()));
 				}
 			}
 		});
-		btn_fileUpload_1.setBackground(new Color(95, 158, 160));
-		btn_fileUpload_1.setFont(new Font("¸¼Àº °íµñ", Font.PLAIN, 13));
-		btn_fileUpload_1.setBounds(31, 221, 171, 38);
-		screen2_fileUpload.add(btn_fileUpload_1);
+		btn_fileUpload_idCard.setBackground(new Color(95, 158, 160));
+		btn_fileUpload_idCard.setFont(new Font("¸¼Àº °íµñ", Font.PLAIN, 13));
+		btn_fileUpload_idCard.setBounds(31, 221, 171, 38);
+		screen2_fileUpload.add(btn_fileUpload_idCard);
 		
-		JLabel lbl_previewUpload_2 = new JLabel("\uBBF8\uB9AC\uBCF4\uAE30");
-		lbl_previewUpload_2.setHorizontalAlignment(SwingConstants.CENTER);
-		lbl_previewUpload_2.setBounds(485, 269, 385, 285);
-		screen2_fileUpload.add(lbl_previewUpload_2);
+		JLabel lbl_previewDoc = new JLabel("\uBBF8\uB9AC\uBCF4\uAE30");
+		lbl_previewDoc.setHorizontalAlignment(SwingConstants.CENTER);
+		lbl_previewDoc.setBounds(485, 269, 385, 285);
+		screen2_fileUpload.add(lbl_previewDoc);
 		
-		JButton btn_fileUpload_2 = new JButton("\uC774\uBBF8\uC9C0 \uD30C\uC77C \uC5C5\uB85C\uB4DC");
-		btn_fileUpload_2.addActionListener(new ActionListener() {
+		JButton btn_fileUpload_doc = new JButton("\uC774\uBBF8\uC9C0 \uD30C\uC77C \uC5C5\uB85C\uB4DC");
+		btn_fileUpload_doc.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JFileChooser chooser = new JFileChooser();
 				if (JFileChooser.APPROVE_OPTION == chooser.showOpenDialog(null)) {
-					lbl_previewUpload_2.setIcon(new ImageIcon(chooser.getSelectedFile().getAbsolutePath()));
+					lbl_previewDoc.setIcon(new ImageIcon(chooser.getSelectedFile().getAbsolutePath()));
 				}
 			}
 		});
-		btn_fileUpload_2.setBackground(new Color(95, 158, 160));
-		btn_fileUpload_2.setFont(new Font("¸¼Àº °íµñ", Font.PLAIN, 13));
-		btn_fileUpload_2.setBounds(485, 221, 171, 38);
-		screen2_fileUpload.add(btn_fileUpload_2);
+		btn_fileUpload_doc.setBackground(new Color(95, 158, 160));
+		btn_fileUpload_doc.setFont(new Font("¸¼Àº °íµñ", Font.PLAIN, 13));
+		btn_fileUpload_doc.setBounds(485, 221, 171, 38);
+		screen2_fileUpload.add(btn_fileUpload_doc);
 		
-		JButton btnNewButton = new JButton("\uC800\uC7A5");
-		btnNewButton.setFont(new Font("¸¼Àº °íµñ", Font.PLAIN, 13));
-		btnNewButton.setBounds(437, 108, 66, 30);
-		screen2_fileUpload.add(btnNewButton);
+		JButton btn_saveBankAccount = new JButton("\uC800\uC7A5");
+		btn_saveBankAccount.setFont(new Font("¸¼Àº °íµñ", Font.PLAIN, 13));
+		btn_saveBankAccount.setBounds(437, 108, 66, 30);
+		screen2_fileUpload.add(btn_saveBankAccount);
 		
-		JButton button_1 = new JButton("\uC800\uC7A5");
-		button_1.setFont(new Font("¸¼Àº °íµñ", Font.PLAIN, 13));
-		button_1.setBounds(351, 229, 66, 30);
-		screen2_fileUpload.add(button_1);
+		JButton btn_saveIdCard = new JButton("\uC800\uC7A5");
+		btn_saveIdCard.setFont(new Font("¸¼Àº °íµñ", Font.PLAIN, 13));
+		btn_saveIdCard.setBounds(351, 229, 66, 30);
+		screen2_fileUpload.add(btn_saveIdCard);
 		
-		JButton button_2 = new JButton("\uC800\uC7A5");
-		button_2.setFont(new Font("¸¼Àº °íµñ", Font.PLAIN, 13));
-		button_2.setBounds(804, 234, 66, 30);
-		screen2_fileUpload.add(button_2);
+		JButton btn_saveDoc = new JButton("\uC800\uC7A5");
+		btn_saveDoc.setFont(new Font("¸¼Àº °íµñ", Font.PLAIN, 13));
+		btn_saveDoc.setBounds(804, 234, 66, 30);
+		screen2_fileUpload.add(btn_saveDoc);
 		
 		JPanel screen3_energySavingSecret = new JPanel();
 		screen3_energySavingSecret.setBackground(new Color(255, 255, 255));
