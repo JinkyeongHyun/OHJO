@@ -2,6 +2,7 @@ package view;
 
 import java.awt.EventQueue;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
@@ -10,7 +11,8 @@ import javax.swing.JMenuItem;
 public class MainGUI {
 
 	private JFrame frame;
-
+	JButton btn_main_login;
+	JButton btn_main_logout;
 	/**
 	 * Launch the application.
 	 */
