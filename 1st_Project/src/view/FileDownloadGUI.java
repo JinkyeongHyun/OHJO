@@ -67,17 +67,17 @@ public class FileDownloadGUI {
 		// 위임장 미리보기 제시
 		JLabel lbl_docPreview = new JLabel("");
 		lbl_docPreview.setHorizontalAlignment(SwingConstants.CENTER);
-		lbl_docPreview.setIcon(new ImageIcon("E:\\Bigdata\\팀 프로젝트\\[자료]환급신청 위임장.jpg"));
+		lbl_docPreview.setIcon(new ImageIcon("E:\\Bigdata\\팀 프로젝트\\[자료] GUI에 쓰인 사진들\\\\Doc.jpg"));
 		lbl_docPreview.setBounds(472, 10, 495, 615);
 		frame.getContentPane().add(lbl_docPreview);
-		lbl_docPreview.setIcon(new ImageIcon(new ImageIcon("E:\\Bigdata\\팀 프로젝트\\[자료]환급신청 위임장.jpg").getImage().getScaledInstance(450, 520, Image.SCALE_DEFAULT)));
+		lbl_docPreview.setIcon(new ImageIcon(new ImageIcon("E:\\Bigdata\\팀 프로젝트\\[자료] GUI에 쓰인 사진들\\Doc.jpg").getImage().getScaledInstance(450, 520, Image.SCALE_DEFAULT)));
 		
 		// 위임장 서식 다운로드 버튼
 		JButton btn_downloadDoc = new JButton("\uC73C\uB738 \uD6A8\uC728 \uAC00\uC804\uC81C\uD488 \uAD6C\uB9E4\uBE44\uC6A9 \uD658\uAE09\uC2E0\uCCAD \uC704\uC784\uC7A5.jpg");
 		btn_downloadDoc.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JFileChooser chooser = new JFileChooser();
-				chooser.setSelectedFile(new File("E:\\Bigdata\\팀 프로젝트\\Doc.jpg"));
+				chooser.setSelectedFile(new File("E:\\Bigdata\\팀 프로젝트\\[자료] GUI에 쓰인 사진들\\Doc.jpg"));
 				if (JFileChooser.APPROVE_OPTION == chooser.showSaveDialog(null)) {
 					RenderedImage rendered = createReportAsJpg();
 					try {
