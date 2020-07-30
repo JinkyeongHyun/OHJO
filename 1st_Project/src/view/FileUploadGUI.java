@@ -20,10 +20,14 @@ import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+import model.CustomerDTO;
+
 public class FileUploadGUI {
 
 	private JFrame frame;
 	private JTextField textField;
+	
+	CustomerDTO loginDto;
 
 	/**
 	 * Launch the application.
@@ -99,7 +103,7 @@ public class FileUploadGUI {
 		
 		JLabel lbl_previewIdCard = new JLabel("\uBBF8\uB9AC\uBCF4\uAE30");
 		lbl_previewIdCard.setHorizontalAlignment(SwingConstants.CENTER);
-		lbl_previewIdCard.setBounds(31, 269, 385, 285);
+		lbl_previewIdCard.setBounds(31, 269, 300, 285);
 		screen2_fileUpload.add(lbl_previewIdCard);
 		
 		
@@ -119,7 +123,7 @@ public class FileUploadGUI {
 		
 		JLabel lbl_previewDoc = new JLabel("\uBBF8\uB9AC\uBCF4\uAE30");
 		lbl_previewDoc.setHorizontalAlignment(SwingConstants.CENTER);
-		lbl_previewDoc.setBounds(485, 269, 385, 285);
+		lbl_previewDoc.setBounds(485, 269, 300, 285);
 		screen2_fileUpload.add(lbl_previewDoc);
 		
 		JButton btn_fileUpload_doc = new JButton("\uC774\uBBF8\uC9C0 \uD30C\uC77C \uC5C5\uB85C\uB4DC");
@@ -151,5 +155,18 @@ public class FileUploadGUI {
 		btn_saveDoc.setBounds(804, 229, 66, 30);
 		screen2_fileUpload.add(btn_saveDoc);
 		
+		JButton btn_close = new JButton("\uB2EB\uAE30");
+		btn_close.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				MainGUI main = new MainGUI();
+				main.loginInfo(loginDto);
+			}
+		});
+		btn_close.setForeground(Color.BLACK);
+		btn_close.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 15));
+		btn_close.setBackground(new Color(205, 92, 92));
+		btn_close.setBounds(409, 519, 70, 35);
+		screen2_fileUpload.add(btn_close);
 	}
 }

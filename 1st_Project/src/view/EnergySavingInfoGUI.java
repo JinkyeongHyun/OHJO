@@ -1,26 +1,27 @@
 package view;
 
+import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JComboBox;
-import javax.imageio.ImageIO;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.SwingConstants;
-import java.awt.Font;
-import java.awt.Color;
+
+import model.CustomerDTO;
 
 public class EnergySavingInfoGUI {
 
 	private JFrame frame;
+	
+	CustomerDTO loginDto;
 
 	/**
 	 * Launch the application.
@@ -72,6 +73,20 @@ public class EnergySavingInfoGUI {
 		lbl_previewSaving.setHorizontalAlignment(SwingConstants.CENTER);
 		lbl_previewSaving.setBounds(401, 26, 494, 521);
 		frame.getContentPane().add(lbl_previewSaving);
+		
+		JButton button = new JButton("\uB2EB\uAE30");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				MainGUI main = new MainGUI();
+				main.loginInfo(loginDto);
+			}
+		});
+		button.setForeground(Color.BLACK);
+		button.setFont(new Font("∏º¿∫ ∞ÌµÒ", Font.BOLD, 15));
+		button.setBackground(new Color(205, 92, 92));
+		button.setBounds(28, 512, 70, 35);
+		frame.getContentPane().add(button);
 		comboBox.addActionListener(new ActionListener () {
 			public void actionPerformed (ActionEvent e) {
 				if ("≥√¿Â∞Ì".equals(comboBox.getSelectedItem())) {

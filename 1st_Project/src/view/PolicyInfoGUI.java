@@ -21,10 +21,15 @@ import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import javax.swing.SwingConstants;
 
+import model.CustomerDTO;
+
 public class PolicyInfoGUI {
 
 	public JFrame frame;
 	private JTextField tf_accountNumber;
+	
+	// »ç¿ëÀÚ Á¤º¸
+	CustomerDTO loginDto;
 
 	/**
 	 * Launch the application.
@@ -100,30 +105,19 @@ public class PolicyInfoGUI {
 		tp_site.setBounds(472, 345, 316, 56);
 		screen1_policyInfo.add(tp_site);
 		
-//		JButton btn_goToApplication = new JButton("\uB300\uD589 \uC2E0\uCCAD \uBC14\uB85C\uAC00\uAE30");
-//		btn_goToApplication.addActionListener(new ActionListener() {
-//			public void actionPerformed(ActionEvent e) {
-//				tabbedPane.setSelectedIndex(1);
-//				
-//			}
-//		});
-//		btn_goToApplication.setBackground(new Color(95, 158, 160));
-//		btn_goToApplication.setForeground(new Color(0, 0, 0));
-//		btn_goToApplication.setFont(new Font("¸¼Àº °íµñ", Font.PLAIN, 13));
-//		btn_goToApplication.setBounds(472, 412, 168, 30);
-//		screen1_policyInfo.add(btn_goToApplication);
-		
-		JButton button = new JButton("\uB2EB\uAE30");
-		button.addActionListener(new ActionListener() {
+		JButton btn_close = new JButton("\uB2EB\uAE30");
+		btn_close.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
+				MainGUI main = new MainGUI();
+				main.loginInfo(loginDto);
 			}
 		});
-		button.setForeground(Color.BLACK);
-		button.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 15));
-		button.setBackground(new Color(205, 92, 92));
-		button.setBounds(398, 519, 70, 35);
-		screen1_policyInfo.add(button);
+		btn_close.setForeground(Color.BLACK);
+		btn_close.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 15));
+		btn_close.setBackground(new Color(205, 92, 92));
+		btn_close.setBounds(398, 519, 70, 35);
+		screen1_policyInfo.add(btn_close);
 		
 	}
 }
