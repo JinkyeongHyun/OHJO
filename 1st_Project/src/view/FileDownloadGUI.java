@@ -55,7 +55,7 @@ public class FileDownloadGUI {
 	private void initialize() {
 		frame = new JFrame();
 		frame.getContentPane().setBackground(Color.WHITE);
-		frame.setBounds(100, 100, 995, 674);
+		frame.setBounds(100, 100, 994, 593);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
@@ -67,8 +67,8 @@ public class FileDownloadGUI {
 		// 위임장 미리보기 제시
 		JLabel lbl_docPreview = new JLabel("");
 		lbl_docPreview.setHorizontalAlignment(SwingConstants.CENTER);
-		lbl_docPreview.setIcon(new ImageIcon("E:\\Bigdata\\팀 프로젝트\\[자료] GUI에 쓰인 사진들\\\\Doc.jpg"));
-		lbl_docPreview.setBounds(472, 10, 495, 615);
+		lbl_docPreview.setIcon(new ImageIcon("E:\\Bigdata\\팀 프로젝트\\[자료] GUI에 쓰인 사진들\\Doc.jpg"));
+		lbl_docPreview.setBounds(512, 56, 383, 458);
 		frame.getContentPane().add(lbl_docPreview);
 		lbl_docPreview.setIcon(new ImageIcon(new ImageIcon("E:\\Bigdata\\팀 프로젝트\\[자료] GUI에 쓰인 사진들\\Doc.jpg").getImage().getScaledInstance(450, 520, Image.SCALE_DEFAULT)));
 		
@@ -109,7 +109,7 @@ public class FileDownloadGUI {
 		button.setForeground(Color.BLACK);
 		button.setFont(new Font("맑은 고딕", Font.BOLD, 15));
 		button.setBackground(new Color(205, 92, 92));
-		button.setBounds(12, 590, 70, 35);
+		button.setBounds(12, 500, 70, 35);
 		frame.getContentPane().add(button);
 	}
 
