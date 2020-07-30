@@ -112,4 +112,37 @@ public class CustomerDAO {
 		//없으면(중복이아니면) false 반환
 		return false;
 	}
+	
+	//회원정보수정
+	public int customerUpdate (CustomerDTO dto) {
+		int result = 0;
+		getConnect();
+		String sql = "update customer set pw = ?, name = ?, cell = ? where id = ?";
+		try {
+			pstm = conn.prepareStatement(sql);
+			pstm.setString(1, dto.getC_pw());
+			pstm.setString(2, dto.getC_name());
+			pstm.setString(3, dto.getC_cell());
+			pstm.setString(4, dto.getC_id());			
+			result = pstm.executeUpdate(); 
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
+	//회원탈퇴
+	public int customerDelete(CustomerDTO dto) {
+		int result = 0;
+		getConnect();
+		String sql = "delete customer where id = ?";
+		try {
+			pstm = conn.prepareStatement(sql);
+			pstm.setString(1, dto.getC_id());
+			result = pstm.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
 }

@@ -18,6 +18,11 @@ public class MainGUI {
 	private JFrame frame;
 	JButton btn_main_login;
 	JButton btn_main_logout;
+	
+	JMenu mn_main_myPage;
+	
+	//사용자 정보
+	CustomerDTO loginDto;
 	/**
 	 * Launch the application.
 	 */
@@ -42,6 +47,9 @@ public class MainGUI {
 		
 		//로그인 하지 않은 상태에서 로그아웃 버튼을 보이지 않게 함
 		btn_main_logout.setVisible(false);
+		
+		//로그인 하지 않은 상태에서 마이페이지를 보이지 않게 함
+		mn_main_myPage.setVisible(false);
 	}
 
 	/**
@@ -76,20 +84,30 @@ public class MainGUI {
 		JMenuItem mntmNewMenuItem_7 = new JMenuItem("\uC6B0\uB9AC\uC9D1 \uC5D0\uB108\uC9C0 \uC808\uC57D\uC740 \uC774\uB807\uAC8C \uD574\uC694!!");
 		mnNewMenu_2.add(mntmNewMenuItem_7);
 		
-		JMenu mnNewMenu = new JMenu("My page");
-		menuBar.add(mnNewMenu);
+		mn_main_myPage = new JMenu("My page");
+		menuBar.add(mn_main_myPage);
 		
+		//회원정보 수정 및 탈퇴 버튼
 		JMenuItem mntmNewMenuItem = new JMenuItem("회원정보 수정 및 탈퇴");
-		mnNewMenu.add(mntmNewMenuItem);
+		mntmNewMenuItem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				
+				//CustomerUpdateGUI 창을 열고 로그인 정보 전송
+				CustomerUpdateGUI update = new CustomerUpdateGUI();
+				update.loginInfo(loginDto);
+			}
+		});
+		mn_main_myPage.add(mntmNewMenuItem);
 		
 		JMenuItem mntmNewMenuItem_1 = new JMenuItem("\uAD6C\uB9E4\uB0B4\uC5ED");
-		mnNewMenu.add(mntmNewMenuItem_1);
+		mn_main_myPage.add(mntmNewMenuItem_1);
 		
 		JMenuItem mntmNewMenuItem_2 = new JMenuItem("\uC2E0\uCCAD\uB0B4\uC5ED");
-		mnNewMenu.add(mntmNewMenuItem_2);
+		mn_main_myPage.add(mntmNewMenuItem_2);
 		
 		JMenuItem mntmNewMenuItem_3 = new JMenuItem("\uB0B4 \uAC00\uC804\uC81C\uD488");
-		mnNewMenu.add(mntmNewMenuItem_3);
+		mn_main_myPage.add(mntmNewMenuItem_3);
 		frame.getContentPane().setLayout(null);
 		
 		//로그인버튼
@@ -123,9 +141,10 @@ public class MainGUI {
 		//로그인 버튼을 보이지 않게, 로그아웃 버튼을 보이게 함
 		btn_main_login.setVisible(false);
 		btn_main_logout.setVisible(true);
-		
-		//다이얼로그 출력
-		JOptionPane.showMessageDialog(null, dto.getC_name()+"님 환영합니다.");
+		//마이페이지를 보이게 함
+		mn_main_myPage.setVisible(true);
+		//로그인 정보 저장
+		loginDto = dto;
 	}
 	
 	//로그아웃 성공시 작동
