@@ -190,6 +190,8 @@ public class PurchaseGUI {
 					String address = tf_address.getText();
 					dao.purchaseDetailInsert(
 							new purchaseDetailDTO(0, model().get(0).getP_name(), 2, price, address, recip, cellnum));
+					// 위의 첫번째 항목의 0은 어차 db테이블에 입력시 시퀀스로 입력되기 때문에 타입만 맞춰 채워 넣은 것이고 
+					//, 중간의 2는 수량을 어디서 입력할지 애매해서 int타입의 숫자2를 넣었다.
 
 				}
 				;
