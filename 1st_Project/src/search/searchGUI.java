@@ -4,19 +4,15 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.JMenuBar;
-import javax.swing.JMenu;
-import javax.swing.JCheckBoxMenuItem;
-import javax.swing.JPopupMenu;
-import java.awt.Component;
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
-import java.util.Iterator;
 
 import javax.swing.JLabel;
 import javax.swing.JRadioButton;
 import java.awt.Font;
+
 import javax.swing.ButtonGroup;
 import javax.swing.JCheckBox;
 import javax.swing.JScrollPane;
@@ -24,27 +20,25 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.AbstractAction;
-import javax.swing.Action;
-import javax.swing.SwingConstants;
-import javax.swing.table.TableModel;
+
+import javax.swing.JTextField;
 
 import model.ProductDTO;
 
-import javax.swing.JToggleButton;
-import java.awt.Color;
-import javax.swing.JTextField;
 import javax.swing.ImageIcon;
 import javax.swing.JTable;
-import javax.swing.ListSelectionModel;
 
 public class searchGUI {
 
 	private JFrame frame;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
-	private final Action action = new SwingAction();
+
 	private JTextField tf_text;
 	private String model;
 	private JTable table;
+	JRadioButton rb_desc;
+	JRadioButton rb_asce;
+	JScrollPane scrollPane;
 
 	/**
 	 * Launch the application.
@@ -66,6 +60,7 @@ public class searchGUI {
 	 * Create the application.
 	 */
 	public searchGUI() {
+
 		initialize();
 	}
 
@@ -84,19 +79,6 @@ public class searchGUI {
 		frame.getContentPane().add(panel);
 		panel.setLayout(null);
 
-		// 오름차순
-		JRadioButton rb_desc = new JRadioButton("\uAC00\uACA9 \uB192\uC740\uC21C");
-		buttonGroup.add(rb_desc);
-		rb_desc.setBounds(8, 28, 106, 23);
-		panel.add(rb_desc);
-
-		// 내림차순
-		JRadioButton rb_asce = new JRadioButton("\uAC00\uACA9 \uB0AE\uC740\uC21C");
-		rb_asce.setSelected(true);
-		buttonGroup.add(rb_asce);
-		rb_asce.setBounds(8, 53, 106, 23);
-		panel.add(rb_asce);
-
 		JLabel lblNewLabel = new JLabel("\uAC00\uACA9");
 		lblNewLabel.setFont(new Font("굴림", Font.BOLD, 12));
 		lblNewLabel.setBounds(8, 7, 89, 15);
@@ -106,18 +88,6 @@ public class searchGUI {
 		lblNewLabel_1.setFont(new Font("굴림", Font.BOLD, 12));
 		lblNewLabel_1.setBounds(8, 93, 106, 15);
 		panel.add(lblNewLabel_1);
-
-		JCheckBox chckbxNewCheckBox = new JCheckBox("1\uB4F1\uAE09");
-		chckbxNewCheckBox.setBounds(8, 114, 106, 23);
-		panel.add(chckbxNewCheckBox);
-
-		JCheckBox checkBox = new JCheckBox("2\uB4F1\uAE09");
-		checkBox.setBounds(8, 139, 106, 23);
-		panel.add(checkBox);
-
-		JCheckBox checkBox_1 = new JCheckBox("3\uB4F1\uAE09");
-		checkBox_1.setBounds(8, 164, 106, 23);
-		panel.add(checkBox_1);
 
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(150, 89, 532, 356);
@@ -129,15 +99,15 @@ public class searchGUI {
 		Object[][] data = change.listTypeChange();
 
 		table = new JTable(data, colName);
+		scrollPane.setViewportView(table);
 		table.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				int row = table.getSelectedRow();					
-				model = (String) table.getValueAt(row,0);				
-	
+				int row = table.getSelectedRow();
+				model = (String) table.getValueAt(row, 0);
+
 			}
 		});
-		scrollPane.setViewportView(table);
 
 		tf_text = new JTextField();
 		tf_text.setBounds(111, 46, 465, 33);
@@ -145,40 +115,341 @@ public class searchGUI {
 		tf_text.setColumns(10);
 
 		JButton btn_search = new JButton("\uAC80\uC0C9");
-		btn_search.setIcon(new ImageIcon("C:\\Users\\SMT042\\Desktop\\\uAC80.jpg"));
+		btn_search.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				int row = table.getSelectedRow();
+				model = (String) table.getValueAt(row, 0);
+			}
+		});
 		btn_search.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (rb_desc.isSelected()) {
-					String[] colName = { "모델명", "제품명", "에너지 효율 등급 ", "가격" };
-					ProductDAO dao = new ProductDAO();
-					TableModelChange change = new TableModelChange(dao.priceDesc());
-					Object[][] data = change.listTypeChange();
-					table = new JTable(data, colName);
-					scrollPane.setViewportView(table);
-				}
-				if (rb_asce.isSelected()) {
-					String[] colName = { "모델명", "제품명", "에너지 효율 등급 ", "가격" };
-					ProductDAO dao = new ProductDAO();
-					TableModelChange change = new TableModelChange(dao.priceAsce());
-					Object[][] data = change.listTypeChange();
+				ProductDAO dao = new ProductDAO();
+				ArrayList<ProductDTO> tf = dao.search(tf_text.getText());
+				TableModelChange change = new TableModelChange(tf);
+				Object[][] data = change.listTypeChange();
+				table = new JTable(data, colName);
+				scrollPane.setViewportView(table);
 
-					table = new JTable(data, colName);
-					scrollPane.setViewportView(table);
+			}
+		});
+
+		JCheckBox ch1 = new JCheckBox("1\uB4F1\uAE09");
+		ch1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				if (rb_asce.isSelected()) {
+					if (ch1.isSelected()) {
+
+						String[] colName = { "모델명", "제품명", "에너지 효율 등급 ", "가격" };
+						ProductDAO dao = new ProductDAO();
+						TableModelChange change = new TableModelChange(dao.eclss("1등급", ""));
+						Object[][] data = change.listTypeChange();
+
+						table = new JTable(data, colName);
+						scrollPane.setViewportView(table);
+						table.addMouseListener(new MouseAdapter() {
+							@Override
+							public void mouseClicked(MouseEvent e) {
+								int row = table.getSelectedRow();
+								model = (String) table.getValueAt(row, 0);
+
+							}
+						});
+					}
+					if (ch1.isSelected() == false) {
+						String[] colName = { "모델명", "제품명", "에너지 효율 등급 ", "가격" };
+						ProductDAO dao = new ProductDAO();
+						TableModelChange change = new TableModelChange(dao.priceAsce());
+						Object[][] data = change.listTypeChange();
+
+						table = new JTable(data, colName);
+						scrollPane.setViewportView(table);
+						table.addMouseListener(new MouseAdapter() {
+							@Override
+							public void mouseClicked(MouseEvent e) {
+								int row = table.getSelectedRow();
+								model = (String) table.getValueAt(row, 0);
+
+							}
+						});
+					}
+
+				} else {
+					if (ch1.isSelected()) {
+
+						String[] colName = { "모델명", "제품명", "에너지 효율 등급 ", "가격" };
+						ProductDAO dao = new ProductDAO();
+						TableModelChange change = new TableModelChange(dao.eclss("1등급", "desc"));
+						Object[][] data = change.listTypeChange();
+
+						table = new JTable(data, colName);
+						scrollPane.setViewportView(table);
+						table.addMouseListener(new MouseAdapter() {
+							@Override
+							public void mouseClicked(MouseEvent e) {
+								int row = table.getSelectedRow();
+								model = (String) table.getValueAt(row, 0);
+
+							}
+						});
+					}
+					if (ch1.isSelected() == false) {
+						String[] colName = { "모델명", "제품명", "에너지 효율 등급 ", "가격" };
+						ProductDAO dao = new ProductDAO();
+						TableModelChange change = new TableModelChange(dao.priceDesc());
+						Object[][] data = change.listTypeChange();
+
+						table = new JTable(data, colName);
+						scrollPane.setViewportView(table);
+						table.addMouseListener(new MouseAdapter() {
+							@Override
+							public void mouseClicked(MouseEvent e) {
+								int row = table.getSelectedRow();
+								model = (String) table.getValueAt(row, 0);
+
+							}
+						});
+					}
 				}
 
 			}
 		});
+		ch1.setBounds(8, 114, 106, 23);
+		panel.add(ch1);
+
+		JCheckBox ch2 = new JCheckBox("2\uB4F1\uAE09");
+		ch2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				if (rb_asce.isSelected()) {
+					if (ch2.isSelected()) {
+
+						String[] colName = { "모델명", "제품명", "에너지 효율 등급 ", "가격" };
+						ProductDAO dao = new ProductDAO();
+						TableModelChange change = new TableModelChange(dao.eclss("2등급", ""));
+						Object[][] data = change.listTypeChange();
+
+						table = new JTable(data, colName);
+						scrollPane.setViewportView(table);
+						table.addMouseListener(new MouseAdapter() {
+							@Override
+							public void mouseClicked(MouseEvent e) {
+								int row = table.getSelectedRow();
+								model = (String) table.getValueAt(row, 0);
+
+							}
+						});
+					}
+					if (ch2.isSelected() == false) {
+						String[] colName = { "모델명", "제품명", "에너지 효율 등급 ", "가격" };
+						ProductDAO dao = new ProductDAO();
+						TableModelChange change = new TableModelChange(dao.priceAsce());
+						Object[][] data = change.listTypeChange();
+
+						table = new JTable(data, colName);
+						scrollPane.setViewportView(table);
+						table.addMouseListener(new MouseAdapter() {
+							@Override
+							public void mouseClicked(MouseEvent e) {
+								int row = table.getSelectedRow();
+								model = (String) table.getValueAt(row, 0);
+
+							}
+						});
+					}
+
+				} else {
+					if (ch2.isSelected()) {
+
+						String[] colName = { "모델명", "제품명", "에너지 효율 등급 ", "가격" };
+						ProductDAO dao = new ProductDAO();
+						TableModelChange change = new TableModelChange(dao.eclss("2등급", "desc"));
+						Object[][] data = change.listTypeChange();
+
+						table = new JTable(data, colName);
+						scrollPane.setViewportView(table);
+						table.addMouseListener(new MouseAdapter() {
+							@Override
+							public void mouseClicked(MouseEvent e) {
+								int row = table.getSelectedRow();
+								model = (String) table.getValueAt(row, 0);
+
+							}
+						});
+					}
+					if (ch2.isSelected() == false) {
+						String[] colName = { "모델명", "제품명", "에너지 효율 등급 ", "가격" };
+						ProductDAO dao = new ProductDAO();
+						TableModelChange change = new TableModelChange(dao.priceDesc());
+						Object[][] data = change.listTypeChange();
+
+						table = new JTable(data, colName);
+						scrollPane.setViewportView(table);
+						table.addMouseListener(new MouseAdapter() {
+							@Override
+							public void mouseClicked(MouseEvent e) {
+								int row = table.getSelectedRow();
+								model = (String) table.getValueAt(row, 0);
+
+							}
+						});
+					}
+				}
+
+			}
+		});
+		ch2.setBounds(8, 139, 106, 23);
+		panel.add(ch2);
+
+		JCheckBox ch3 = new JCheckBox("3\uB4F1\uAE09");
+		ch3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				if (rb_asce.isSelected()) {
+					if (ch3.isSelected()) {
+
+						String[] colName = { "모델명", "제품명", "에너지 효율 등급 ", "가격" };
+						ProductDAO dao = new ProductDAO();
+						TableModelChange change = new TableModelChange(dao.eclss("3등급", ""));
+						Object[][] data = change.listTypeChange();
+
+						table = new JTable(data, colName);
+						scrollPane.setViewportView(table);
+						table.addMouseListener(new MouseAdapter() {
+							@Override
+							public void mouseClicked(MouseEvent e) {
+								int row = table.getSelectedRow();
+								model = (String) table.getValueAt(row, 0);
+
+							}
+						});
+					}
+					if (ch3.isSelected() == false) {
+						String[] colName = { "모델명", "제품명", "에너지 효율 등급 ", "가격" };
+						ProductDAO dao = new ProductDAO();
+						TableModelChange change = new TableModelChange(dao.priceAsce());
+						Object[][] data = change.listTypeChange();
+
+						table = new JTable(data, colName);
+						scrollPane.setViewportView(table);
+						table.addMouseListener(new MouseAdapter() {
+							@Override
+							public void mouseClicked(MouseEvent e) {
+								int row = table.getSelectedRow();
+								model = (String) table.getValueAt(row, 0);
+
+							}
+						});
+					}
+
+				} else {
+					if (ch3.isSelected()) {
+
+						String[] colName = { "모델명", "제품명", "에너지 효율 등급 ", "가격" };
+						ProductDAO dao = new ProductDAO();
+						TableModelChange change = new TableModelChange(dao.eclss("3등급", "desc"));
+						Object[][] data = change.listTypeChange();
+
+						table = new JTable(data, colName);
+						scrollPane.setViewportView(table);
+						table.addMouseListener(new MouseAdapter() {
+							@Override
+							public void mouseClicked(MouseEvent e) {
+								int row = table.getSelectedRow();
+								model = (String) table.getValueAt(row, 0);
+
+							}
+						});
+					}
+					if (ch3.isSelected() == false) {
+						String[] colName = { "모델명", "제품명", "에너지 효율 등급 ", "가격" };
+						ProductDAO dao = new ProductDAO();
+						TableModelChange change = new TableModelChange(dao.priceDesc());
+						Object[][] data = change.listTypeChange();
+
+						table = new JTable(data, colName);
+						scrollPane.setViewportView(table);
+						table.addMouseListener(new MouseAdapter() {
+							@Override
+							public void mouseClicked(MouseEvent e) {
+								int row = table.getSelectedRow();
+								model = (String) table.getValueAt(row, 0);
+
+							}
+						});
+					}
+				}
+
+			}
+		});
+		ch3.setBounds(8, 164, 106, 23);
+		panel.add(ch3);
+
+		// 오름차순
+		rb_desc = new JRadioButton("\uAC00\uACA9 \uB192\uC740\uC21C");
+		rb_desc.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				String[] colName = { "모델명", "제품명", "에너지 효율 등급 ", "가격" };
+				ProductDAO dao = new ProductDAO();
+				TableModelChange change = new TableModelChange(dao.priceDesc());
+				Object[][] data = change.listTypeChange();
+
+				table = new JTable(data, colName);
+				scrollPane.setViewportView(table);
+				table.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent e) {
+						int row = table.getSelectedRow();
+						model = (String) table.getValueAt(row, 0);
+
+					}
+				});
+			}
+		});
+		buttonGroup.add(rb_desc);
+		rb_desc.setBounds(8, 28, 106, 23);
+		panel.add(rb_desc);
+
+		// 내림차순
+		rb_asce = new JRadioButton("\uAC00\uACA9 \uB0AE\uC740\uC21C");
+		rb_asce.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String[] colName = { "모델명", "제품명", "에너지 효율 등급 ", "가격" };
+				ProductDAO dao = new ProductDAO();
+				TableModelChange change = new TableModelChange(dao.priceAsce());
+				Object[][] data = change.listTypeChange();
+
+				table = new JTable(data, colName);
+				scrollPane.setViewportView(table);
+				table.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent e) {
+						int row = table.getSelectedRow();
+						model = (String) table.getValueAt(row, 0);
+
+					}
+				});
+			}
+		});
+		rb_asce.setSelected(true);
+		buttonGroup.add(rb_asce);
+		rb_asce.setBounds(8, 53, 106, 23);
+		panel.add(rb_asce);
+
+		btn_search.setIcon(new ImageIcon("C:\\Users\\SMT042\\Desktop\\\uAC80.jpg"));
 		btn_search.setBounds(585, 46, 97, 33);
 		frame.getContentPane().add(btn_search);
 
 		JLabel lblNewLabel_2 = new JLabel("\uBAA8\uB378\uBA85 \uC785\uB825 :");
 		lblNewLabel_2.setBounds(12, 46, 87, 33);
 		frame.getContentPane().add(lblNewLabel_2);
-		
+
 		JButton btnNewButton = new JButton("\uC81C\uD488 \uC0C1\uC138 \uC815\uBCF4 \uBCF4\uAE30");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+
 				detailsGUI det = new detailsGUI(model);
 			}
 		});
@@ -186,18 +457,4 @@ public class searchGUI {
 		frame.getContentPane().add(btnNewButton);
 	}
 
-	private Object[][] listTypeChange() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	private class SwingAction extends AbstractAction {
-		public SwingAction() {
-			putValue(NAME, "SwingAction");
-			putValue(SHORT_DESCRIPTION, "Some short description");
-		}
-
-		public void actionPerformed(ActionEvent e) {
-		}
-	}
 }
