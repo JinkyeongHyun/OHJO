@@ -153,6 +153,7 @@ public class detailsGUI {
 		JButton btn_buy = new JButton("\uAD6C\uB9E4\uD558\uAE30");
 		btn_buy.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
 				PurchaseGUI pur = new PurchaseGUI(model);
 				
 			}

@@ -44,19 +44,43 @@ public class PurchaseDAO {
 
 	}
 	
-	public void PurchaseInsert() {
-	PurchaseDTO dto = null;
+	public int PurchaseInsert(PurchaseDTO dto) {
 	getConn();
-	String sql = "insert into purchase values(?,?,?,?,?)";
+	int cnt = 0;
+	String sql = "insert into purchase values(seq,?,?)";
 	try {
 		psmt = conn.prepareStatement(sql);
+		psmt.setString(1, dto.getPc_ID());
+		psmt.setString(2, dto.getPc_Date());
+		cnt = psmt.executeUpdate(sql);	
 		
 		
 	} catch (SQLException e) {
 		e.printStackTrace();
+	}finally {
+		close();
+	}return cnt;
 	}
-	
-	
-	}
+	public int purchaseDetailInsert(purchaseDetailDTO dto) {
+		getConn();
+		int cnt = 0;
+		String sql = "insert into purchasedetail values(SEQ_BOARD.NEXTVAL,?,?,?,?,?,?)";
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, dto.getPcd_p_model());
+			psmt.setInt(2, dto.getPcd_amount());
+			psmt.setString(3, dto.getPcd_price());
+			psmt.setString(4,dto.getPcd_address());
+			psmt.setString(5,dto.getPcd_recip());
+			psmt.setString(6,dto.getPcd_recell());
+			cnt = psmt.executeUpdate();	
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close();
+		}return cnt;
+		}
 	}
 	

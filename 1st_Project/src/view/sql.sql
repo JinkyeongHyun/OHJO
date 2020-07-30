@@ -48,6 +48,7 @@ values(
 	'πÃ¡ˆ¡§'
 	
 )
+select * from memberinfo
 
 drop table product
 delete from PRODUCT
