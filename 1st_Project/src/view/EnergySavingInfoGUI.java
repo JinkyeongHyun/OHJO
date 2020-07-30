@@ -58,20 +58,20 @@ public class EnergySavingInfoGUI {
 		
 		JLabel lblNewLabel = new JLabel("\uAC00\uC804\uC758 \uC885\uB958\uB97C \uC120\uD0DD\uD558\uC138\uC694 >> ");
 		lblNewLabel.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 15));
-		lblNewLabel.setBounds(34, 85, 261, 36);
+		lblNewLabel.setBounds(74, 84, 261, 36);
 		frame.getContentPane().add(lblNewLabel);
 		
 		JComboBox comboBox = new JComboBox();
 		comboBox.setBackground(Color.WHITE);
 		comboBox.setFont(new Font("¸¼Àº °íµñ", Font.PLAIN, 15));
 		comboBox.setModel(new DefaultComboBoxModel(new String[] {"\uB0C9\uC7A5\uACE0", "\uC5D0\uC5B4\uCEE8", "\uC138\uD0C1\uAE30", "\uB0C9\uC628\uC218\uAE30", "\uBC25\uC1A5", "\uCCAD\uC18C\uAE30", "\uACF5\uAE30\uCCAD\uC815\uAE30, \uC81C\uC2B5\uAE30", "TV", "\uC758\uB958\uAC74\uC870\uAE30"}));
-		comboBox.setBounds(34, 142, 212, 47);
+		comboBox.setBounds(74, 134, 212, 47);
 		frame.getContentPane().add(comboBox);
 		
 		
 		JLabel lbl_previewSaving = new JLabel("");
 		lbl_previewSaving.setHorizontalAlignment(SwingConstants.CENTER);
-		lbl_previewSaving.setBounds(401, 26, 494, 521);
+		lbl_previewSaving.setBounds(394, 26, 494, 521);
 		frame.getContentPane().add(lbl_previewSaving);
 		
 		JButton button = new JButton("\uB2EB\uAE30");
@@ -85,7 +85,7 @@ public class EnergySavingInfoGUI {
 		button.setForeground(Color.BLACK);
 		button.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 15));
 		button.setBackground(new Color(205, 92, 92));
-		button.setBounds(28, 512, 70, 35);
+		button.setBounds(12, 525, 70, 35);
 		frame.getContentPane().add(button);
 		comboBox.addActionListener(new ActionListener () {
 			public void actionPerformed (ActionEvent e) {
