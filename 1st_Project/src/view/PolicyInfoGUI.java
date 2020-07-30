@@ -70,7 +70,7 @@ public class PolicyInfoGUI {
 		screen1_policyInfo.setLayout(null);
 		
 		JLabel lbl_policyImage = new JLabel("");
-		lbl_policyImage.setIcon(new ImageIcon("C:\\Users\\SMT016\\Desktop\\\uD604\uC9C4\uACBD\\policyInfo.jpg"));
+		lbl_policyImage.setIcon(new ImageIcon("E:\\Bigdata\\팀 프로젝트\\[자료] GUI에 쓰인 사진들\\policyInfo.jpg"));
 		lbl_policyImage.setBounds(12, 10, 877, 288);
 		screen1_policyInfo.add(lbl_policyImage);
 		

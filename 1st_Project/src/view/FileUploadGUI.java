@@ -4,6 +4,7 @@ import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -63,7 +64,7 @@ public class FileUploadGUI {
 		frame.getContentPane().add(tabbedPane, "name_445368215119300");
 
 		JPanel screen2_fileUpload = new JPanel();
-		screen2_fileUpload.setBackground(new Color(255, 255, 255));
+		screen2_fileUpload.setBackground(Color.WHITE);
 		tabbedPane.addTab("\uD658\uAE09 \uB300\uD589 \uC2E0\uCCAD\uC744 \uC704\uD55C \uC11C\uB958", null, screen2_fileUpload, null);
 		screen2_fileUpload.setLayout(null);
 		
@@ -100,6 +101,7 @@ public class FileUploadGUI {
 		lbl_previewIdCard.setHorizontalAlignment(SwingConstants.CENTER);
 		lbl_previewIdCard.setBounds(31, 269, 385, 285);
 		screen2_fileUpload.add(lbl_previewIdCard);
+		
 		
 		JButton btn_fileUpload_idCard = new JButton("\uC774\uBBF8\uC9C0 \uD30C\uC77C \uC5C5\uB85C\uB4DC");
 		btn_fileUpload_idCard.addActionListener(new ActionListener() {

@@ -1,20 +1,22 @@
 package view;
 
-import java.awt.CardLayout;
-import java.awt.Color;
 import java.awt.EventQueue;
-import java.awt.Font;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTabbedPane;
-import javax.swing.JTextPane;
+import javax.swing.JComboBox;
+import javax.imageio.ImageIO;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
+import javax.swing.SwingConstants;
+import java.awt.Font;
+import java.awt.Color;
 
 public class EnergySavingInfoGUI {
 
@@ -47,42 +49,60 @@ public class EnergySavingInfoGUI {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		
 		frame = new JFrame();
-		frame.setBounds(100, 100, 910, 632);
+		frame.getContentPane().setBackground(Color.WHITE);
+		frame.setBounds(100, 100, 975, 609);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(new CardLayout(0, 0));
+		frame.getContentPane().setLayout(null);
 		
-		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
-		tabbedPane.setSelectedIndex(-1);
-		tabbedPane.setBackground(new Color(255, 255, 255));
-		frame.getContentPane().add(tabbedPane, "name_445368215119300");
+		JLabel lblNewLabel = new JLabel("\uAC00\uC804\uC758 \uC885\uB958\uB97C \uC120\uD0DD\uD558\uC138\uC694 >> ");
+		lblNewLabel.setFont(new Font("맑은 고딕", Font.BOLD, 15));
+		lblNewLabel.setBounds(34, 85, 261, 36);
+		frame.getContentPane().add(lblNewLabel);
 		
-		JPanel screen3_energySavingSecret = new JPanel();
-		screen3_energySavingSecret.setBackground(new Color(255, 255, 255));
-		tabbedPane.addTab("\uC6B0\uB9AC\uC9D1 \uC5D0\uB108\uC9C0 \uC808\uC57D\uC740 \uC774\uB807\uAC8C \uD574\uC694!", null, screen3_energySavingSecret, null);
-		screen3_energySavingSecret.setLayout(null);
+		JComboBox comboBox = new JComboBox();
+		comboBox.setBackground(Color.WHITE);
+		comboBox.setFont(new Font("맑은 고딕", Font.PLAIN, 15));
+		comboBox.setModel(new DefaultComboBoxModel(new String[] {"\uB0C9\uC7A5\uACE0", "\uC5D0\uC5B4\uCEE8", "\uC138\uD0C1\uAE30", "\uB0C9\uC628\uC218\uAE30", "\uBC25\uC1A5", "\uCCAD\uC18C\uAE30", "\uACF5\uAE30\uCCAD\uC815\uAE30, \uC81C\uC2B5\uAE30", "TV", "\uC758\uB958\uAC74\uC870\uAE30"}));
+		comboBox.setBounds(34, 142, 212, 47);
+		frame.getContentPane().add(comboBox);
 		
-		JLabel lbl_chooseProductsType = new JLabel("\uAC00\uC804 \uC885\uB958\uB97C \uC120\uD0DD\uD574 \uC8FC\uC138\uC694!");
-		lbl_chooseProductsType.setFont(new Font("맑은 고딕", Font.BOLD, 20));
-		lbl_chooseProductsType.setBounds(27, 67, 280, 47);
-		screen3_energySavingSecret.add(lbl_chooseProductsType);
 		
-		JComboBox cb_sortOfProducts = new JComboBox();
-		cb_sortOfProducts.setBackground(new Color(255, 255, 255));
-		cb_sortOfProducts.setModel(new DefaultComboBoxModel(new String[] {"\uB0C9\uC7A5\uACE0", "\uAE40\uCE58\uB0C9\uC7A5\uACE0", "\uC5D0\uC5B4\uCEE8 (\uBCBD\uAC78\uC774)", "\uC5D0\uC5B4\uCEE8 (\uADF8 \uC678)", "\uC138\uD0C1\uAE30 (\uC77C\uBC18)", "\uC138\uD0C1\uAE30 (\uB4DC\uB7FC)", "\uB0C9\uC628\uC218\uAE30 (\uC800\uC7A5\uC2DD)", "\uB0C9\uC628\uC218\uAE30 (\uC9C1\uC218\uC2DD)", "\uC804\uAE30\uBC25\uC1A5", "\uC9C4\uACF5 \uCCAD\uC18C\uAE30", "\uACF5\uAE30\uCCAD\uC815\uAE30", "TV", "\uC81C\uC2B5\uAE30", "\uC758\uB958\uAC74\uC870\uAE30"}));
-		cb_sortOfProducts.setFont(new Font("맑은 고딕", Font.PLAIN, 14));
-		cb_sortOfProducts.setBounds(27, 124, 183, 32);
-		screen3_energySavingSecret.add(cb_sortOfProducts);
-		
-		JTextPane textPane = new JTextPane();
-		textPane.setForeground(new Color(0, 128, 128));
-		textPane.setBackground(new Color(255, 255, 255));
-		textPane.setFont(new Font("함초롬돋움", Font.BOLD, 30));
-		textPane.setText("\uC0DD\uD65C \uC18D \uC5D0\uCF54 \uC2E4\uCC9C");
-		textPane.setBounds(368, 21, 280, 57);
-		screen3_energySavingSecret.add(textPane);
-
+		JLabel lbl_previewSaving = new JLabel("");
+		lbl_previewSaving.setHorizontalAlignment(SwingConstants.CENTER);
+		lbl_previewSaving.setBounds(401, 26, 494, 521);
+		frame.getContentPane().add(lbl_previewSaving);
+		comboBox.addActionListener(new ActionListener () {
+			public void actionPerformed (ActionEvent e) {
+				if ("냉장고".equals(comboBox.getSelectedItem())) {
+					lbl_previewSaving.setIcon(new ImageIcon("E:\\Bigdata\\팀 프로젝트\\[자료] GUI에 쓰인 사진들\\refrigerator.jpg"));
+					lbl_previewSaving.setIcon(new ImageIcon(new ImageIcon("E:\\\\Bigdata\\\\팀 프로젝트\\\\[자료] GUI에 쓰인 사진들\\\\refrigerator.jpg").getImage().getScaledInstance(450, 520, Image.SCALE_DEFAULT)));
+				} else if ("에어컨".equals(comboBox.getSelectedItem())) {
+					lbl_previewSaving.setIcon(new ImageIcon("E:\\Bigdata\\팀 프로젝트\\[자료] GUI에 쓰인 사진들\\air_conditioner.jpg"));
+					lbl_previewSaving.setIcon(new ImageIcon(new ImageIcon("E:\\\\Bigdata\\\\팀 프로젝트\\\\[자료] GUI에 쓰인 사진들\\\\air_conditioner.jpg").getImage().getScaledInstance(450, 520, Image.SCALE_DEFAULT)));
+				} else if ("세탁기".equals(comboBox.getSelectedItem())) {
+					lbl_previewSaving.setIcon(new ImageIcon("E:\\Bigdata\\팀 프로젝트\\[자료] GUI에 쓰인 사진들\\washer.jpg"));
+					lbl_previewSaving.setIcon(new ImageIcon(new ImageIcon("E:\\\\Bigdata\\\\팀 프로젝트\\\\[자료] GUI에 쓰인 사진들\\\\washer.jpg").getImage().getScaledInstance(450, 520, Image.SCALE_DEFAULT)));
+				} else if ("냉온수기".equals(comboBox.getSelectedItem())) {
+					lbl_previewSaving.setIcon(new ImageIcon("E:\\Bigdata\\팀 프로젝트\\[자료] GUI에 쓰인 사진들\\water_dispenser.jpg"));
+					lbl_previewSaving.setIcon(new ImageIcon(new ImageIcon("E:\\\\Bigdata\\\\팀 프로젝트\\\\[자료] GUI에 쓰인 사진들\\\\water_dispenser.jpg").getImage().getScaledInstance(450, 520, Image.SCALE_DEFAULT)));
+				} else if ("밥솥".equals(comboBox.getSelectedItem())) {
+					lbl_previewSaving.setIcon(new ImageIcon("E:\\Bigdata\\팀 프로젝트\\[자료] GUI에 쓰인 사진들\\rice_cooker.jpg"));
+					lbl_previewSaving.setIcon(new ImageIcon(new ImageIcon("E:\\\\Bigdata\\\\팀 프로젝트\\\\[자료] GUI에 쓰인 사진들\\\\rice_cooker.jpg").getImage().getScaledInstance(450, 520, Image.SCALE_DEFAULT)));
+				} else if ("청소기".equals(comboBox.getSelectedItem())) {
+					lbl_previewSaving.setIcon(new ImageIcon("E:\\Bigdata\\팀 프로젝트\\[자료] GUI에 쓰인 사진들\\vacuum.jpg"));
+					lbl_previewSaving.setIcon(new ImageIcon(new ImageIcon("E:\\\\Bigdata\\\\팀 프로젝트\\\\[자료] GUI에 쓰인 사진들\\\\vacuum.jpg").getImage().getScaledInstance(450, 520, Image.SCALE_DEFAULT)));
+				} else if ("공기청정기, 제습기".equals(comboBox.getSelectedItem())) {
+					lbl_previewSaving.setIcon(new ImageIcon("E:\\Bigdata\\팀 프로젝트\\[자료] GUI에 쓰인 사진들\\aircleaner_dehumidifier.jpg"));
+					lbl_previewSaving.setIcon(new ImageIcon(new ImageIcon("E:\\\\Bigdata\\\\팀 프로젝트\\\\[자료] GUI에 쓰인 사진들\\\\aircleaner_dehumidifier.jpg").getImage().getScaledInstance(450, 520, Image.SCALE_DEFAULT)));
+				} else if ("TV".equals(comboBox.getSelectedItem())) {
+					lbl_previewSaving.setIcon(new ImageIcon("E:\\Bigdata\\팀 프로젝트\\[자료] GUI에 쓰인 사진들\\tv.jpg"));
+					lbl_previewSaving.setIcon(new ImageIcon(new ImageIcon("E:\\\\Bigdata\\\\팀 프로젝트\\\\[자료] GUI에 쓰인 사진들\\\\tv.jpg").getImage().getScaledInstance(450, 520, Image.SCALE_DEFAULT)));
+				} else if ("의류건조기".equals(comboBox.getSelectedItem())) {
+					lbl_previewSaving.setIcon(new ImageIcon("E:\\Bigdata\\팀 프로젝트\\[자료] GUI에 쓰인 사진들\\clothes_dryer.jpg"));
+					lbl_previewSaving.setIcon(new ImageIcon(new ImageIcon("E:\\\\Bigdata\\\\팀 프로젝트\\\\[자료] GUI에 쓰인 사진들\\\\clothes_dryer.jpg").getImage().getScaledInstance(450, 520, Image.SCALE_DEFAULT)));
+				} 
+			}
+		});
 	}
-
 }
