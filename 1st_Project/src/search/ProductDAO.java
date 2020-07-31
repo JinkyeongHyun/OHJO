@@ -74,7 +74,7 @@ public class ProductDAO {
 				String p_class = rs.getString(4);
 				String p_maxEv = rs.getString(5);
 				String p_eCost = rs.getString(6);
-				int p_price = rs.getInt(7);
+				String p_price = rs.getString(7);
 				String p_img = rs.getString(8);
 				modelList.add(new ProductDTO(p_model, p_name, p_category, p_class, p_maxEv, p_eCost, p_price, p_img));
 			}
@@ -90,7 +90,7 @@ public class ProductDAO {
 	//검색
 	public ArrayList<ProductDTO> search(String model) {
 		getConnect();
-		String sql = "select * from product where product_model = ?";
+		String sql = "select * from product where model = ?";
 		ArrayList<ProductDTO> modelList = new ArrayList<>();
 		System.out.println("디테일 값 : "+model);
 		try {
@@ -105,7 +105,7 @@ public class ProductDAO {
 				String p_class = rs.getString(4);
 				String p_maxEv = rs.getString(5);
 				String p_eCost = rs.getString(6);
-				int p_price = rs.getInt(7);
+				String p_price = rs.getString(7);
 				String p_img = rs.getString(8);
 				modelList.add(new ProductDTO(p_model, p_name, p_category, p_class, p_maxEv, p_eCost, p_price, p_img));
 			}
@@ -120,7 +120,7 @@ public class ProductDAO {
 	//오름차순
 	public ArrayList<ProductDTO> priceAsce() {
 		getConnect();
-		String sql = "select * from product order by product_price";
+		String sql = "select * from product order by price";
 		ArrayList<ProductDTO> modelList = new ArrayList<>();
 
 		try {
@@ -134,7 +134,7 @@ public class ProductDAO {
 				String p_class = rs.getString(4);
 				String p_maxEv = rs.getString(5);
 				String p_eCost = rs.getString(6);
-				int p_price = rs.getInt(7);
+				String p_price = rs.getString(7);
 				String p_img = rs.getString(8);
 				modelList.add(new ProductDTO(p_model, p_name, p_category, p_class, p_maxEv, p_eCost, p_price, p_img));
 			}
@@ -149,7 +149,7 @@ public class ProductDAO {
 	//내림차순
 	public ArrayList<ProductDTO> priceDesc() {
 		getConnect();
-		String sql = "select * from product order by product_price desc";
+		String sql = "select * from product order by price desc";
 		ArrayList<ProductDTO> modelList = new ArrayList<>();
 
 		try {
@@ -163,7 +163,7 @@ public class ProductDAO {
 				String p_class = rs.getString(4);
 				String p_maxEv = rs.getString(5);
 				String p_eCost = rs.getString(6);
-				int p_price = rs.getInt(7);
+				String p_price = rs.getString(7);
 				String p_img = rs.getString(8);
 				modelList.add(new ProductDTO(p_model, p_name, p_category, p_class, p_maxEv, p_eCost, p_price, p_img));
 			}
@@ -178,7 +178,7 @@ public class ProductDAO {
 	
 	public ArrayList<ProductDTO> eclss(String eclass, String sorted) {
 		getConnect();
-		String sql = "select * from product where product_level = ? order by product_price "+ sorted;
+		String sql = "select * from product where class = ? order by product_price "+ sorted;
 		ArrayList<ProductDTO> modelList = new ArrayList<>();
 
 		try {
@@ -193,7 +193,7 @@ public class ProductDAO {
 				String p_class = rs.getString(4);
 				String p_maxEv = rs.getString(5);
 				String p_eCost = rs.getString(6);
-				int p_price = rs.getInt(7);
+				String p_price = rs.getString(7);
 				String p_img = rs.getString(8);
 				modelList.add(new ProductDTO(p_model, p_name, p_category, p_class, p_maxEv, p_eCost, p_price, p_img));
 			}

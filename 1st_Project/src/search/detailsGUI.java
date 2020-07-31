@@ -144,7 +144,7 @@ public class detailsGUI {
 		lb_yearCost.setBounds(329, 357, 79, 35);
 		panel.add(lb_yearCost);
 		
-		String price = Integer.toString(model().get(0).getP_price());
+		String price = model().get(0).getP_price();
 		
 		JLabel lb_cost = new JLabel(price);
 		lb_cost.setBounds(342, 402, 57, 35);

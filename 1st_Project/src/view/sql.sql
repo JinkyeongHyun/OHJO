@@ -12,6 +12,7 @@ CONSTRAINT product_model_pk
 	primary key (model)
 )
 
+
 select * from product
 
 CREATE TABLE purchasedetail
@@ -75,3 +76,8 @@ select * from purchase
 select * from purchasedetail
 select * from apply
 select * from applydetail
+
+
+
+
+

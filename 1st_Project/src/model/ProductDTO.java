@@ -7,11 +7,11 @@ public class ProductDTO {
 	private String p_class;		//제품등급
 	private String p_maxEv;		//제품최대소비전력
 	private String p_eCost;		//제품연간에너지비용
-	private int p_price;		//제품금액
+	private String p_price;		//제품금액
 	private String p_img;		//제품이미지파일경로
 	
 	public ProductDTO(String p_model, String p_name, String p_category, String p_class, String p_maxEv, String p_eCost,
-		int p_price, String p_img) {
+			String p_price, String p_img) {
 		this.p_model = p_model;
 		this.p_name = p_name;
 		this.p_category = p_category;
@@ -46,7 +46,7 @@ public class ProductDTO {
 		return p_eCost;
 	}
 
-	public int getP_price() {
+	public String getP_price() {
 		return p_price;
 	}
 
