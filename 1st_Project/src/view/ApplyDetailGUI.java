@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
@@ -28,28 +29,32 @@ public class ApplyDetailGUI {
 	private JFrame frame;
 	
 	CustomerDTO loginDto;
+	JButton btn_main_login;
+	JButton btn_main_logout;
+	JMenu main_mn_myPage;
 
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					ApplyDetailGUI window = new ApplyDetailGUI();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+//	public static void main(String[] args) {
+//		EventQueue.invokeLater(new Runnable() {
+//			public void run() {
+//				try {
+//					ApplyDetailGUI window = new ApplyDetailGUI();
+//					window.frame.setVisible(true);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		});
+//	}
 
 	/**
 	 * Create the application.
 	 */
 	public ApplyDetailGUI() {
 		initialize();
+		frame.setVisible(true);
 	}
 
 	/**
@@ -102,4 +107,22 @@ public class ApplyDetailGUI {
 		lb_no.setBounds(304, 191, 390, 21);
 		frame.getContentPane().add(lb_no);
 	}
+	
+	//로그인 성공시 작동
+		public void loginInfo(CustomerDTO dto) {
+			//로그인 버튼을 보이지 않게, 로그아웃 버튼을 보이게 함
+		//	btn_main_login.setVisible(false);
+			btn_main_logout.setVisible(true);
+			//마이페이지를 보이게 함
+			main_mn_myPage.setVisible(true);
+			//로그인 정보 저장
+			loginDto = dto;
+		}
+		
+		//로그아웃 성공시 작동
+		public void logoutInfo() {	
+			//로그인 버튼을 보이게, 로그아웃 버튼을 보이지 않게 함
+			btn_main_login.setVisible(true);
+			btn_main_logout.setVisible(false);
+		}
 }

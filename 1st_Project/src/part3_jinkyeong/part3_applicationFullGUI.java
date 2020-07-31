@@ -21,32 +21,37 @@ import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import javax.swing.SwingConstants;
 
+import model.CustomerDTO;
+import view.MainGUI;
+
 public class part3_applicationFullGUI {
 
 	private JFrame frame;
 	private JTextField tf_accountNumber;
-
+	CustomerDTO loginDto;
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					part3_applicationFullGUI window = new part3_applicationFullGUI();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+//	public static void main(String[] args) {
+//		EventQueue.invokeLater(new Runnable() {
+//			public void run() {
+//				try {
+//					part3_applicationFullGUI window = new part3_applicationFullGUI();
+//					window.frame.setVisible(true);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		});
+//	}
 
 	/**
 	 * Create the application.
 	 */
 	public part3_applicationFullGUI() {
 		initialize();
+		frame.setVisible(true);
+		
 	}
 
 	/**
@@ -99,6 +104,33 @@ public class part3_applicationFullGUI {
 		tp_site.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 15));
 		tp_site.setBounds(472, 345, 316, 56);
 		screen1_policyInfo.add(tp_site);
+		
+		JButton btn_goToApplication = new JButton("\uB300\uD589 \uC2E0\uCCAD \uBC14\uB85C\uAC00\uAE30");
+		btn_goToApplication.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				tabbedPane.setSelectedIndex(1);
+//				screen2_fileUpload.
+				
+			}
+		});
+		btn_goToApplication.setBackground(new Color(95, 158, 160));
+		btn_goToApplication.setForeground(new Color(0, 0, 0));
+		btn_goToApplication.setFont(new Font("¸¼Àº °íµñ", Font.PLAIN, 13));
+		btn_goToApplication.setBounds(472, 412, 168, 30);
+		screen1_policyInfo.add(btn_goToApplication);
+		
+		JButton button = new JButton("\uB2EB\uAE30");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				MainGUI main = new MainGUI();				
+			}
+		});
+		button.setForeground(Color.BLACK);
+		button.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 15));
+		button.setBackground(new Color(205, 92, 92));
+		button.setBounds(398, 519, 70, 35);
+		screen1_policyInfo.add(button);
 		
 		JPanel screen2_fileUpload = new JPanel();
 		screen2_fileUpload.setBackground(new Color(255, 255, 255));
@@ -194,6 +226,7 @@ public class part3_applicationFullGUI {
 		tabbedPane.addTab("\uC6B0\uB9AC\uC9D1 \uC5D0\uB108\uC9C0 \uC808\uC57D\uC740 \uC774\uB807\uAC8C \uD574\uC694!", null, screen3_energySavingSecret, null);
 		screen3_energySavingSecret.setLayout(null);
 		
+		
 		JLabel lbl_chooseProductsType = new JLabel("\uAC00\uC804 \uC885\uB958\uB97C \uC120\uD0DD\uD574 \uC8FC\uC138\uC694!");
 		lbl_chooseProductsType.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 20));
 		lbl_chooseProductsType.setBounds(27, 67, 280, 47);
@@ -213,32 +246,6 @@ public class part3_applicationFullGUI {
 		textPane.setText("\uC0DD\uD65C \uC18D \uC5D0\uCF54 \uC2E4\uCC9C");
 		textPane.setBounds(368, 21, 280, 57);
 		screen3_energySavingSecret.add(textPane);
-		
-		JButton btn_goToApplication = new JButton("\uB300\uD589 \uC2E0\uCCAD \uBC14\uB85C\uAC00\uAE30");
-		btn_goToApplication.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				tabbedPane.setSelectedIndex(1);
-//				screen2_fileUpload.
-				
-			}
-		});
-		btn_goToApplication.setBackground(new Color(95, 158, 160));
-		btn_goToApplication.setForeground(new Color(0, 0, 0));
-		btn_goToApplication.setFont(new Font("¸¼Àº °íµñ", Font.PLAIN, 13));
-		btn_goToApplication.setBounds(472, 412, 168, 30);
-		screen1_policyInfo.add(btn_goToApplication);
-		
-		JButton button = new JButton("\uB2EB\uAE30");
-		button.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				frame.dispose();
-			}
-		});
-		button.setForeground(Color.BLACK);
-		button.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 15));
-		button.setBackground(new Color(205, 92, 92));
-		button.setBounds(398, 519, 70, 35);
-		screen1_policyInfo.add(button);
 		
 	}
 }

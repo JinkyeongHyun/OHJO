@@ -8,8 +8,10 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
+import javax.swing.JTabbedPane;
 
 import model.CustomerDTO;
+import part3_jinkyeong.part3_applicationFullGUI;
 import search.searchGUI;
 
 import java.awt.event.ActionListener;
@@ -22,7 +24,6 @@ public class MainGUI {
 	private JFrame frame;
 	JButton btn_main_login;
 	JButton btn_main_logout;
-	
 	JMenu main_mn_myPage;
 	
 	//사용자 정보
@@ -70,6 +71,8 @@ public class MainGUI {
 		JMenu main_mn_pro = new JMenu("\uC0C1\uD488");
 		menuBar.add(main_mn_pro);
 		
+		
+		
 		JMenuItem mni_search = new JMenuItem("\uAC00\uC804 \uC81C\uD488 \uAC80\uC0C9");
 		mni_search.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -87,6 +90,12 @@ public class MainGUI {
 		menuBar.add(main_mn_esource);
 		
 		JMenuItem mn_announce = new JMenuItem("\"\uC73C\uB738 \uD6A8\uC728 \uAC00\uC804\uC81C\uD488 \uAD6C\uB9E4\uBE44\uC6A9 \uD658\uAE08\uC0AC\uC5C5\"\uC774\uB780?\r\n");
+		mn_announce.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				part3_applicationFullGUI full = new part3_applicationFullGUI();
+			}
+		});
 		main_mn_esource.add(mn_announce);
 		
 		JMenuItem mn_apply = new JMenuItem("\uD658\uAE09 \uB300\uD589 \uC2E0\uCCAD");
@@ -96,6 +105,11 @@ public class MainGUI {
 		main_mn_esource.add(mn_document);
 		
 		JMenuItem mn_energy = new JMenuItem("\uC6B0\uB9AC\uC9D1 \uC5D0\uB108\uC9C0 \uC808\uC57D\uC740 \uC774\uB807\uAC8C \uD574\uC694!!");
+		mn_energy.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
 		main_mn_esource.add(mn_energy);
 		
 		main_mn_myPage = new JMenu("My page");
@@ -118,6 +132,17 @@ public class MainGUI {
 		main_mn_myPage.add(mntmNewMenuItem_1);
 		
 		JMenuItem mntmNewMenuItem_2 = new JMenuItem("\uC2E0\uCCAD\uB0B4\uC5ED");
+		mntmNewMenuItem_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//신청내역창 열기
+				frame.dispose();
+				ApplyDetailGUI ad = new ApplyDetailGUI();
+			//	ad.loginInfo(loginDto);
+				
+				
+			}
+		});
+	
 		main_mn_myPage.add(mntmNewMenuItem_2);
 		
 		//내 가전제품
