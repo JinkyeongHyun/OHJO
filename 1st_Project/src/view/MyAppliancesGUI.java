@@ -196,7 +196,7 @@ public class MyAppliancesGUI {
 				if(result == 0) {
 					
 				}else {
-					model.setElementAt(category + "\t" + newNick, selectedListIndex);
+					model.setElementAt(category + "  " + newNick, selectedListIndex);
 				}
 			}
 		});
