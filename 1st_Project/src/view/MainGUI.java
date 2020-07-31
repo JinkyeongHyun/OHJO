@@ -120,7 +120,15 @@ public class MainGUI {
 		JMenuItem mntmNewMenuItem_2 = new JMenuItem("\uC2E0\uCCAD\uB0B4\uC5ED");
 		main_mn_myPage.add(mntmNewMenuItem_2);
 		
+		//내 가전제품
 		JMenuItem mntmNewMenuItem_3 = new JMenuItem("\uB0B4 \uAC00\uC804\uC81C\uD488");
+		mntmNewMenuItem_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				MyAppliancesGUI my = new MyAppliancesGUI(loginDto);
+				//my.loginInfo(loginDto);
+			}
+		});
 		main_mn_myPage.add(mntmNewMenuItem_3);
 		frame.getContentPane().setLayout(null);
 		
