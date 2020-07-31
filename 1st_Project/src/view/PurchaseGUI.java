@@ -43,6 +43,7 @@ public class PurchaseGUI {
 	PurchaseDAO dao = new PurchaseDAO();
 	private String model;
 	CustomerDTO logindto;
+	private JTextField tf_amount;
 
 	/**
 	 * Launch the application.
@@ -164,16 +165,21 @@ public class PurchaseGUI {
 		JLabel lb_name = new JLabel(model().get(0).getP_name());
 		lb_name.setBounds(332, 47, 287, 22);
 		frame.getContentPane().add(lb_name);
+		
+		tf_amount = new JTextField();
+		tf_amount.setBounds(333, 112, 63, 21);
+		frame.getContentPane().add(tf_amount);
+		tf_amount.setColumns(10);
+		int amount = Integer.parseInt(tf_amount.getText());
+		
 
-		JLabel label_amount = new JLabel("");
-		label_amount.setBounds(332, 111, 287, 22);
-		frame.getContentPane().add(label_amount);
-
-		String price = Integer.toString((model().get(0).getP_price()) * 2);
+		String price = Integer.toString((model().get(0).getP_price()) * amount);
 
 		JLabel lb_price = new JLabel(price);
 		lb_price.setBounds(333, 147, 287, 22);
 		frame.getContentPane().add(lb_price);
+
+		
 
 		JButton btn_complete = new JButton("\uACB0\uC81C \uC644\uB8CC");
 		btn_complete.addActionListener(new ActionListener() {
@@ -185,12 +191,11 @@ public class PurchaseGUI {
 					String recip = tf_name.getText();
 					String cellnum = tf_cell.getText();
 					String address = tf_address.getText();
+				
 					dao.PurchaseInsert(new PurchaseDTO(0 ,logindto.getC_id(), null));
 					dao.purchaseDetailInsert(
-							new purchaseDetailDTO(0, model().get(0).getP_name(), 2, price, address, recip, cellnum));
-					// 위의 첫번째 항목의 0은 어차 db테이블에 입력시 시퀀스로 입력되기 때문에 타입만 맞춰 채워 넣은 것이고 
-					//, 중간의 2는 수량을 어디서 입력할지 애매해서 int타입의 숫자2를 넣었다.
-
+							new purchaseDetailDTO(0, model().get(0).getP_name(), amount, price, address, recip, cellnum));
+					
 				}
 				;
 			}
@@ -286,7 +291,7 @@ public class PurchaseGUI {
 		tf_Postalcode.setColumns(10);
 
 		JLabel label_12 = new JLabel("");
-		label_12.setBounds(333, 79, 287, 22);
+		label_12.setBounds(333, 79, 143, 22);
 		frame.getContentPane().add(label_12);
 
 		JLabel label_15 = new JLabel("\uD658\uAE09 \uC5EC\uBD80");
@@ -302,5 +307,6 @@ public class PurchaseGUI {
 		buttonGroup.add(rdb_apply_no);
 		rdb_apply_no.setBounds(216, 402, 74, 23);
 		frame.getContentPane().add(rdb_apply_no);
+		
 	}
 }
