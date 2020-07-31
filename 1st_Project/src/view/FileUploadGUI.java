@@ -15,17 +15,22 @@ import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+import model.ApplyDAO;
+import model.ApplyDTO;
+
+import model.CustomerDAO;
 import model.CustomerDTO;
 
 public class FileUploadGUI {
 
 	private JFrame frame;
-	private JTextField textField;
+	private JTextField bankaccountInsert;
 	
 	CustomerDTO loginDto;
 
@@ -96,11 +101,11 @@ public class FileUploadGUI {
 		screen2_fileUpload.add(cb_banks);
 		
 		// 계좌번호 입력 창
-		textField = new JTextField();
-		textField.setFont(new Font("맑은 고딕", Font.PLAIN, 13));
-		textField.setBounds(31, 97, 346, 30);
-		screen2_fileUpload.add(textField);
-		textField.setColumns(10);	
+		bankaccountInsert = new JTextField();
+		bankaccountInsert.setFont(new Font("맑은 고딕", Font.PLAIN, 13));
+		bankaccountInsert.setBounds(31, 97, 346, 30);
+		screen2_fileUpload.add(bankaccountInsert);
+		bankaccountInsert.setColumns(10);	
 		
 		// 업로드된 신분증 사본 미리보기 창
 		JLabel lbl_previewIdCard = new JLabel("\uBBF8\uB9AC\uBCF4\uAE30");
@@ -145,9 +150,17 @@ public class FileUploadGUI {
 		screen2_fileUpload.add(btn_fileUpload_doc);
 		
 		// 계좌번호 저장 버튼
-		JButton btn_saveBankAccount = new JButton("\uC800\uC7A5");
+		JButton btn_saveBankAccount = new JButton("저장");
 		btn_saveBankAccount.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				String bank = (String) cb_banks.getSelectedItem();
+				String bankaccount = bankaccountInsert.getText();
+				
+				ApplyDAO dao = new ApplyDAO();
+		//		dao.bankInfo(id, bank, bankaccount);
+				
+				
 			}
 		});
 		btn_saveBankAccount.setFont(new Font("맑은 고딕", Font.PLAIN, 13));
