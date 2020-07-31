@@ -98,6 +98,7 @@ public class FileDownloadGUI {
 		btn_downloadDoc.setBounds(50, 155, 358, 37);
 		frame.getContentPane().add(btn_downloadDoc);
 		
+		// "´Ý±â" ¹öÆ°
 		JButton button = new JButton("\uB2EB\uAE30");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

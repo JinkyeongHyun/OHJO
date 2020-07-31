@@ -61,6 +61,7 @@ public class EnergySavingInfoGUI {
 		lblNewLabel.setBounds(74, 84, 261, 36);
 		frame.getContentPane().add(lblNewLabel);
 		
+		// 가전제품 종류 고르는 콤보박스
 		JComboBox comboBox = new JComboBox();
 		comboBox.setBackground(Color.WHITE);
 		comboBox.setFont(new Font("맑은 고딕", Font.PLAIN, 15));
@@ -68,12 +69,13 @@ public class EnergySavingInfoGUI {
 		comboBox.setBounds(74, 134, 212, 47);
 		frame.getContentPane().add(comboBox);
 		
+		// 위임장 미리보기 화면
+		JLabel lbl_previewScreen = new JLabel("");
+		lbl_previewScreen.setHorizontalAlignment(SwingConstants.CENTER);
+		lbl_previewScreen.setBounds(394, 26, 494, 521);
+		frame.getContentPane().add(lbl_previewScreen);
 		
-		JLabel lbl_previewSaving = new JLabel("");
-		lbl_previewSaving.setHorizontalAlignment(SwingConstants.CENTER);
-		lbl_previewSaving.setBounds(394, 26, 494, 521);
-		frame.getContentPane().add(lbl_previewSaving);
-		
+		// "닫기" 버튼
 		JButton button = new JButton("\uB2EB\uAE30");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -87,35 +89,37 @@ public class EnergySavingInfoGUI {
 		button.setBackground(new Color(205, 92, 92));
 		button.setBounds(12, 525, 70, 35);
 		frame.getContentPane().add(button);
+		
+		// 가전제품 종류 고르면 그에 맞는 이미지가 출력되게 하는 부분
 		comboBox.addActionListener(new ActionListener () {
 			public void actionPerformed (ActionEvent e) {
 				if ("냉장고".equals(comboBox.getSelectedItem())) {
-					lbl_previewSaving.setIcon(new ImageIcon("E:\\Bigdata\\팀 프로젝트\\[자료] GUI에 쓰인 사진들\\refrigerator.jpg"));
-					lbl_previewSaving.setIcon(new ImageIcon(new ImageIcon("E:\\\\Bigdata\\\\팀 프로젝트\\\\[자료] GUI에 쓰인 사진들\\\\refrigerator.jpg").getImage().getScaledInstance(450, 520, Image.SCALE_DEFAULT)));
+					lbl_previewScreen.setIcon(new ImageIcon("E:\\Bigdata\\팀 프로젝트\\[자료] GUI에 쓰인 사진들\\refrigerator.jpg"));
+					lbl_previewScreen.setIcon(new ImageIcon(new ImageIcon("E:\\\\Bigdata\\\\팀 프로젝트\\\\[자료] GUI에 쓰인 사진들\\\\refrigerator.jpg").getImage().getScaledInstance(450, 520, Image.SCALE_DEFAULT)));
 				} else if ("에어컨".equals(comboBox.getSelectedItem())) {
-					lbl_previewSaving.setIcon(new ImageIcon("E:\\Bigdata\\팀 프로젝트\\[자료] GUI에 쓰인 사진들\\air_conditioner.jpg"));
-					lbl_previewSaving.setIcon(new ImageIcon(new ImageIcon("E:\\\\Bigdata\\\\팀 프로젝트\\\\[자료] GUI에 쓰인 사진들\\\\air_conditioner.jpg").getImage().getScaledInstance(450, 520, Image.SCALE_DEFAULT)));
+					lbl_previewScreen.setIcon(new ImageIcon("E:\\Bigdata\\팀 프로젝트\\[자료] GUI에 쓰인 사진들\\air_conditioner.jpg"));
+					lbl_previewScreen.setIcon(new ImageIcon(new ImageIcon("E:\\\\Bigdata\\\\팀 프로젝트\\\\[자료] GUI에 쓰인 사진들\\\\air_conditioner.jpg").getImage().getScaledInstance(450, 520, Image.SCALE_DEFAULT)));
 				} else if ("세탁기".equals(comboBox.getSelectedItem())) {
-					lbl_previewSaving.setIcon(new ImageIcon("E:\\Bigdata\\팀 프로젝트\\[자료] GUI에 쓰인 사진들\\washer.jpg"));
-					lbl_previewSaving.setIcon(new ImageIcon(new ImageIcon("E:\\\\Bigdata\\\\팀 프로젝트\\\\[자료] GUI에 쓰인 사진들\\\\washer.jpg").getImage().getScaledInstance(450, 520, Image.SCALE_DEFAULT)));
+					lbl_previewScreen.setIcon(new ImageIcon("E:\\Bigdata\\팀 프로젝트\\[자료] GUI에 쓰인 사진들\\washer.jpg"));
+					lbl_previewScreen.setIcon(new ImageIcon(new ImageIcon("E:\\\\Bigdata\\\\팀 프로젝트\\\\[자료] GUI에 쓰인 사진들\\\\washer.jpg").getImage().getScaledInstance(450, 520, Image.SCALE_DEFAULT)));
 				} else if ("냉온수기".equals(comboBox.getSelectedItem())) {
-					lbl_previewSaving.setIcon(new ImageIcon("E:\\Bigdata\\팀 프로젝트\\[자료] GUI에 쓰인 사진들\\water_dispenser.jpg"));
-					lbl_previewSaving.setIcon(new ImageIcon(new ImageIcon("E:\\\\Bigdata\\\\팀 프로젝트\\\\[자료] GUI에 쓰인 사진들\\\\water_dispenser.jpg").getImage().getScaledInstance(450, 520, Image.SCALE_DEFAULT)));
+					lbl_previewScreen.setIcon(new ImageIcon("E:\\Bigdata\\팀 프로젝트\\[자료] GUI에 쓰인 사진들\\water_dispenser.jpg"));
+					lbl_previewScreen.setIcon(new ImageIcon(new ImageIcon("E:\\\\Bigdata\\\\팀 프로젝트\\\\[자료] GUI에 쓰인 사진들\\\\water_dispenser.jpg").getImage().getScaledInstance(450, 520, Image.SCALE_DEFAULT)));
 				} else if ("밥솥".equals(comboBox.getSelectedItem())) {
-					lbl_previewSaving.setIcon(new ImageIcon("E:\\Bigdata\\팀 프로젝트\\[자료] GUI에 쓰인 사진들\\rice_cooker.jpg"));
-					lbl_previewSaving.setIcon(new ImageIcon(new ImageIcon("E:\\\\Bigdata\\\\팀 프로젝트\\\\[자료] GUI에 쓰인 사진들\\\\rice_cooker.jpg").getImage().getScaledInstance(450, 520, Image.SCALE_DEFAULT)));
+					lbl_previewScreen.setIcon(new ImageIcon("E:\\Bigdata\\팀 프로젝트\\[자료] GUI에 쓰인 사진들\\rice_cooker.jpg"));
+					lbl_previewScreen.setIcon(new ImageIcon(new ImageIcon("E:\\\\Bigdata\\\\팀 프로젝트\\\\[자료] GUI에 쓰인 사진들\\\\rice_cooker.jpg").getImage().getScaledInstance(450, 520, Image.SCALE_DEFAULT)));
 				} else if ("청소기".equals(comboBox.getSelectedItem())) {
-					lbl_previewSaving.setIcon(new ImageIcon("E:\\Bigdata\\팀 프로젝트\\[자료] GUI에 쓰인 사진들\\vacuum.jpg"));
-					lbl_previewSaving.setIcon(new ImageIcon(new ImageIcon("E:\\\\Bigdata\\\\팀 프로젝트\\\\[자료] GUI에 쓰인 사진들\\\\vacuum.jpg").getImage().getScaledInstance(450, 520, Image.SCALE_DEFAULT)));
+					lbl_previewScreen.setIcon(new ImageIcon("E:\\Bigdata\\팀 프로젝트\\[자료] GUI에 쓰인 사진들\\vacuum.jpg"));
+					lbl_previewScreen.setIcon(new ImageIcon(new ImageIcon("E:\\\\Bigdata\\\\팀 프로젝트\\\\[자료] GUI에 쓰인 사진들\\\\vacuum.jpg").getImage().getScaledInstance(450, 520, Image.SCALE_DEFAULT)));
 				} else if ("공기청정기, 제습기".equals(comboBox.getSelectedItem())) {
-					lbl_previewSaving.setIcon(new ImageIcon("E:\\Bigdata\\팀 프로젝트\\[자료] GUI에 쓰인 사진들\\aircleaner_dehumidifier.jpg"));
-					lbl_previewSaving.setIcon(new ImageIcon(new ImageIcon("E:\\\\Bigdata\\\\팀 프로젝트\\\\[자료] GUI에 쓰인 사진들\\\\aircleaner_dehumidifier.jpg").getImage().getScaledInstance(450, 520, Image.SCALE_DEFAULT)));
+					lbl_previewScreen.setIcon(new ImageIcon("E:\\Bigdata\\팀 프로젝트\\[자료] GUI에 쓰인 사진들\\aircleaner_dehumidifier.jpg"));
+					lbl_previewScreen.setIcon(new ImageIcon(new ImageIcon("E:\\\\Bigdata\\\\팀 프로젝트\\\\[자료] GUI에 쓰인 사진들\\\\aircleaner_dehumidifier.jpg").getImage().getScaledInstance(450, 520, Image.SCALE_DEFAULT)));
 				} else if ("TV".equals(comboBox.getSelectedItem())) {
-					lbl_previewSaving.setIcon(new ImageIcon("E:\\Bigdata\\팀 프로젝트\\[자료] GUI에 쓰인 사진들\\tv.jpg"));
-					lbl_previewSaving.setIcon(new ImageIcon(new ImageIcon("E:\\\\Bigdata\\\\팀 프로젝트\\\\[자료] GUI에 쓰인 사진들\\\\tv.jpg").getImage().getScaledInstance(450, 520, Image.SCALE_DEFAULT)));
+					lbl_previewScreen.setIcon(new ImageIcon("E:\\Bigdata\\팀 프로젝트\\[자료] GUI에 쓰인 사진들\\tv.jpg"));
+					lbl_previewScreen.setIcon(new ImageIcon(new ImageIcon("E:\\\\Bigdata\\\\팀 프로젝트\\\\[자료] GUI에 쓰인 사진들\\\\tv.jpg").getImage().getScaledInstance(450, 520, Image.SCALE_DEFAULT)));
 				} else if ("의류건조기".equals(comboBox.getSelectedItem())) {
-					lbl_previewSaving.setIcon(new ImageIcon("E:\\Bigdata\\팀 프로젝트\\[자료] GUI에 쓰인 사진들\\clothes_dryer.jpg"));
-					lbl_previewSaving.setIcon(new ImageIcon(new ImageIcon("E:\\\\Bigdata\\\\팀 프로젝트\\\\[자료] GUI에 쓰인 사진들\\\\clothes_dryer.jpg").getImage().getScaledInstance(450, 520, Image.SCALE_DEFAULT)));
+					lbl_previewScreen.setIcon(new ImageIcon("E:\\Bigdata\\팀 프로젝트\\[자료] GUI에 쓰인 사진들\\clothes_dryer.jpg"));
+					lbl_previewScreen.setIcon(new ImageIcon(new ImageIcon("E:\\\\Bigdata\\\\팀 프로젝트\\\\[자료] GUI에 쓰인 사진들\\\\clothes_dryer.jpg").getImage().getScaledInstance(450, 520, Image.SCALE_DEFAULT)));
 				} 
 			}
 		});

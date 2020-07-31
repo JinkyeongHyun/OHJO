@@ -87,7 +87,7 @@ public class FileUploadGUI {
 		lbl_bankAccountUpload.setBounds(31, 22, 418, 45);
 		screen2_fileUpload.add(lbl_bankAccountUpload);
 		
-//		String [] comboBoxMenu = {"우리은행 ", "국민은행", "기업은행", "농협", "신한은행", "광주은행", "하나은행", "한국씨티은행"};  
+		// 은행 고르는 버튼
 		JComboBox cb_banks = new JComboBox();
 		cb_banks.setBackground(new Color(255, 255, 255));
 		cb_banks.setModel(new DefaultComboBoxModel(new String[] {"\uC6B0\uB9AC\uC740\uD589", "\uAD6D\uBBFC\uC740\uD589", "\uAE30\uC5C5\uC740\uD589", "\uB18D\uD611", "\uC2E0\uD55C\uC740\uD589", "\uAD11\uC8FC\uC740\uD589", "\uD558\uB098\uC740\uD589", "\uD55C\uAD6D\uC528\uD2F0\uC740\uD589", "\uC6B0\uCCB4\uAD6D", "\uCE74\uCE74\uC624\uBC45\uD06C"}));
@@ -95,18 +95,20 @@ public class FileUploadGUI {
 		cb_banks.setBounds(31, 66, 146, 21);
 		screen2_fileUpload.add(cb_banks);
 		
+		// 계좌번호 입력 창
 		textField = new JTextField();
 		textField.setFont(new Font("맑은 고딕", Font.PLAIN, 13));
 		textField.setBounds(31, 97, 346, 30);
 		screen2_fileUpload.add(textField);
 		textField.setColumns(10);	
 		
+		// 업로드된 신분증 사본 미리보기 창
 		JLabel lbl_previewIdCard = new JLabel("\uBBF8\uB9AC\uBCF4\uAE30");
 		lbl_previewIdCard.setHorizontalAlignment(SwingConstants.CENTER);
 		lbl_previewIdCard.setBounds(31, 269, 300, 285);
 		screen2_fileUpload.add(lbl_previewIdCard);
 		
-		
+		// 신분증 사본 업로드 버튼
 		JButton btn_fileUpload_idCard = new JButton("\uC774\uBBF8\uC9C0 \uD30C\uC77C \uC5C5\uB85C\uB4DC");
 		btn_fileUpload_idCard.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -121,11 +123,13 @@ public class FileUploadGUI {
 		btn_fileUpload_idCard.setBounds(31, 216, 171, 38);
 		screen2_fileUpload.add(btn_fileUpload_idCard);
 		
+		// 업로드된 위임장 사본 미리보기
 		JLabel lbl_previewDoc = new JLabel("\uBBF8\uB9AC\uBCF4\uAE30");
 		lbl_previewDoc.setHorizontalAlignment(SwingConstants.CENTER);
 		lbl_previewDoc.setBounds(485, 269, 300, 285);
 		screen2_fileUpload.add(lbl_previewDoc);
 		
+		// 위임장 사본 업로드 버튼
 		JButton btn_fileUpload_doc = new JButton("\uC774\uBBF8\uC9C0 \uD30C\uC77C \uC5C5\uB85C\uB4DC");
 		btn_fileUpload_doc.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -140,21 +144,37 @@ public class FileUploadGUI {
 		btn_fileUpload_doc.setBounds(485, 216, 171, 38);
 		screen2_fileUpload.add(btn_fileUpload_doc);
 		
+		// 계좌번호 저장 버튼
 		JButton btn_saveBankAccount = new JButton("\uC800\uC7A5");
+		btn_saveBankAccount.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		btn_saveBankAccount.setFont(new Font("맑은 고딕", Font.PLAIN, 13));
 		btn_saveBankAccount.setBounds(437, 97, 66, 30);
 		screen2_fileUpload.add(btn_saveBankAccount);
 		
+		// 업로드된 신분증 사본 저장 버튼
 		JButton btn_saveIdCard = new JButton("\uC800\uC7A5");
+		btn_saveIdCard.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		btn_saveIdCard.setFont(new Font("맑은 고딕", Font.PLAIN, 13));
 		btn_saveIdCard.setBounds(351, 224, 66, 30);
 		screen2_fileUpload.add(btn_saveIdCard);
 		
+		// 업로드된 위임장 사본 저장 버튼
 		JButton btn_saveDoc = new JButton("\uC800\uC7A5");
+		btn_saveDoc.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		btn_saveDoc.setFont(new Font("맑은 고딕", Font.PLAIN, 13));
 		btn_saveDoc.setBounds(804, 229, 66, 30);
 		screen2_fileUpload.add(btn_saveDoc);
 		
+		// "닫기" 버튼
 		JButton btn_close = new JButton("\uB2EB\uAE30");
 		btn_close.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
