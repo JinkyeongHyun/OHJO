@@ -1,33 +1,29 @@
 package view;
 
-import java.awt.EventQueue;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
+import javax.swing.ButtonGroup;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-
-import java.awt.Color;
-import javax.swing.JTextPane;
-import javax.swing.JTextField;
+import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTabbedPane;
-import javax.swing.JComboBox;
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.SwingConstants;
+import javax.swing.JTextField;
 
+import model.CustomerDTO;
 import model.ProductDTO;
 import model.PurchaseDAO;
 import model.PurchaseDTO;
 import model.purchaseDetailDTO;
 import search.ProductDAO;
-
-import java.awt.Font;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.awt.event.ActionEvent;
-import javax.swing.ButtonGroup;
 
 public class PurchaseGUI {
 
@@ -46,6 +42,7 @@ public class PurchaseGUI {
 
 	PurchaseDAO dao = new PurchaseDAO();
 	private String model;
+	CustomerDTO logindto;
 
 	/**
 	 * Launch the application.
@@ -66,7 +63,7 @@ public class PurchaseGUI {
 	/**
 	 * Create the application.
 	 */
-	public PurchaseGUI(String model) {
+	public PurchaseGUI(String model,CustomerDTO dto) {
 		this.model = model;
 		initialize();
 		frame.setVisible(true);
@@ -188,6 +185,7 @@ public class PurchaseGUI {
 					String recip = tf_name.getText();
 					String cellnum = tf_cell.getText();
 					String address = tf_address.getText();
+					dao.PurchaseInsert(new PurchaseDTO(0 ,logindto.getC_id(), null));
 					dao.purchaseDetailInsert(
 							new purchaseDetailDTO(0, model().get(0).getP_name(), 2, price, address, recip, cellnum));
 					// 위의 첫번째 항목의 0은 어차 db테이블에 입력시 시퀀스로 입력되기 때문에 타입만 맞춰 채워 넣은 것이고 

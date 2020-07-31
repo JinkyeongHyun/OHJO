@@ -11,7 +11,7 @@ create table product(
 	constraint prd_product_model_pk primary key(product_model)
 )
 
-insert into product¤Ì
+insert into product
 values(
 	'abc',
 	'abcName',

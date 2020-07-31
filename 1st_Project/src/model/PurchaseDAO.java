@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class PurchaseDAO {
 	Connection conn = null;
@@ -43,11 +44,11 @@ public class PurchaseDAO {
 		}
 
 	}
-	
+	//구매 테이블 입력
 	public int PurchaseInsert(PurchaseDTO dto) {
 	getConn();
 	int cnt = 0;
-	String sql = "insert into purchase values(seq,?,?)";
+	String sql = "insert into purchase values(SEQ_BOARD.NEXTVAL,?,Sysdate)";
 	try {
 		psmt = conn.prepareStatement(sql);
 		psmt.setString(1, dto.getPc_ID());
@@ -61,6 +62,7 @@ public class PurchaseDAO {
 		close();
 	}return cnt;
 	}
+	// 결제창에서 구매 상세 테이블로 입력
 	public int purchaseDetailInsert(purchaseDetailDTO dto) {
 		getConn();
 		int cnt = 0;
@@ -82,5 +84,8 @@ public class PurchaseDAO {
 			close();
 		}return cnt;
 		}
-	}
+	
+}
+
+
 	

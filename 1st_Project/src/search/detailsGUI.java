@@ -11,13 +11,19 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+import model.CustomerDTO;
 import model.ProductDTO;
+import model.PurchaseDAO;
+import model.purchaseDetailDTO;
+import view.MainGUI;
 import view.PurchaseGUI;
 
 public class detailsGUI {
 
 	private JFrame frame;
 	private String model;
+	PurchaseDAO dao = new PurchaseDAO();
+	CustomerDTO dto ;
 	
 	/**
 	 * Launch the application.
@@ -39,7 +45,7 @@ public class detailsGUI {
 	 * Create the application.
 	 */
 	
-	public detailsGUI(String model) {		
+	public detailsGUI(String model, CustomerDTO dto) {		
 		this.model=model;
 		initialize();		
 		frame.setVisible(true);
@@ -154,7 +160,9 @@ public class detailsGUI {
 		btn_buy.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
-				PurchaseGUI pur = new PurchaseGUI(model);
+				
+				PurchaseGUI pur = new PurchaseGUI(model, dto);
+				//dao.PurchaseInsert(new PurchaseDTO(0,고객 아이디, db테이블상의 날짜))				
 				
 			}
 		});
@@ -162,6 +170,12 @@ public class detailsGUI {
 		panel.add(btn_buy);
 		
 		JButton btn_back = new JButton("\uB4A4\uB85C\uAC00\uAE30");
+		btn_back.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				MainGUI window = new MainGUI();
+			}
+		});
 		btn_back.setBounds(301, 461, 98, 23);
 		panel.add(btn_back);
 	}

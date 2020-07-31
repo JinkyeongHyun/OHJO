@@ -23,6 +23,7 @@ import javax.swing.AbstractAction;
 
 import javax.swing.JTextField;
 
+import model.CustomerDTO;
 import model.ProductDTO;
 
 import javax.swing.ImageIcon;
@@ -39,7 +40,8 @@ public class searchGUI {
 	JRadioButton rb_desc;
 	JRadioButton rb_asce;
 	JScrollPane scrollPane;
-
+	CustomerDTO loginDto;
+	
 	/**
 	 * Launch the application.
 	 */
@@ -62,6 +64,9 @@ public class searchGUI {
 	public searchGUI() {
 
 		initialize();
+	}
+	public void loginInfo(CustomerDTO dto) {
+		loginDto = dto;
 	}
 
 	/**
@@ -446,15 +451,16 @@ public class searchGUI {
 		lblNewLabel_2.setBounds(12, 46, 87, 33);
 		frame.getContentPane().add(lblNewLabel_2);
 
-		JButton btnNewButton = new JButton("\uC81C\uD488 \uC0C1\uC138 \uC815\uBCF4 \uBCF4\uAE30");
-		btnNewButton.addActionListener(new ActionListener() {
+		JButton detailview = new JButton("\uC81C\uD488 \uC0C1\uC138 \uC815\uBCF4 \uBCF4\uAE30");
+		detailview.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				detailsGUI det = new detailsGUI(model);
+				detailsGUI det = new detailsGUI(model, loginDto);
+				
 			}
 		});
-		btnNewButton.setBounds(496, 455, 186, 58);
-		frame.getContentPane().add(btnNewButton);
+		detailview.setBounds(496, 455, 186, 58);
+		frame.getContentPane().add(detailview);
 	}
 
 }

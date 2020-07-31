@@ -10,8 +10,12 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 
 import model.CustomerDTO;
+import search.searchGUI;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class MainGUI {
 
@@ -19,7 +23,7 @@ public class MainGUI {
 	JButton btn_main_login;
 	JButton btn_main_logout;
 	
-	JMenu mn_main_myPage;
+	JMenu main_mn_myPage;
 	
 	//사용자 정보
 	CustomerDTO loginDto;
@@ -49,7 +53,7 @@ public class MainGUI {
 		btn_main_logout.setVisible(false);
 		
 		//로그인 하지 않은 상태에서 마이페이지를 보이지 않게 함
-		mn_main_myPage.setVisible(false);
+		main_mn_myPage.setVisible(false);
 	}
 
 	/**
@@ -63,33 +67,45 @@ public class MainGUI {
 		JMenuBar menuBar = new JMenuBar();
 		frame.setJMenuBar(menuBar);
 		
-		JMenu mnNewMenu_1 = new JMenu("\uC0C1\uD488");
-		menuBar.add(mnNewMenu_1);
+		JMenu main_mn_pro = new JMenu("\uC0C1\uD488");
+		menuBar.add(main_mn_pro);
 		
-		JMenuItem mntmNewMenuItem_4 = new JMenuItem("\uAC00\uC804 \uC81C\uD488 \uAC80\uC0C9");
-		mnNewMenu_1.add(mntmNewMenuItem_4);
+		JMenuItem mni_search = new JMenuItem("\uAC00\uC804 \uC81C\uD488 \uAC80\uC0C9");
+		mni_search.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			
+			searchGUI search = new searchGUI();
+			search.loginInfo(loginDto);
+			
+			
+			}
+		});
+		mni_search.addMouseListener(new MouseAdapter() {
+			
+		});
+		main_mn_pro.add(mni_search);
 		
-		JMenu mnNewMenu_2 = new JMenu("\uC73C\uB738 \uD6A8\uC728 \uAC00\uC804\uC81C\uD488 \uAD6C\uB9E4\uBE44\uC6A9 \uD658\uAE08\uC0AC\uC5C5");
-		menuBar.add(mnNewMenu_2);
+		JMenu main_mn_esource = new JMenu("\uC73C\uB738 \uD6A8\uC728 \uAC00\uC804\uC81C\uD488 \uAD6C\uB9E4\uBE44\uC6A9 \uD658\uAE08\uC0AC\uC5C5");
+		menuBar.add(main_mn_esource);
 		
-		JMenuItem mntmNewMenuItem_5 = new JMenuItem("\"\uC73C\uB738 \uD6A8\uC728 \uAC00\uC804\uC81C\uD488 \uAD6C\uB9E4\uBE44\uC6A9 \uD658\uAE08\uC0AC\uC5C5\"\uC774\uB780?\r\n");
-		mnNewMenu_2.add(mntmNewMenuItem_5);
+		JMenuItem mn_announce = new JMenuItem("\"\uC73C\uB738 \uD6A8\uC728 \uAC00\uC804\uC81C\uD488 \uAD6C\uB9E4\uBE44\uC6A9 \uD658\uAE08\uC0AC\uC5C5\"\uC774\uB780?\r\n");
+		main_mn_esource.add(mn_announce);
 		
-		JMenuItem mntmNewMenuItem_6 = new JMenuItem("\uD658\uAE09 \uB300\uD589 \uC2E0\uCCAD");
-		mnNewMenu_2.add(mntmNewMenuItem_6);
+		JMenuItem mn_apply = new JMenuItem("\uD658\uAE09 \uB300\uD589 \uC2E0\uCCAD");
+		main_mn_esource.add(mn_apply);
 		
-		JMenuItem mntmNewMenuItem_8 = new JMenuItem("\uD658\uAE09 \uB300\uD589 \uC2E0\uCCAD\uC744 \uC704\uD55C \uC11C\uB958");
-		mnNewMenu_2.add(mntmNewMenuItem_8);
+		JMenuItem mn_document = new JMenuItem("\uD658\uAE09 \uB300\uD589 \uC2E0\uCCAD\uC744 \uC704\uD55C \uC11C\uB958");
+		main_mn_esource.add(mn_document);
 		
-		JMenuItem mntmNewMenuItem_7 = new JMenuItem("\uC6B0\uB9AC\uC9D1 \uC5D0\uB108\uC9C0 \uC808\uC57D\uC740 \uC774\uB807\uAC8C \uD574\uC694!!");
-		mnNewMenu_2.add(mntmNewMenuItem_7);
+		JMenuItem mn_energy = new JMenuItem("\uC6B0\uB9AC\uC9D1 \uC5D0\uB108\uC9C0 \uC808\uC57D\uC740 \uC774\uB807\uAC8C \uD574\uC694!!");
+		main_mn_esource.add(mn_energy);
 		
-		mn_main_myPage = new JMenu("My page");
-		menuBar.add(mn_main_myPage);
+		main_mn_myPage = new JMenu("My page");
+		menuBar.add(main_mn_myPage);
 		
 		//회원정보 수정 및 탈퇴 버튼
-		JMenuItem mntmNewMenuItem = new JMenuItem("회원정보 수정 및 탈퇴");
-		mntmNewMenuItem.addActionListener(new ActionListener() {
+		JMenuItem mn_tnwjd = new JMenuItem("회원정보 수정 및 탈퇴");
+		mn_tnwjd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
 				
@@ -98,16 +114,16 @@ public class MainGUI {
 				update.loginInfo(loginDto);
 			}
 		});
-		mn_main_myPage.add(mntmNewMenuItem);
+		main_mn_myPage.add(mn_tnwjd);
 		
 		JMenuItem mntmNewMenuItem_1 = new JMenuItem("\uAD6C\uB9E4\uB0B4\uC5ED");
-		mn_main_myPage.add(mntmNewMenuItem_1);
+		main_mn_myPage.add(mntmNewMenuItem_1);
 		
 		JMenuItem mntmNewMenuItem_2 = new JMenuItem("\uC2E0\uCCAD\uB0B4\uC5ED");
-		mn_main_myPage.add(mntmNewMenuItem_2);
+		main_mn_myPage.add(mntmNewMenuItem_2);
 		
 		JMenuItem mntmNewMenuItem_3 = new JMenuItem("\uB0B4 \uAC00\uC804\uC81C\uD488");
-		mn_main_myPage.add(mntmNewMenuItem_3);
+		main_mn_myPage.add(mntmNewMenuItem_3);
 		frame.getContentPane().setLayout(null);
 		
 		//로그인버튼
@@ -142,7 +158,7 @@ public class MainGUI {
 		btn_main_login.setVisible(false);
 		btn_main_logout.setVisible(true);
 		//마이페이지를 보이게 함
-		mn_main_myPage.setVisible(true);
+		main_mn_myPage.setVisible(true);
 		//로그인 정보 저장
 		loginDto = dto;
 	}
