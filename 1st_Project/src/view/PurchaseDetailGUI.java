@@ -12,7 +12,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class PurchasedetailsGUI {
+public class PurchaseDetailGUI {
 
 	private JFrame frame;
 	private JTable table;
@@ -24,7 +24,7 @@ public class PurchasedetailsGUI {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					PurchasedetailsGUI window = new PurchasedetailsGUI();
+					PurchaseDetailGUI window = new PurchaseDetailGUI();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -36,7 +36,7 @@ public class PurchasedetailsGUI {
 	/**
 	 * Create the application.
 	 */
-	public PurchasedetailsGUI() {
+	public PurchaseDetailGUI() {
 		initialize();
 		frame.setVisible(true);
 	}

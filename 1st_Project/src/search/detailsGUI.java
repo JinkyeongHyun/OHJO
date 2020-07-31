@@ -14,7 +14,7 @@ import javax.swing.SwingConstants;
 import model.CustomerDTO;
 import model.ProductDTO;
 import model.PurchaseDAO;
-import model.purchaseDetailDTO;
+import model.PurchaseDetailDTO;
 import view.MainGUI;
 import view.PurchaseGUI;
 

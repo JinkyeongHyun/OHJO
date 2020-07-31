@@ -51,7 +51,7 @@ public class PurchaseDAO {
 	String sql = "insert into purchase values(SEQ_BOARD.NEXTVAL,?,Sysdate)";
 	try {
 		psmt = conn.prepareStatement(sql);
-		psmt.setString(1, dto.getPc_ID());
+		psmt.setString(1, dto.getId());
 		cnt = psmt.executeUpdate(sql);	
 		
 		
@@ -62,18 +62,19 @@ public class PurchaseDAO {
 	}return cnt;
 	}
 	// 결제창에서 구매 상세 테이블로 입력
-	public int purchaseDetailInsert(purchaseDetailDTO dto) {
+	public int purchaseDetailInsert(PurchaseDetailDTO dto) {
 		getConn();
 		int cnt = 0;
 		String sql = "insert into purchasedetail values(SEQ_BOARD.NEXTVAL,?,?,?,?,?,?)";
 		try {
 			psmt = conn.prepareStatement(sql);
-			psmt.setString(1, dto.getPcd_p_model());
-			psmt.setInt(2, dto.getPcd_amount());
-			psmt.setString(3, dto.getPcd_price());
-			psmt.setString(4,dto.getPcd_address());
-			psmt.setString(5,dto.getPcd_recip());
-			psmt.setString(6,dto.getPcd_recell());
+			
+			psmt.setString(1, dto.getModel());
+			psmt.setInt(2, dto.getAmount());
+			psmt.setString(3,dto.getTotalprice());
+			psmt.setString(4,dto.getAddress());
+			psmt.setString(5,dto.getReceiver());
+			psmt.setString(6,dto.getReceivercell());
 			cnt = psmt.executeUpdate();	
 			
 			

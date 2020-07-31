@@ -2,15 +2,15 @@ package model;
 
 public class ApplyDTO {
 	private String applydate;	// 신청일자
-	private String applyno;	// 신청번호
+	private int applyno;	// 신청번호
 	private String bank;	// 은행
 	private String bankaccount;	// 계좌번호
-	private String applyamount; // 신청수량
+	private int applyamount; // 신청수량
 	private String doc; // 위임장 사본  경로
 	private String idcard; // 신분증 사본 경로
 	private String id; // 아이디
 	
-	public ApplyDTO(String applydate, String applyno, String bank, String bankaccount, String applyamount, String doc,
+	public ApplyDTO(String applydate, int applyno, String bank, String bankaccount, int applyamount, String doc,
 			String idcard, String id) {
 		
 		this.applydate = applydate;
@@ -27,7 +27,7 @@ public class ApplyDTO {
 		return applydate;
 	}
 
-	public String getApplyno() {
+	public int getApplyno() {
 		return applyno;
 	}
 
@@ -39,7 +39,7 @@ public class ApplyDTO {
 		return bankaccount;
 	}
 
-	public String getApplyamount() {
+	public int getApplyamount() {
 		return applyamount;
 	}
 

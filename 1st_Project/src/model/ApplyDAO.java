@@ -47,17 +47,16 @@ public class ApplyDAO {
 		}
 	}
 	
-	public int applyInfo(ApplyDTO dto) {
-		int result = 0;
+	public void applyInfo(ApplyDTO dto) {
 		getConnect();
 		String sql= "insert into apply values (?, ?, ?, ?, ?, ?, ?, ?)";
 		try {
 			pstm = conn.prepareStatement(sql);
 			pstm.setString(1, dto.getApplydate());
-			pstm.setString(2, dto.getApplyno());
+			pstm.setInt(2, dto.getApplyno());
 			pstm.setString(3, dto.getBank());
 			pstm.setString(4, dto.getBankaccount());
-			pstm.setString(5, dto.getApplyamount());
+			pstm.setInt(5, dto.getApplyamount());
 			pstm.setString(6, dto.getDoc());
 			pstm.setString(7, dto.getIdcard());
 			pstm.setString(8, dto.getId());
@@ -68,7 +67,6 @@ public class ApplyDAO {
 		} finally {
 			close();
 		}
-		return result;
 	}
 	
 	// 은행이름, 계좌번호 저장
@@ -82,6 +80,8 @@ public class ApplyDAO {
 			pstm.setString(2, dto.getBankaccount());
 			pstm.setString(3, dto.getId());
 			result = pstm.executeUpdate(); 
+			
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {

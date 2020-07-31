@@ -22,7 +22,8 @@ import model.CustomerDTO;
 import model.ProductDTO;
 import model.PurchaseDAO;
 import model.PurchaseDTO;
-import model.purchaseDetailDTO;
+import model.PurchaseDetailDTO;
+import model.PurchaseDetailDTO;
 import search.ProductDAO;
 
 public class PurchaseGUI {
@@ -194,7 +195,7 @@ public class PurchaseGUI {
 				
 					dao.PurchaseInsert(new PurchaseDTO(0 ,logindto.getC_id(), null));
 					dao.purchaseDetailInsert(
-							new purchaseDetailDTO(0, model().get(0).getP_name(), amount, price, address, recip, cellnum));
+							new PurchaseDetailDTO(0, model().get(0).getP_name(), amount, price, address, recip, cellnum));
 					
 				}
 				;
