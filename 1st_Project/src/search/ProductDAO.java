@@ -92,7 +92,7 @@ public class ProductDAO {
 		getConnect();
 		String sql = "select * from product where product_model = ?";
 		ArrayList<ProductDTO> modelList = new ArrayList<>();
-
+		System.out.println("디테일 값 : "+model);
 		try {
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, model);

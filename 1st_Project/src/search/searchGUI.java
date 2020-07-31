@@ -45,33 +45,33 @@ public class searchGUI {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					searchGUI window = new searchGUI();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+//	public static void main(String[] args) {
+//		EventQueue.invokeLater(new Runnable() {
+//			public void run() {
+//				try {
+//					searchGUI window = new searchGUI();
+//					window.frame.setVisible(true);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		});
+//	}
 
 	/**
 	 * Create the application.
 	 */
-	public searchGUI() {
-
+	public searchGUI(CustomerDTO loginDto) {
+		this.loginDto=loginDto;
 		initialize();
+		frame.setVisible(true);		
 	}
-	public void loginInfo(CustomerDTO dto) {
-		loginDto = dto;
-	}
-
 	/**
 	 * Initialize the contents of the frame.
 	 */
+	
+	
+	
 	private void initialize() {
 		frame = new JFrame();
 		frame.setResizable(false);
@@ -102,13 +102,13 @@ public class searchGUI {
 		ProductDAO dao = new ProductDAO();
 		TableModelChange change = new TableModelChange(dao.priceAsce());
 		Object[][] data = change.listTypeChange();
-
 		table = new JTable(data, colName);
 		scrollPane.setViewportView(table);
 		table.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				int row = table.getSelectedRow();
+				System.out.println(row);
 				model = (String) table.getValueAt(row, 0);
 
 			}
@@ -438,6 +438,17 @@ public class searchGUI {
 				});
 			}
 		});
+		
+		JButton detailview = new JButton("\uC81C\uD488 \uC0C1\uC138 \uC815\uBCF4 \uBCF4\uAE30");
+		detailview.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				detailsGUI det = new detailsGUI(model, loginDto);		
+			}
+		});
+		
+		
+		detailview.setBounds(496, 455, 186, 58);
+		frame.getContentPane().add(detailview);
 		rb_asce.setSelected(true);
 		buttonGroup.add(rb_asce);
 		rb_asce.setBounds(8, 53, 106, 23);
@@ -451,16 +462,7 @@ public class searchGUI {
 		lblNewLabel_2.setBounds(12, 46, 87, 33);
 		frame.getContentPane().add(lblNewLabel_2);
 
-		JButton detailview = new JButton("\uC81C\uD488 \uC0C1\uC138 \uC815\uBCF4 \uBCF4\uAE30");
-		detailview.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-
-				detailsGUI det = new detailsGUI(model, loginDto);
-				
-			}
-		});
-		detailview.setBounds(496, 455, 186, 58);
-		frame.getContentPane().add(detailview);
+		
 	}
 
 }

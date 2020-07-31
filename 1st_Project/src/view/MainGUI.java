@@ -73,9 +73,7 @@ public class MainGUI {
 		JMenuItem mni_search = new JMenuItem("\uAC00\uC804 \uC81C\uD488 \uAC80\uC0C9");
 		mni_search.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			
-			searchGUI search = new searchGUI();
-			search.loginInfo(loginDto);
+			searchGUI search = new searchGUI(loginDto);
 			
 			
 			}

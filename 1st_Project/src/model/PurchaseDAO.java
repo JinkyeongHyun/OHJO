@@ -52,7 +52,6 @@ public class PurchaseDAO {
 	try {
 		psmt = conn.prepareStatement(sql);
 		psmt.setString(1, dto.getPc_ID());
-		psmt.setString(2, dto.getPc_Date());
 		cnt = psmt.executeUpdate(sql);	
 		
 		

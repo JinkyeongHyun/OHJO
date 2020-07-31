@@ -46,9 +46,10 @@ public class detailsGUI {
 	 */
 	
 	public detailsGUI(String model, CustomerDTO dto) {		
-		this.model=model;
-		initialize();		
+		this.model=  model;
+		initialize();	
 		frame.setVisible(true);
+		
 		
 	}
 	
@@ -56,7 +57,6 @@ public class detailsGUI {
 	public ArrayList<ProductDTO> model() {
 		ProductDAO dao = new ProductDAO();
 		ArrayList<ProductDTO> dto = dao.search(model);
-		
 		return dto;
 	}
 
@@ -119,7 +119,6 @@ public class detailsGUI {
 		label_5.setHorizontalAlignment(SwingConstants.RIGHT);
 		label_5.setBounds(194, 402, 123, 35);
 		panel.add(label_5);
-		
 		
 		JLabel lb_model = new JLabel(model().get(0).getP_model());
 		lb_model.setBounds(83, 253, 108, 41);
