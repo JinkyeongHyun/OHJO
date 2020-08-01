@@ -168,7 +168,7 @@ public class FileUploadGUI {
 				dao.bankInfo(loginDto.getC_id(), bank, bankaccount); 
 						
 				if (bankaccount.equals("") || tf_idcardPath.getText().equals("") || tf_docPath.getText().equals("")) {
-					JOptionPane.showMessageDialog(null, "항목을 채우십시오.");
+					JOptionPane.showMessageDialog(null, "비어있는 항목을 채우십시오.");
 				} else {
 					JOptionPane.showMessageDialog(null, "저장을 완료하였습니다.");
 					frame.dispose();
@@ -177,7 +177,6 @@ public class FileUploadGUI {
 				}
 			}
 		});
-
 		btn_save.setForeground(Color.BLACK);
 		btn_save.setFont(new Font("맑은 고딕", Font.BOLD, 15));
 		btn_save.setBackground(new Color(205, 92, 92));
