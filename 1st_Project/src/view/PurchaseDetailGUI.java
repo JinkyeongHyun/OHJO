@@ -65,7 +65,7 @@ public class PurchaseDetailGUI {
 		scrollPane.setBounds(61, 76, 741, 400);
 		frame.getContentPane().add(scrollPane);
 		
-		String[] colName = {"orderno","model","amount","totalprice","address","receiver","receivercell"};
+		String[] colName = {"주문","모델명","구매수량","총 가격","배송지 주소","수취인","전화번호"};
 		 PurchaseDAO dao = new PurchaseDAO();
 		ArrayList<PurchaseDetailDTO> purchaseList=dao.search();
 		Object[][] data = new Object[purchaseList.size()][7];

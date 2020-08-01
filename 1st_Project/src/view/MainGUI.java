@@ -94,15 +94,26 @@ public class MainGUI {
 		main_mn_esource.add(mn_announce);
 		
 		JMenuItem mn_apply = new JMenuItem("\uD658\uAE09 \uB300\uD589 \uC2E0\uCCAD");
+		mn_apply.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				FileUploadGUI upload = new FileUploadGUI();
+			}
+		});
 		main_mn_esource.add(mn_apply);
 		
 		JMenuItem mn_document = new JMenuItem("\uD658\uAE09 \uB300\uD589 \uC2E0\uCCAD\uC744 \uC704\uD55C \uC11C\uB958");
+		mn_document.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				FileDownloadGUI Down =new FileDownloadGUI();
+			}
+		});
 		main_mn_esource.add(mn_document);
 		
 		JMenuItem mn_energy = new JMenuItem("\uC6B0\uB9AC\uC9D1 \uC5D0\uB108\uC9C0 \uC808\uC57D\uC740 \uC774\uB807\uAC8C \uD574\uC694!!");
 		mn_energy.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				frame.dispose();
+				EnergySavingInfoGUI save = new EnergySavingInfoGUI();
 			}
 		});
 		main_mn_esource.add(mn_energy);
@@ -124,6 +135,11 @@ public class MainGUI {
 		main_mn_myPage.add(mn_tnwjd);
 		
 		JMenuItem mntmNewMenuItem_1 = new JMenuItem("\uAD6C\uB9E4\uB0B4\uC5ED");
+		mntmNewMenuItem_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				PurchaseDetailGUI pdetail = new PurchaseDetailGUI();
+			}
+		});
 		main_mn_myPage.add(mntmNewMenuItem_1);
 		
 		JMenuItem mntmNewMenuItem_2 = new JMenuItem("\uC2E0\uCCAD\uB0B4\uC5ED");
