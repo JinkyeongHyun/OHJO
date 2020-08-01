@@ -306,20 +306,6 @@ public class PurchaseGUI {
 		JLabel label_12 = new JLabel("");
 		label_12.setBounds(333, 79, 143, 22);
 		frame.getContentPane().add(label_12);
-
-		JLabel label_15 = new JLabel("\uD658\uAE09 \uC5EC\uBD80");
-		label_15.setBounds(72, 402, 59, 22);
-		frame.getContentPane().add(label_15);
-
-		JRadioButton rdb_apply_yes = new JRadioButton("\uC2E0\uCCAD");
-		buttonGroup.add(rdb_apply_yes);
-		rdb_apply_yes.setBounds(143, 402, 63, 23);
-		frame.getContentPane().add(rdb_apply_yes);
-
-		JRadioButton rdb_apply_no = new JRadioButton("\uBBF8\uC2E0\uCCAD");
-		buttonGroup.add(rdb_apply_no);
-		rdb_apply_no.setBounds(216, 402, 74, 23);
-		frame.getContentPane().add(rdb_apply_no);
 		
 	}
 }
