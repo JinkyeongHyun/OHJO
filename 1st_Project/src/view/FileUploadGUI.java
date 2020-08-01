@@ -183,6 +183,7 @@ public class FileUploadGUI {
 				ApplyDAO dao = new ApplyDAO();
 		//		dao.bankInfo(id, bank, bankaccount);
 				
+				
 				if (bankaccount.equals("")) {
 					JOptionPane.showMessageDialog(null, "계좌번호를 입력하십시오.");
 				} else {
