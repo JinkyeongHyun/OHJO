@@ -1,6 +1,7 @@
 package view;
 
 import java.awt.EventQueue;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -13,6 +14,9 @@ import javax.swing.JMenuItem;
 
 import model.CustomerDTO;
 import search.searchGUI;
+import java.awt.Color;
+import javax.swing.JLabel;
+import javax.swing.ImageIcon;
 
 public class MainGUI {
 
@@ -57,6 +61,7 @@ public class MainGUI {
 	 */
 	private void initialize() {
 		frame = new JFrame();
+		frame.getContentPane().setBackground(Color.WHITE);
 		frame.setBounds(100, 100, 843, 527);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
@@ -164,10 +169,10 @@ public class MainGUI {
 			}
 		});
 		main_mn_myPage.add(mntmNewMenuItem_3);
-		frame.getContentPane().setLayout(null);
 		
 		//로그인버튼
 		btn_main_login = new JButton("\uB85C\uADF8\uC778");
+		btn_main_login.setBounds(718, 10, 97, 23);
 		btn_main_login.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//창 끄기
@@ -176,11 +181,12 @@ public class MainGUI {
 				LoginGUI login = new LoginGUI();
 			}
 		});
-		btn_main_login.setBounds(718, 10, 97, 23);
+		frame.getContentPane().setLayout(null);
 		frame.getContentPane().add(btn_main_login);
 		
 		//로그아웃버튼
 		btn_main_logout = new JButton("\uB85C\uADF8\uC544\uC6C3");
+		btn_main_logout.setBounds(718, 10, 97, 23);
 		btn_main_logout.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				frame.dispose();
@@ -188,8 +194,17 @@ public class MainGUI {
 				main.logoutInfo();
 			}
 		});
-		btn_main_logout.setBounds(718, 10, 97, 23);
 		frame.getContentPane().add(btn_main_logout);
+		
+		JLabel lbl_title = new JLabel("\uC81C\uBAA9");
+		lbl_title.setBounds(78, 53, 510, 105);
+		frame.getContentPane().add(lbl_title);
+		
+		JLabel lbl_icon1 = new JLabel("");
+		lbl_icon1.setIcon(new ImageIcon("E:\\Bigdata\\\uD300 \uD504\uB85C\uC81D\uD2B8\\[\uC790\uB8CC] GUI\uC5D0 \uC4F0\uC778 \uC0AC\uC9C4\uB4E4\\solar-energy.png"));
+		lbl_icon1.setBounds(687, 299, 115, 158);
+		lbl_icon1.setIcon(new ImageIcon(new ImageIcon("E:\\Bigdata\\\uD300 \uD504\uB85C\uC81D\uD2B8\\[\uC790\uB8CC] GUI\uC5D0 \uC4F0\uC778 \uC0AC\uC9C4\uB4E4\\solar-energy.png").getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT)));
+		frame.getContentPane().add(lbl_icon1);
 	}
 	
 	//로그인 성공시 작동
