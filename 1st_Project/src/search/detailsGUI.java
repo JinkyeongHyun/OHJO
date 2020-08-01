@@ -7,6 +7,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -80,12 +81,6 @@ public class detailsGUI {
 		panel.setBounds(12, 57, 411, 494);
 		frame.getContentPane().add(panel);
 		panel.setLayout(null);
-
-		JPanel panel_1 = new JPanel();
-		panel_1.setBackground(Color.WHITE);
-		panel_1.setBounds(43, 10, 330, 228);
-		panel.add(panel_1);
-		panel_1.setLayout(null);
 
 		JLabel lblNewLabel_2 = new JLabel("\uBAA8\uB378\uBA85 : ");
 		lblNewLabel_2.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -181,5 +176,11 @@ public class detailsGUI {
 		});
 		btn_back.setBounds(301, 461, 98, 23);
 		panel.add(btn_back);
+		
+		JLabel lb_image = new JLabel();
+		lb_image.setIcon(new ImageIcon(detailsGUI.class.getResource("/images/aircon.jpg")));
+		lb_image.setBackground(Color.WHITE);
+		lb_image.setBounds(12, 10, 387, 241);
+		panel.add(lb_image);
 	}
 }

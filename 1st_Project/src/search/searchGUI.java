@@ -14,6 +14,7 @@ import javax.swing.JRadioButton;
 import java.awt.Font;
 
 import javax.swing.ButtonGroup;
+import javax.swing.ButtonModel;
 import javax.swing.JCheckBox;
 import javax.swing.JScrollPane;
 import javax.swing.JButton;
@@ -45,7 +46,11 @@ public class searchGUI {
 	JCheckBox ch1;
 	JCheckBox ch2;
 	JCheckBox ch3;
-
+	String[] colName = { "모델명", "제품명", "에너지 효율 등급 ", "가격" };
+	ProductDAO dao = new ProductDAO();
+	private final ButtonGroup checkBox = new ButtonGroup();
+	private final ButtonGroup checkBoxR = new ButtonGroup();
+	
 	/**
 	 * Launch the application.
 	 */
@@ -102,7 +107,6 @@ public class searchGUI {
 		scrollPane.setBounds(150, 89, 532, 356);
 		frame.getContentPane().add(scrollPane);
 
-		String[] colName = { "모델명", "제품명", "에너지 효율 등급 ", "가격" };
 		ProductDAO dao = new ProductDAO();
 		TableModelChange change = new TableModelChange(dao.priceAsce());
 		Object[][] data = change.listTypeChange();
@@ -144,73 +148,28 @@ public class searchGUI {
 		});
 
 		ch1 = new JCheckBox("1\uB4F1\uAE09");
+		checkBox.add(ch1);
 		ch1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
 				if (rb_asce.isSelected()) {
 					if (ch1.isSelected()) {
-						if(ch2.isSelected()) {
-							if(ch3.isSelected()==false) {
-								// 체크박스 1등급,2등급 체크
-								String[] colName = { "모델명", "제품명", "에너지 효율 등급 ", "가격" };
-								ProductDAO dao = new ProductDAO();
-								TableModelChange change = new TableModelChange(dao.noteclss("3등급", ""));
-								Object[][] data = change.listTypeChange();
-								
-								table = new JTable(data, colName);
-								scrollPane.setViewportView(table);
-								table.addMouseListener(new MouseAdapter() {
-									@Override
-									public void mouseClicked(MouseEvent e) {
-										int row = table.getSelectedRow();
-										model = (String) table.getValueAt(row, 0);
-										
-									}
-								});
-							}
-							
-						}else if (ch3.isSelected()) {
-							String[] colName = { "모델명", "제품명", "에너지 효율 등급 ", "가격" };
-							ProductDAO dao = new ProductDAO();
-							TableModelChange change = new TableModelChange(dao.noteclss("3등급", ""));
-							Object[][] data = change.listTypeChange();
-							
-							table = new JTable(data, colName);
-							scrollPane.setViewportView(table);
-							table.addMouseListener(new MouseAdapter() {
-								@Override
-								public void mouseClicked(MouseEvent e) {
-									int row = table.getSelectedRow();
-									model = (String) table.getValueAt(row, 0);
-									
-								}
-							});
-						}
+						// 체크박스 1등급,2등급 체크
+						TableModelChange change = new TableModelChange(dao.eclss("1등급", ""));
+						Object[][] data = change.listTypeChange();
 
-					}else if (ch2.isSelected()==false) {
-						if(ch3.isSelected()) {
-							
-							String[] colName = { "모델명", "제품명", "에너지 효율 등급 ", "가격" };
-							ProductDAO dao = new ProductDAO();
-							TableModelChange change = new TableModelChange(dao.noteclss("2등급", ""));
-							Object[][] data = change.listTypeChange();
-							
-							table = new JTable(data, colName);
-							scrollPane.setViewportView(table);
-							table.addMouseListener(new MouseAdapter() {
-								@Override
-								public void mouseClicked(MouseEvent e) {
-									int row = table.getSelectedRow();
-									model = (String) table.getValueAt(row, 0);
-									
-								}
-							});
-						}
-						
+						table = new JTable(data, colName);
+						scrollPane.setViewportView(table);
+						table.addMouseListener(new MouseAdapter() {
+							@Override
+							public void mouseClicked(MouseEvent e) {
+								int row = table.getSelectedRow();
+								model = (String) table.getValueAt(row, 0);
+
+							}
+						});
+
 					}
 					if (ch1.isSelected() == false) {
-						String[] colName = { "모델명", "제품명", "에너지 효율 등급 ", "가격" };
-						ProductDAO dao = new ProductDAO();
 						TableModelChange change = new TableModelChange(dao.priceAsce());
 						Object[][] data = change.listTypeChange();
 
@@ -228,9 +187,6 @@ public class searchGUI {
 
 				} else {
 					if (ch1.isSelected()) {
-
-						String[] colName = { "모델명", "제품명", "에너지 효율 등급 ", "가격" };
-						ProductDAO dao = new ProductDAO();
 						TableModelChange change = new TableModelChange(dao.eclss("1등급", "desc"));
 						Object[][] data = change.listTypeChange();
 
@@ -246,8 +202,6 @@ public class searchGUI {
 						});
 					}
 					if (ch1.isSelected() == false) {
-						String[] colName = { "모델명", "제품명", "에너지 효율 등급 ", "가격" };
-						ProductDAO dao = new ProductDAO();
 						TableModelChange change = new TableModelChange(dao.priceDesc());
 						Object[][] data = change.listTypeChange();
 
@@ -270,14 +224,12 @@ public class searchGUI {
 		panel.add(ch1);
 
 		ch2 = new JCheckBox("2\uB4F1\uAE09");
+		checkBox.add(ch2);
 		ch2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
 				if (rb_asce.isSelected()) {
 					if (ch2.isSelected()) {
-						
-						String[] colName = { "모델명", "제품명", "에너지 효율 등급 ", "가격" };
-						ProductDAO dao = new ProductDAO();
 						TableModelChange change = new TableModelChange(dao.eclss("2등급", ""));
 						Object[][] data = change.listTypeChange();
 
@@ -293,8 +245,6 @@ public class searchGUI {
 						});
 					}
 					if (ch2.isSelected() == false) {
-						String[] colName = { "모델명", "제품명", "에너지 효율 등급 ", "가격" };
-						ProductDAO dao = new ProductDAO();
 						TableModelChange change = new TableModelChange(dao.priceAsce());
 						Object[][] data = change.listTypeChange();
 
@@ -312,9 +262,6 @@ public class searchGUI {
 
 				} else {
 					if (ch2.isSelected()) {
-
-						String[] colName = { "모델명", "제품명", "에너지 효율 등급 ", "가격" };
-						ProductDAO dao = new ProductDAO();
 						TableModelChange change = new TableModelChange(dao.eclss("2등급", "desc"));
 						Object[][] data = change.listTypeChange();
 
@@ -330,8 +277,6 @@ public class searchGUI {
 						});
 					}
 					if (ch2.isSelected() == false) {
-						String[] colName = { "모델명", "제품명", "에너지 효율 등급 ", "가격" };
-						ProductDAO dao = new ProductDAO();
 						TableModelChange change = new TableModelChange(dao.priceDesc());
 						Object[][] data = change.listTypeChange();
 
@@ -354,14 +299,12 @@ public class searchGUI {
 		panel.add(ch2);
 
 		ch3 = new JCheckBox("3\uB4F1\uAE09");
+		checkBox.add(ch3);
 		ch3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+
 				if (rb_asce.isSelected()) {
 					if (ch3.isSelected()) {
-
-						String[] colName = { "모델명", "제품명", "에너지 효율 등급 ", "가격" };
-						ProductDAO dao = new ProductDAO();
 						TableModelChange change = new TableModelChange(dao.eclss("3등급", ""));
 						Object[][] data = change.listTypeChange();
 
@@ -377,8 +320,6 @@ public class searchGUI {
 						});
 					}
 					if (ch3.isSelected() == false) {
-						String[] colName = { "모델명", "제품명", "에너지 효율 등급 ", "가격" };
-						ProductDAO dao = new ProductDAO();
 						TableModelChange change = new TableModelChange(dao.priceAsce());
 						Object[][] data = change.listTypeChange();
 
@@ -396,9 +337,6 @@ public class searchGUI {
 
 				} else {
 					if (ch3.isSelected()) {
-
-						String[] colName = { "모델명", "제품명", "에너지 효율 등급 ", "가격" };
-						ProductDAO dao = new ProductDAO();
 						TableModelChange change = new TableModelChange(dao.eclss("3등급", "desc"));
 						Object[][] data = change.listTypeChange();
 
@@ -414,8 +352,6 @@ public class searchGUI {
 						});
 					}
 					if (ch3.isSelected() == false) {
-						String[] colName = { "모델명", "제품명", "에너지 효율 등급 ", "가격" };
-						ProductDAO dao = new ProductDAO();
 						TableModelChange change = new TableModelChange(dao.priceDesc());
 						Object[][] data = change.listTypeChange();
 
@@ -432,19 +368,18 @@ public class searchGUI {
 					}
 				}
 
-		
 			}
 		});
 		ch3.setBounds(8, 164, 106, 23);
 		panel.add(ch3);
-
+		
 		// 오름차순
 		rb_desc = new JRadioButton("\uAC00\uACA9 \uB192\uC740\uC21C");
 		rb_desc.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
-				String[] colName = { "모델명", "제품명", "에너지 효율 등급 ", "가격" };
-				ProductDAO dao = new ProductDAO();
+				ch1.setSelected(false);
+				ch2.setSelected(false);
+				ch3.setSelected(false);	
 				TableModelChange change = new TableModelChange(dao.priceDesc());
 				Object[][] data = change.listTypeChange();
 
@@ -470,8 +405,9 @@ public class searchGUI {
 		rb_asce = new JRadioButton("\uAC00\uACA9 \uB0AE\uC740\uC21C");
 		rb_asce.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String[] colName = { "모델명", "제품명", "에너지 효율 등급 ", "가격" };
-				ProductDAO dao = new ProductDAO();
+				ch1.setSelected(false);
+				ch2.setSelected(false);
+				ch3.setSelected(false);	
 				TableModelChange change = new TableModelChange(dao.priceAsce());
 				Object[][] data = change.listTypeChange();
 
@@ -515,9 +451,10 @@ public class searchGUI {
 			public void actionPerformed(ActionEvent arg0) {
 				frame.dispose();
 				MainGUI main = new MainGUI();
+				main.loginInfo(loginDto);
 			}
 		});
-		btn_back.setBounds(525, 480, 157, 33);
+		btn_back.setBounds(525, 455, 157, 58);
 		frame.getContentPane().add(btn_back);
 
 	}
