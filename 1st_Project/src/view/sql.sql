@@ -94,10 +94,10 @@ values(
 
 insert into PRODUCT
 values(
-	'test_model_2',
-	'test_name_2',
+	'test_model_11',
+	'test_name_11',
 	'세탁기',
-	'1등급',
+	'2등급',
 	'200Kwh',
 	10000000,
 	1000,
@@ -107,10 +107,10 @@ values(
 
 insert into PRODUCT
 values(
-	'test_model_3',
-	'test_name_3',
+	'test_model_12',
+	'test_name_12',
 	'냉장고',
-	'1등급',	
+	'2등급',	
 	'6000Kwh',
 	20000,
 	1000,
