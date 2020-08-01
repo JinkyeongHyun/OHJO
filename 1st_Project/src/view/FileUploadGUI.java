@@ -155,7 +155,7 @@ public class FileUploadGUI {
 				String bank = (String) cb_banks.getSelectedItem();
 				String bankaccount = bankaccountInsert.getText();
 				ApplyDAO dao = new ApplyDAO();
-				dao.bankInfo(loginDto.getC_id(), bank, bankaccount);
+				dao.bankInfo(loginDto.getC_id(), bank, bankaccount); 
 				
 				if (bankaccount.equals("")) {
 					JOptionPane.showMessageDialog(null, "계좌번호를 입력하십시오.");
