@@ -7,7 +7,11 @@ import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.RenderedImage;
+import java.io.File;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -33,6 +37,8 @@ public class FileUploadGUI {
 	private JTextField bankaccountInsert;
 	
 	CustomerDTO loginDto;
+	private JTextField tf_idcardPath;
+	private JTextField tf_docPath;
 
 	/**
 	 * Launch the application.
@@ -110,16 +116,25 @@ public class FileUploadGUI {
 		// 업로드된 신분증 사본 미리보기 창
 		JLabel lbl_previewIdCard = new JLabel("\uBBF8\uB9AC\uBCF4\uAE30");
 		lbl_previewIdCard.setHorizontalAlignment(SwingConstants.CENTER);
-		lbl_previewIdCard.setBounds(31, 269, 300, 285);
+		lbl_previewIdCard.setBounds(31, 299, 300, 255);
 		screen2_fileUpload.add(lbl_previewIdCard);
+		
+		// 신분증 사본 파일 경로
+		tf_idcardPath = new JTextField();
+		tf_idcardPath.setBounds(30, 268, 387, 21);
+		screen2_fileUpload.add(tf_idcardPath);
+		tf_idcardPath.setColumns(10);
 		
 		// 신분증 사본 업로드 버튼
 		JButton btn_fileUpload_idCard = new JButton("\uC774\uBBF8\uC9C0 \uD30C\uC77C \uC5C5\uB85C\uB4DC");
 		btn_fileUpload_idCard.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				JFileChooser chooser = new JFileChooser();
+				JFileChooser chooser = new JFileChooser();// 객체 생성
+				
 				if (JFileChooser.APPROVE_OPTION == chooser.showOpenDialog(null)) {
 					lbl_previewIdCard.setIcon(new ImageIcon(chooser.getSelectedFile().getAbsolutePath()));
+					String a = chooser.getSelectedFile().getAbsolutePath();
+					tf_idcardPath.setText(a);
 				}
 			}
 		});
@@ -131,8 +146,14 @@ public class FileUploadGUI {
 		// 업로드된 위임장 사본 미리보기
 		JLabel lbl_previewDoc = new JLabel("\uBBF8\uB9AC\uBCF4\uAE30");
 		lbl_previewDoc.setHorizontalAlignment(SwingConstants.CENTER);
-		lbl_previewDoc.setBounds(485, 269, 300, 285);
+		lbl_previewDoc.setBounds(485, 299, 300, 255);
 		screen2_fileUpload.add(lbl_previewDoc);
+		
+		// 위임장 사본 파일 경로
+		tf_docPath = new JTextField();
+		tf_docPath.setBounds(485, 268, 387, 21);
+		screen2_fileUpload.add(tf_docPath);
+		tf_docPath.setColumns(10);
 		
 		// 위임장 사본 업로드 버튼
 		JButton btn_fileUpload_doc = new JButton("\uC774\uBBF8\uC9C0 \uD30C\uC77C \uC5C5\uB85C\uB4DC");
@@ -141,6 +162,8 @@ public class FileUploadGUI {
 				JFileChooser chooser = new JFileChooser();
 				if (JFileChooser.APPROVE_OPTION == chooser.showOpenDialog(null)) {
 					lbl_previewDoc.setIcon(new ImageIcon(chooser.getSelectedFile().getAbsolutePath()));
+					String a = chooser.getSelectedFile().getAbsolutePath();
+	                tf_docPath.setText(a);
 				}
 			}
 		});
@@ -160,17 +183,33 @@ public class FileUploadGUI {
 				ApplyDAO dao = new ApplyDAO();
 		//		dao.bankInfo(id, bank, bankaccount);
 				
-				
+				if (bankaccount.equals("")) {
+					JOptionPane.showMessageDialog(null, "계좌번호를 입력하십시오.");
+				} else {
+					JOptionPane.showMessageDialog(null, "저장이 완료되었습니다.\n신분증과 위임장 사본을 첨부해 주세요.");
+//					frame.dispose();
+//					MainGUI main = new MainGUI();
+//					return;
+				}
 			}
 		});
 		btn_saveBankAccount.setFont(new Font("맑은 고딕", Font.PLAIN, 13));
 		btn_saveBankAccount.setBounds(437, 97, 66, 30);
 		screen2_fileUpload.add(btn_saveBankAccount);
 		
+		
 		// 업로드된 신분증 사본 저장 버튼
 		JButton btn_saveIdCard = new JButton("\uC800\uC7A5");
 		btn_saveIdCard.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if (tf_idcardPath.getText().equals("")) {
+					JOptionPane.showMessageDialog(null, "파일을 선택하십시오.");
+				} else {
+					JOptionPane.showMessageDialog(null, "저장을 완료하였습니다.");
+//					frame.dispose();
+//					MainGUI main = new MainGUI();
+//					return;
+				}
 			}
 		});
 		btn_saveIdCard.setFont(new Font("맑은 고딕", Font.PLAIN, 13));
@@ -181,6 +220,14 @@ public class FileUploadGUI {
 		JButton btn_saveDoc = new JButton("\uC800\uC7A5");
 		btn_saveDoc.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if (tf_docPath.getText().equals("")) {
+					JOptionPane.showMessageDialog(null, "파일을 선택하십시오.");
+				} else {
+					JOptionPane.showMessageDialog(null, "저장을 완료하였습니다.");
+					frame.dispose();
+					MainGUI main = new MainGUI();
+					return;
+				}
 			}
 		});
 		btn_saveDoc.setFont(new Font("맑은 고딕", Font.PLAIN, 13));
@@ -201,5 +248,8 @@ public class FileUploadGUI {
 		btn_close.setBackground(new Color(205, 92, 92));
 		btn_close.setBounds(409, 519, 70, 35);
 		screen2_fileUpload.add(btn_close);
+		
+		
+		
 	}
 }

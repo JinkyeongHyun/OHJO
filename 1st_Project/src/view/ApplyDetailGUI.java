@@ -1,5 +1,6 @@
 package view;
 
+import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -12,17 +13,10 @@ import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.SwingConstants;
 
-import model.ApplyDAO;
-import model.ApplyDTO;
+import model.ApplyDetailDAO;
+import model.ApplyDetailDTO;
 import model.CustomerDTO;
-import model.ProductDTO;
-import search.ProductDAO;
-import search.TableModelChange;
-
-import javax.swing.JTextField;
-import java.awt.Color;
 
 public class ApplyDetailGUI {
 
@@ -32,29 +26,30 @@ public class ApplyDetailGUI {
 	JButton btn_main_login;
 	JButton btn_main_logout;
 	JMenu main_mn_myPage;
+	private JTable table;
 
 	/**
 	 * Launch the application.
 	 */
-//	public static void main(String[] args) {
-//		EventQueue.invokeLater(new Runnable() {
-//			public void run() {
-//				try {
-//					ApplyDetailGUI window = new ApplyDetailGUI();
-//					window.frame.setVisible(true);
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//				}
-//			}
-//		});
-//	}
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					ApplyDetailGUI window = new ApplyDetailGUI();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
 
 	/**
 	 * Create the application.
 	 */
 	public ApplyDetailGUI() {
 		initialize();
-		frame.setVisible(true);
+//		frame.setVisible(true);
 	}
 
 	/**
@@ -71,25 +66,8 @@ public class ApplyDetailGUI {
 		lbl_applydetails.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 20));
 		frame.getContentPane().add(lbl_applydetails);
 		
-		JLabel lbl_applyno = new JLabel("\uC2E0\uCCAD\uBC88\uD638");
-		lbl_applyno.setHorizontalAlignment(SwingConstants.CENTER);
-		lbl_applyno.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 18));
-		lbl_applyno.setBounds(174, 183, 118, 36);
-		frame.getContentPane().add(lbl_applyno);
-		
-		JLabel lbl_model = new JLabel("\uBAA8\uB378\uBA85");
-		lbl_model.setHorizontalAlignment(SwingConstants.CENTER);
-		lbl_model.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 18));
-		lbl_model.setBounds(174, 244, 118, 36);
-		frame.getContentPane().add(lbl_model);
-		
-		JLabel lbl_applyamount = new JLabel("\uC2E0\uCCAD\uC218\uB7C9");
-		lbl_applyamount.setHorizontalAlignment(SwingConstants.CENTER);
-		lbl_applyamount.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 18));
-		lbl_applyamount.setBounds(174, 304, 118, 36);
-		frame.getContentPane().add(lbl_applyamount);
-		
 		JButton button = new JButton("\uB2EB\uAE30");
+		button.setBounds(383, 499, 70, 35);
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
@@ -100,12 +78,24 @@ public class ApplyDetailGUI {
 		button.setForeground(Color.BLACK);
 		button.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 15));
 		button.setBackground(new Color(205, 92, 92));
-		button.setBounds(383, 499, 70, 35);
 		frame.getContentPane().add(button);
 		
-		JLabel lb_no = new JLabel("New label");
-		lb_no.setBounds(304, 191, 390, 21);
-		frame.getContentPane().add(lb_no);
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(83, 117, 680, 316);
+		frame.getContentPane().add(scrollPane);
+		
+		String[] colName = {"½ÅÃ» ¹øÈ£", "¸ðµ¨ ÀÌ¸§", "½ÅÃ» ¼ö·®"};
+		ApplyDetailDAO dao = new ApplyDetailDAO();
+		ArrayList<ApplyDetailDTO> applyDatailList = dao.applyInfoSelect();
+		Object[][] data = new Object[applyDatailList.size()][5];
+		for (int i = 0; i < data.length; i++) {
+			data[i][0] = applyDatailList.get(i).getApplyno();
+			data[i][1] = applyDatailList.get(i).getModel();
+			data[i][2] = applyDatailList.get(i).getApplyamount();
+		}
+		
+		table = new JTable(data, colName);
+		scrollPane.setViewportView(table);
 	}
 	
 	//·Î±×ÀÎ ¼º°ø½Ã ÀÛµ¿

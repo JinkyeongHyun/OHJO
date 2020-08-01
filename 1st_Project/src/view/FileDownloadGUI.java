@@ -16,6 +16,7 @@ import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 
 import model.CustomerDTO;
@@ -84,7 +85,10 @@ public class FileDownloadGUI {
 						ImageIO.write(rendered, "jpg", chooser.getSelectedFile());
 					} catch (IOException e1) {
 						e1.printStackTrace();
-					} finally {
+					} finally { // 저장 버튼 누르면 홈 화면으로 돌아가게.
+						JOptionPane.showMessageDialog(null,"저장이 완료되었습니다.");
+						frame.dispose();
+						MainGUI update = new MainGUI();
 						return;
 					}
 				}
