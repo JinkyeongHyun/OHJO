@@ -4,14 +4,9 @@ import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
-import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.RenderedImage;
-import java.io.File;
-import java.io.IOException;
 
-import javax.imageio.ImageIO;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -26,9 +21,6 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 import model.ApplyDAO;
-import model.ApplyDTO;
-
-import model.CustomerDAO;
 import model.CustomerDTO;
 
 public class FileUploadGUI {
@@ -40,27 +32,10 @@ public class FileUploadGUI {
 	private JTextField tf_idcardPath;
 	private JTextField tf_docPath;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					FileUploadGUI window = new FileUploadGUI();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the application.
-	 */
-	public FileUploadGUI() {
+	public FileUploadGUI(CustomerDTO dto) {
+		loginDto = dto;
 		initialize();
+		frame.setVisible(true);
 	}
 
 	/**
@@ -179,11 +154,8 @@ public class FileUploadGUI {
 				
 				String bank = (String) cb_banks.getSelectedItem();
 				String bankaccount = bankaccountInsert.getText();
-				
 				ApplyDAO dao = new ApplyDAO();
-		//		dao.bankInfo(id, bank, bankaccount);
-				
-				
+				dao.bankInfo(loginDto.getC_id(), bank, bankaccount);
 				
 				if (bankaccount.equals("")) {
 					JOptionPane.showMessageDialog(null, "계좌번호를 입력하십시오.");

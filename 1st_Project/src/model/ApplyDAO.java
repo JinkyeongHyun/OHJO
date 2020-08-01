@@ -73,12 +73,14 @@ public class ApplyDAO {
 	public int bankInfo (String id, String bank, String bankaccount) {
 		int result = 0;
 		getConnect();
-		String sql = "update apply set bank = ? and bankaccount = ? where id = ?";
+		String sql = "insert into apply(applyno, id, bank, bankaccount) values (applyno_seq.nextval,?,?,?)";
+		
+		System.out.println(id+" "+bank+" " + bankaccount);
 		try {
 			pstm = conn.prepareStatement(sql);
-			pstm.setString(1, dto.getBank());
-			pstm.setString(2, dto.getBankaccount());
-			pstm.setString(3, dto.getId());
+			pstm.setString(1, id);
+			pstm.setString(2, bank);
+			pstm.setString(3, bankaccount);
 			result = pstm.executeUpdate(); 
 			
 			

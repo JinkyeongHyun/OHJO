@@ -57,6 +57,19 @@ CONSTRAINT apply_applyno_pk
     primary key (applyno)
 )
 
+CREATE TABLE apply
+	(applydate DATE default sysdate NOT NULL,
+	applyno NUMBER(10) NOT NULL,
+	bank VARCHAR2(20),
+	bankaccount VARCHAR2(20),
+	applyamount NUMBER(10),
+	doc VARCHAR2(20),
+	idcard VARCHAR2(20),
+	id VARCHAR2(20) NOT NULL,
+CONSTRAINT apply_applyno_pk
+    primary key (applyno)
+)
+
 CREATE TABLE customer
 	(id VARCHAR2(20) NOT NULL,
 	pw VARCHAR2(20) NOT NULL,
