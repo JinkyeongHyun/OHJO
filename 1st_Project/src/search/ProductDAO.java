@@ -73,8 +73,8 @@ public class ProductDAO {
 				String p_category = rs.getString(3);
 				String p_class = rs.getString(4);
 				String p_maxEv = rs.getString(5);
-				String p_eCost = rs.getString(6);
-				String p_price = rs.getString(7);
+				int p_eCost = rs.getInt(6);
+				int p_price = rs.getInt(7);
 				String p_img = rs.getString(8);
 				modelList.add(new ProductDTO(p_model, p_name, p_category, p_class, p_maxEv, p_eCost, p_price, p_img));
 			}
@@ -104,8 +104,8 @@ public class ProductDAO {
 				String p_category = rs.getString(3);
 				String p_class = rs.getString(4);
 				String p_maxEv = rs.getString(5);
-				String p_eCost = rs.getString(6);
-				String p_price = rs.getString(7);
+				int p_eCost = rs.getInt(6);
+				int p_price = rs.getInt(7);
 				String p_img = rs.getString(8);
 				modelList.add(new ProductDTO(p_model, p_name, p_category, p_class, p_maxEv, p_eCost, p_price, p_img));
 			}
@@ -133,8 +133,8 @@ public class ProductDAO {
 				String p_category = rs.getString(3);
 				String p_class = rs.getString(4);
 				String p_maxEv = rs.getString(5);
-				String p_eCost = rs.getString(6);
-				String p_price = rs.getString(7);
+				int p_eCost = rs.getInt(6);
+				int p_price = rs.getInt(7);
 				String p_img = rs.getString(8);
 				modelList.add(new ProductDTO(p_model, p_name, p_category, p_class, p_maxEv, p_eCost, p_price, p_img));
 			}
@@ -162,8 +162,8 @@ public class ProductDAO {
 				String p_category = rs.getString(3);
 				String p_class = rs.getString(4);
 				String p_maxEv = rs.getString(5);
-				String p_eCost = rs.getString(6);
-				String p_price = rs.getString(7);
+				int p_eCost = rs.getInt(6);
+				int p_price = rs.getInt(7);
 				String p_img = rs.getString(8);
 				modelList.add(new ProductDTO(p_model, p_name, p_category, p_class, p_maxEv, p_eCost, p_price, p_img));
 			}
@@ -178,7 +178,7 @@ public class ProductDAO {
 	
 	public ArrayList<ProductDTO> eclss(String eclass, String sorted) {
 		getConnect();
-		String sql = "select * from product where class = ? order by product_price "+ sorted;
+		String sql = "select * from product where class = ? order by price "+ sorted;
 		ArrayList<ProductDTO> modelList = new ArrayList<>();
 
 		try {
@@ -192,8 +192,8 @@ public class ProductDAO {
 				String p_category = rs.getString(3);
 				String p_class = rs.getString(4);
 				String p_maxEv = rs.getString(5);
-				String p_eCost = rs.getString(6);
-				String p_price = rs.getString(7);
+				int p_eCost = rs.getInt(6);
+				int p_price = rs.getInt(7);
 				String p_img = rs.getString(8);
 				modelList.add(new ProductDTO(p_model, p_name, p_category, p_class, p_maxEv, p_eCost, p_price, p_img));
 			}
