@@ -56,6 +56,7 @@ public class MyAppliancesDAO {
 			pstm = conn.prepareStatement(sql);
 			pstm.setString(1, id);
 			rs = pstm.executeQuery();
+			
 			while(rs.next()) {
 				String model = rs.getString(2);
 				String nickname = rs.getString(3);

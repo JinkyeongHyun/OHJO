@@ -55,7 +55,7 @@ public class FileDownloadGUI {
 	private void initialize() {
 		frame = new JFrame();
 		frame.getContentPane().setBackground(Color.WHITE);
-		frame.setBounds(100, 100, 994, 593);
+		frame.setBounds(100, 100, 930, 591);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
