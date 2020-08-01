@@ -1,12 +1,14 @@
 
+drop table product
+
 CREATE TABLE product
 	(model VARCHAR2(20) NOT NULL,
 	name VARCHAR2(20) NOT NULL,
 	category VARCHAR2(20) NOT NULL,
 	class VARCHAR2(10) NOT NULL,
 	maxev VARCHAR2(20) NOT NULL,
-	ecost VARCHAR2(20) NOT NULL,
-	price VARCHAR2(20) NOT NULL,
+	ecost number(20) NOT NULL,
+	price number(20) NOT NULL,
 	img VARCHAR2(20),
 CONSTRAINT product_model_pk
 	primary key (model)
@@ -77,7 +79,67 @@ select * from purchasedetail
 select * from apply
 select * from applydetail
 
+insert into PRODUCT
+values(
+	'test_model_1',
+	'test_name_1',
+	'에어컨',
+	'1등급',
+	'300Kwh',
+	50000000,
+	500,
+	'미지정'
+)
+
+
+insert into PRODUCT
+values(
+	'test_model_2',
+	'test_name_2',
+	'세탁기',
+	'1등급',
+	'200Kwh',
+	10000000,
+	1000,
+	'미지정'
+)
+
+
+insert into PRODUCT
+values(
+	'test_model_3',
+	'test_name_3',
+	'냉장고',
+	'1등급',	
+	'6000Kwh',
+	20000,
+	1000,
+	'미지정'
+)
+
+
+insert into PRODUCT
+values(
+	'test_model_4',
+	'test_name_4',
+	'공기청정기',
+	'1등급',	
+	'6000Kwh',
+	20000,
+	9000,
+	'미지정'
+)
 
 
 
-
+insert into PRODUCT
+values(
+	'test_model_5',
+	'test_name_5',
+	'공기청정기',
+	'3등급',	
+	'100Kwh',
+	2000,
+	11000,
+	'미지정'
+)

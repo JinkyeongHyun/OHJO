@@ -184,7 +184,7 @@ public class PurchaseGUI {
 		tf_amount.addCaretListener(new CaretListener() {
 			public void caretUpdate(CaretEvent e) {				
 				int amount = Integer.parseInt(tf_amount.getText());
-				result = Integer.parseInt(model().get(0).getP_price()) * amount;
+				result = model().get(0).getP_price() * amount;
 				lb_price.setText(""+result);
 				
 								
