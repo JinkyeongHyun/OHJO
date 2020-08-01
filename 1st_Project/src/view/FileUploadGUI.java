@@ -161,9 +161,7 @@ public class FileUploadGUI {
 					JOptionPane.showMessageDialog(null, "계좌번호를 입력하십시오.");
 				} else {
 					JOptionPane.showMessageDialog(null, "저장이 완료되었습니다.\n신분증과 위임장 사본을 첨부해 주세요.");
-//					frame.dispose();
-//					MainGUI main = new MainGUI();
-//					return;
+
 				}
 			}
 		});
