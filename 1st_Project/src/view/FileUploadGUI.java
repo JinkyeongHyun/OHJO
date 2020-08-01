@@ -28,20 +28,21 @@ public class FileUploadGUI {
 	private JFrame frame;
 	
 	CustomerDTO loginDto;
+
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField textField_2;
+	
+	private JTextField tf_idcardPath;
+	private JTextField tf_docPath;
+
 	
 	public FileUploadGUI(CustomerDTO dto) {
 		loginDto = dto;
 		initialize();
 		frame.setVisible(true);
-
 	}
-
-	/**
-	 * Initialize the contents of the frame.
-	 */
+		
 	private void initialize() {
 		
 		frame = new JFrame();

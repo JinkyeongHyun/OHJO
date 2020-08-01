@@ -92,7 +92,7 @@ public class ProductDAO {
 		getConnect();
 		String sql = "select * from product where model = ?";
 		ArrayList<ProductDTO> modelList = new ArrayList<>();
-		System.out.println("디테일 값 : "+model);
+		//System.out.println("디테일 값 : "+model);
 		try {
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, model);
@@ -179,6 +179,36 @@ public class ProductDAO {
 	public ArrayList<ProductDTO> eclss(String eclass, String sorted) {
 		getConnect();
 		String sql = "select * from product where class = ? order by price "+ sorted;
+		ArrayList<ProductDTO> modelList = new ArrayList<>();
+
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, eclass);
+			rs = psmt.executeQuery();
+
+			while (rs.next()) {
+				String p_model = rs.getString(1);
+				String p_name = rs.getString(2);
+				String p_category = rs.getString(3);
+				String p_class = rs.getString(4);
+				String p_maxEv = rs.getString(5);
+				int p_eCost = rs.getInt(6);
+				int p_price = rs.getInt(7);
+				String p_img = rs.getString(8);
+				modelList.add(new ProductDTO(p_model, p_name, p_category, p_class, p_maxEv, p_eCost, p_price, p_img));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		return modelList;
+	}
+	
+	public ArrayList<ProductDTO> noteclss(String eclass, String sorted) {
+		getConnect();
+		String sql = "select * from product where not class = ? order by price "+ sorted;
 		ArrayList<ProductDTO> modelList = new ArrayList<>();
 
 		try {

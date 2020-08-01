@@ -27,15 +27,13 @@ public class FileDownloadGUI {
 	
 	CustomerDTO loginDto;
 
+
 	public FileDownloadGUI(CustomerDTO dto) {
 		loginDto = dto;
 		initialize();
 		frame.setVisible(true);
 	}
 
-	/**
-	 * Initialize the contents of the frame.
-	 */
 	private void initialize() {
 		frame = new JFrame();
 		frame.getContentPane().setBackground(Color.WHITE);

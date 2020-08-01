@@ -25,6 +25,7 @@ import javax.swing.JTextField;
 
 import model.CustomerDTO;
 import model.ProductDTO;
+import view.MainGUI;
 
 import javax.swing.ImageIcon;
 import javax.swing.JTable;
@@ -37,11 +38,14 @@ public class searchGUI {
 	private JTextField tf_text;
 	private String model;
 	private JTable table;
-	JRadioButton rb_desc;
+	public JRadioButton rb_desc;
 	JRadioButton rb_asce;
 	JScrollPane scrollPane;
 	CustomerDTO loginDto;
-	
+	JCheckBox ch1;
+	JCheckBox ch2;
+	JCheckBox ch3;
+
 	/**
 	 * Launch the application.
 	 */
@@ -62,16 +66,16 @@ public class searchGUI {
 	 * Create the application.
 	 */
 	public searchGUI(CustomerDTO loginDto) {
-		this.loginDto=loginDto;
+		this.loginDto = loginDto;
 		initialize();
-		frame.setVisible(true);		
+		frame.setVisible(true);
+
 	}
+
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	
-	
-	
+
 	private void initialize() {
 		frame = new JFrame();
 		frame.setResizable(false);
@@ -139,28 +143,70 @@ public class searchGUI {
 			}
 		});
 
-		JCheckBox ch1 = new JCheckBox("1\uB4F1\uAE09");
+		ch1 = new JCheckBox("1\uB4F1\uAE09");
 		ch1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
 				if (rb_asce.isSelected()) {
 					if (ch1.isSelected()) {
-
-						String[] colName = { "모델명", "제품명", "에너지 효율 등급 ", "가격" };
-						ProductDAO dao = new ProductDAO();
-						TableModelChange change = new TableModelChange(dao.eclss("1등급", ""));
-						Object[][] data = change.listTypeChange();
-
-						table = new JTable(data, colName);
-						scrollPane.setViewportView(table);
-						table.addMouseListener(new MouseAdapter() {
-							@Override
-							public void mouseClicked(MouseEvent e) {
-								int row = table.getSelectedRow();
-								model = (String) table.getValueAt(row, 0);
-
+						if(ch2.isSelected()) {
+							if(ch3.isSelected()==false) {
+								// 체크박스 1등급,2등급 체크
+								String[] colName = { "모델명", "제품명", "에너지 효율 등급 ", "가격" };
+								ProductDAO dao = new ProductDAO();
+								TableModelChange change = new TableModelChange(dao.noteclss("3등급", ""));
+								Object[][] data = change.listTypeChange();
+								
+								table = new JTable(data, colName);
+								scrollPane.setViewportView(table);
+								table.addMouseListener(new MouseAdapter() {
+									@Override
+									public void mouseClicked(MouseEvent e) {
+										int row = table.getSelectedRow();
+										model = (String) table.getValueAt(row, 0);
+										
+									}
+								});
 							}
-						});
+							
+						}else if (ch3.isSelected()) {
+							String[] colName = { "모델명", "제품명", "에너지 효율 등급 ", "가격" };
+							ProductDAO dao = new ProductDAO();
+							TableModelChange change = new TableModelChange(dao.noteclss("3등급", ""));
+							Object[][] data = change.listTypeChange();
+							
+							table = new JTable(data, colName);
+							scrollPane.setViewportView(table);
+							table.addMouseListener(new MouseAdapter() {
+								@Override
+								public void mouseClicked(MouseEvent e) {
+									int row = table.getSelectedRow();
+									model = (String) table.getValueAt(row, 0);
+									
+								}
+							});
+						}
+
+					}else if (ch2.isSelected()==false) {
+						if(ch3.isSelected()) {
+							
+							String[] colName = { "모델명", "제품명", "에너지 효율 등급 ", "가격" };
+							ProductDAO dao = new ProductDAO();
+							TableModelChange change = new TableModelChange(dao.noteclss("2등급", ""));
+							Object[][] data = change.listTypeChange();
+							
+							table = new JTable(data, colName);
+							scrollPane.setViewportView(table);
+							table.addMouseListener(new MouseAdapter() {
+								@Override
+								public void mouseClicked(MouseEvent e) {
+									int row = table.getSelectedRow();
+									model = (String) table.getValueAt(row, 0);
+									
+								}
+							});
+						}
+						
 					}
 					if (ch1.isSelected() == false) {
 						String[] colName = { "모델명", "제품명", "에너지 효율 등급 ", "가격" };
@@ -223,13 +269,13 @@ public class searchGUI {
 		ch1.setBounds(8, 114, 106, 23);
 		panel.add(ch1);
 
-		JCheckBox ch2 = new JCheckBox("2\uB4F1\uAE09");
+		ch2 = new JCheckBox("2\uB4F1\uAE09");
 		ch2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
 				if (rb_asce.isSelected()) {
 					if (ch2.isSelected()) {
-
+						
 						String[] colName = { "모델명", "제품명", "에너지 효율 등급 ", "가격" };
 						ProductDAO dao = new ProductDAO();
 						TableModelChange change = new TableModelChange(dao.eclss("2등급", ""));
@@ -307,10 +353,10 @@ public class searchGUI {
 		ch2.setBounds(8, 139, 106, 23);
 		panel.add(ch2);
 
-		JCheckBox ch3 = new JCheckBox("3\uB4F1\uAE09");
+		ch3 = new JCheckBox("3\uB4F1\uAE09");
 		ch3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
+				
 				if (rb_asce.isSelected()) {
 					if (ch3.isSelected()) {
 
@@ -386,6 +432,7 @@ public class searchGUI {
 					}
 				}
 
+		
 			}
 		});
 		ch3.setBounds(8, 164, 106, 23);
@@ -411,7 +458,9 @@ public class searchGUI {
 
 					}
 				});
+
 			}
+
 		});
 		buttonGroup.add(rb_desc);
 		rb_desc.setBounds(8, 28, 106, 23);
@@ -438,16 +487,15 @@ public class searchGUI {
 				});
 			}
 		});
-		
+
 		JButton detailview = new JButton("\uC81C\uD488 \uC0C1\uC138 \uC815\uBCF4 \uBCF4\uAE30");
 		detailview.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				detailsGUI det = new detailsGUI(model, loginDto);		
+				detailsGUI det = new detailsGUI(model, loginDto);
 			}
 		});
-		
-		
-		detailview.setBounds(496, 455, 186, 58);
+
+		detailview.setBounds(150, 455, 186, 58);
 		frame.getContentPane().add(detailview);
 		rb_asce.setSelected(true);
 		buttonGroup.add(rb_asce);
@@ -462,7 +510,15 @@ public class searchGUI {
 		lblNewLabel_2.setBounds(12, 46, 87, 33);
 		frame.getContentPane().add(lblNewLabel_2);
 
-		
-	}
+		JButton btn_back = new JButton("\uB4A4\uB85C \uAC00\uAE30");
+		btn_back.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				frame.dispose();
+				MainGUI main = new MainGUI();
+			}
+		});
+		btn_back.setBounds(525, 480, 157, 33);
+		frame.getContentPane().add(btn_back);
 
+	}
 }
