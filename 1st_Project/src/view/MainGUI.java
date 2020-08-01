@@ -88,7 +88,7 @@ public class MainGUI {
 		mn_announce.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
-				PolicyInfoGUI full = new PolicyInfoGUI();
+				PolicyInfoGUI full = new PolicyInfoGUI(loginDto);
 			}
 		});
 		main_mn_esource.add(mn_announce);
@@ -106,7 +106,7 @@ public class MainGUI {
 		mn_document.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				frame.dispose();
-				FileDownloadGUI upload = new FileDownloadGUI(loginDto);			
+				FileDownloadGUI download = new FileDownloadGUI(loginDto);			
 			}
 		});
 		main_mn_esource.add(mn_document);
@@ -114,6 +114,8 @@ public class MainGUI {
 		JMenuItem mn_energy = new JMenuItem("\uC6B0\uB9AC\uC9D1 \uC5D0\uB108\uC9C0 \uC808\uC57D\uC740 \uC774\uB807\uAC8C \uD574\uC694!!");
 		mn_energy.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				EnergySavingInfoGUI download = new EnergySavingInfoGUI(loginDto);
 				
 			}
 		});

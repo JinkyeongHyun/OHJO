@@ -27,13 +27,6 @@ public class FileDownloadGUI {
 	
 	CustomerDTO loginDto;
 
-	/**
-	 * Launch the application.
-	 */
-
-	/**
-	 * Create the application.
-	 */
 	public FileDownloadGUI(CustomerDTO dto) {
 		loginDto = dto;
 		initialize();
