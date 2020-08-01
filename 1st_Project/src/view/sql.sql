@@ -37,7 +37,7 @@ drop table purchase
 CREATE TABLE purchase
 	(orderno NUMBER(10) NOT NULL,
 	id VARCHAR2(20) NOT NULL,
-	orderdate DATE default sysdate NOT NULL,
+	orderdate Varchar2(20) NOT NULL,
 CONSTRAINT purchase_orderno_id_pk
 	primary key (orderno, id)	
 )
@@ -143,3 +143,5 @@ values(
 	11000,
 	'πÃ¡ˆ¡§'
 )
+
+select * from PURCHASE

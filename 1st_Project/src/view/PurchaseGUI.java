@@ -23,7 +23,6 @@ import model.ProductDTO;
 import model.PurchaseDAO;
 import model.PurchaseDTO;
 import model.PurchaseDetailDTO;
-import model.PurchaseDetailDTO;
 import search.ProductDAO;
 import javax.swing.event.CaretListener;
 import javax.swing.event.CaretEvent;
@@ -47,9 +46,7 @@ public class PurchaseGUI {
 	private String model;
 	CustomerDTO logindto;
 	private JTextField tf_amount;
-	String price;
-	int result;
-	
+
 	/**
 	 * Launch the application.
 	 */
@@ -171,28 +168,28 @@ public class PurchaseGUI {
 		lb_name.setBounds(332, 47, 287, 22);
 		frame.getContentPane().add(lb_name);
 		
-		JLabel lb_price = new JLabel();
-		lb_price.setBounds(333, 147, 63, 22);
+		String price = Integer.toString((model().get(0).getP_price()) );
+		int price1 = model().get(0).getP_price();
+		
+		JLabel lb_price = new JLabel(price);
+		lb_price.setBounds(333, 147, 287, 22);
 		frame.getContentPane().add(lb_price);
 		
 		
 		tf_amount = new JTextField();
-		tf_amount.setBounds(333, 112, 63, 21);
-		frame.getContentPane().add(tf_amount);
-		tf_amount.setColumns(10);
-		tf_amount.setText("1");
 		tf_amount.addCaretListener(new CaretListener() {
-			public void caretUpdate(CaretEvent e) {				
-				int amount = Integer.parseInt(tf_amount.getText());
-				result = model().get(0).getP_price() * amount;
-				lb_price.setText(""+result);
-				
-								
+			public void caretUpdate(CaretEvent arg0) {
+				lb_price.setText(""+((Integer.parseInt(tf_amount.getText())*price1)));
 			}
 		});
 		
-	
-
+		
+		
+		tf_amount.setText("1");
+		tf_amount.setBounds(333, 112, 63, 21);
+		frame.getContentPane().add(tf_amount);
+		tf_amount.setColumns(10);
+		int amount = Integer.parseInt(tf_amount.getText());
 		
 
 		
@@ -208,9 +205,9 @@ public class PurchaseGUI {
 					String cellnum = tf_cell.getText();
 					String address = tf_address.getText();
 				
-					dao.PurchaseInsert(new PurchaseDTO(0 ,logindto.getC_id(), null));
+
 					dao.purchaseDetailInsert(
-							new PurchaseDetailDTO(0, model().get(0).getP_name(), result, price, address, recip, cellnum));
+						new PurchaseDetailDTO(dao.numsearch().get(0).getOrderno(), model().get(0).getP_name(), amount, price, address, recip, cellnum));
 					
 				}
 				;

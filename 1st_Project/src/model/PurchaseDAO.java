@@ -48,13 +48,13 @@ public class PurchaseDAO {
 	public int PurchaseInsert(PurchaseDTO dto) {
 	getConn();
 	int cnt = 0;
-	String sql = "insert into purchase values(SEQ_BOARD.NEXTVAL,?,Sysdate)";
+	String sql = "insert into purchase values(SEQ_BOARD.NEXTVAL,?,?)";
 	try {
 		psmt = conn.prepareStatement(sql);
 		psmt.setString(1, dto.getId());
-		cnt = psmt.executeUpdate(sql);	
-		
-		
+		psmt.setString(2, dto.getDate());
+		cnt = psmt.executeUpdate();
+	
 	} catch (SQLException e) {
 		e.printStackTrace();
 	}finally {
@@ -65,16 +65,17 @@ public class PurchaseDAO {
 	public int purchaseDetailInsert(PurchaseDetailDTO dto) {
 		getConn();
 		int cnt = 0;
-		String sql = "insert into purchasedetail values(SEQ_BOARD.NEXTVAL,?,?,?,?,?,?)";
+		String sql = "insert into purchasedetail values(?,?,?,?,?,?,?)";
 		try {
 			psmt = conn.prepareStatement(sql);
 			
-			psmt.setString(1, dto.getModel());
-			psmt.setInt(2, dto.getAmount());
-			psmt.setString(3,dto.getTotalprice());
-			psmt.setString(4,dto.getAddress());
-			psmt.setString(5,dto.getReceiver());
-			psmt.setString(6,dto.getReceivercell());
+			psmt.setInt(1, dto.getOrderno());
+			psmt.setString(2, dto.getModel());
+			psmt.setInt(3, dto.getAmount());
+			psmt.setString(4,dto.getTotalprice());
+			psmt.setString(5,dto.getAddress());
+			psmt.setString(6,dto.getReceiver());
+			psmt.setString(7,dto.getReceivercell());
 			cnt = psmt.executeUpdate();	
 			
 			
@@ -84,8 +85,87 @@ public class PurchaseDAO {
 			close();
 		}return cnt;
 		}
+//	public ArrayList<CustomerDTO> IDselect() {
+//		getConn();
+//		String sql = "select * from customer";
+//		ArrayList<CustomerDTO> IDList = new ArrayList<>();
+//		System.out.println("½ÇÇàµÊ");
+//		try {
+//			psmt = conn.prepareStatement(sql);
+//			rs = psmt.executeQuery();
+//
+//			while (rs.next()) {
+//				String c_id = rs.getString(1);
+//				String c_pw = rs.getString(2);
+//				String c_name = rs.getString(3);
+//				String c_cell = rs.getString(4);
+//				
+//				IDList.add(new CustomerDTO(c_id, c_pw, c_name, c_cell));
+//			}
+//				} catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		} finally {
+//			close();
+//		}
+//		return IDList;
+//}
+	
+	//°Ë»ö
+	public ArrayList<PurchaseDetailDTO> search() {
+		getConn();
+		String sql = "select * from purchasedetail";
+		ArrayList<PurchaseDetailDTO> pdetailList = new ArrayList<>();
+
+		try {
+			psmt = conn.prepareStatement(sql);
+			rs = psmt.executeQuery();
+
+			while (rs.next()) {
+				int orderno = rs.getInt(1);
+				String model = rs.getString(2);
+				int amount = rs.getInt(3);
+				String totalprice = rs.getString(4);
+				String address = rs.getString(5);
+				String receiver = rs.getString(6);
+				String receivercell = rs.getString(7);
+				pdetailList.add(new PurchaseDetailDTO(orderno, model, amount, totalprice, address, receiver, receivercell));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		return pdetailList;
+}
+	public ArrayList<PurchaseDTO> numsearch() {
+		getConn();
+		String sql = "select * from purchase";
+		ArrayList<PurchaseDTO> purchaseList = new ArrayList<>();
+
+		try {
+			psmt = conn.prepareStatement(sql);
+			rs = psmt.executeQuery();
+
+			while (rs.next()) {
+				int orderno = rs.getInt(1);
+				String id = rs.getString(2);
+				String date = rs.getString(3);
+				
+				purchaseList.add(new PurchaseDTO(orderno, id, date));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		return purchaseList;
 	
 }
+}
+	
 
 
 	
