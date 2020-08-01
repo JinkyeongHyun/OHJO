@@ -1,23 +1,18 @@
 package view;
 
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JMenuBar;
 import javax.swing.JMenu;
+import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
-import javax.swing.JTabbedPane;
 
 import model.CustomerDTO;
-import part3_jinkyeong.part3_applicationFullGUI;
 import search.searchGUI;
-
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
 public class MainGUI {
 
@@ -93,7 +88,7 @@ public class MainGUI {
 		mn_announce.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
-				part3_applicationFullGUI full = new part3_applicationFullGUI();
+				PolicyInfoGUI full = new PolicyInfoGUI();
 			}
 		});
 		main_mn_esource.add(mn_announce);
