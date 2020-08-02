@@ -90,6 +90,7 @@ public class PurchaseDetailGUI {
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
 				MainGUI main = new MainGUI();
+				main.loginInfo(loginDto);
 			}
 		});
 		btn_backmain.setBounds(719, 497, 97, 23);
