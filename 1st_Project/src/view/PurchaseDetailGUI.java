@@ -9,7 +9,7 @@ import javax.swing.JList;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
-
+import model.CustomerDTO;
 import model.PurchaseDAO;
 import model.PurchaseDetailDTO;
 
@@ -22,6 +22,8 @@ public class PurchaseDetailGUI {
 
 	private JFrame frame;
 	private JTable table;
+	CustomerDTO loginDto;
+	
 
 	/**
 	 * Launch the application.
@@ -93,4 +95,10 @@ public class PurchaseDetailGUI {
 		btn_backmain.setBounds(719, 497, 97, 23);
 		frame.getContentPane().add(btn_backmain);
 	}
+	//로그인 성공시 작동
+	public void loginInfo(CustomerDTO dto) {
+		
+		loginDto = dto;
+	
 }
+	}

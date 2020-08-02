@@ -204,9 +204,7 @@ public class PurchaseGUI {
 					String recip = tf_name.getText();
 					String cellnum = tf_cell.getText();
 					String address = tf_address.getText();
-				
-
-					dao.purchaseDetailInsert(
+				     dao.purchaseDetailInsert(
 						new PurchaseDetailDTO(dao.numsearch().get(0).getOrderno(), model().get(0).getP_name(), amount, price, address, recip, cellnum));
 					
 				}

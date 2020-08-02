@@ -107,6 +107,7 @@ public class MainGUI {
 		});
 		main_mn_esource.add(mn_apply);
 		
+		//위임장 다운로드
 		JMenuItem mn_document = new JMenuItem("\uD658\uAE09 \uB300\uD589 \uC2E0\uCCAD\uC744 \uC704\uD55C \uC11C\uB958");
 		mn_document.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -116,11 +117,12 @@ public class MainGUI {
 		});
 		main_mn_esource.add(mn_document);
 		
+		//에너지 절약법
 		JMenuItem mn_energy = new JMenuItem("\uC6B0\uB9AC\uC9D1 \uC5D0\uB108\uC9C0 \uC808\uC57D\uC740 \uC774\uB807\uAC8C \uD574\uC694!!");
 		mn_energy.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
-				EnergySavingInfoGUI download = new EnergySavingInfoGUI(loginDto);
+				EnergySavingInfoGUI save = new EnergySavingInfoGUI(loginDto);
 				
 			}
 		});
@@ -142,16 +144,24 @@ public class MainGUI {
 		});
 		main_mn_myPage.add(mn_tnwjd);
 		
+		//구매내역창
 		JMenuItem mntmNewMenuItem_1 = new JMenuItem("\uAD6C\uB9E4\uB0B4\uC5ED");
+		mntmNewMenuItem_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				PurchaseDetailGUI pdetail = new PurchaseDetailGUI();
+				pdetail.loginInfo(loginDto);
+			}
+		});
 		main_mn_myPage.add(mntmNewMenuItem_1);
 		
+		//신청내역창
 		JMenuItem mntmNewMenuItem_2 = new JMenuItem("\uC2E0\uCCAD\uB0B4\uC5ED");
 		mntmNewMenuItem_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//신청내역창 열기
 				frame.dispose();
 				ApplyDetailGUI ad = new ApplyDetailGUI();
-			//	ad.loginInfo(loginDto);
+			    ad.loginInfo(loginDto);
 				
 				
 			}
@@ -165,7 +175,7 @@ public class MainGUI {
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
 				MyAppliancesGUI my = new MyAppliancesGUI(loginDto);
-				//my.loginInfo(loginDto);
+				my.loginInfo(loginDto);
 			}
 		});
 		main_mn_myPage.add(mntmNewMenuItem_3);
