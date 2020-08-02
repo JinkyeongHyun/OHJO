@@ -124,12 +124,6 @@ public class MyAppliancesGUI {
 		String[] items = new String[dtos.size()];
 		for(int i=0; i<dtos.size(); i++) {
 			String sum =  "";
-//			sum += dtos.get(i).getId() + " ";
-//			sum += dtos.get(i).getModel() + " ";
-//			sum += dtos.get(i).getNickname();
-//			items[i] = sum;
-			
-			//카테고리랑 별명만 출력
 			sum += dtos.get(i).getCategory() + "  ";
 			sum += dtos.get(i).getNickname();
 			items[i] = sum;
@@ -155,6 +149,10 @@ public class MyAppliancesGUI {
 			public void valueChanged(ListSelectionEvent e) {
 				if(!e.getValueIsAdjusting()) {	//이벤트를 두번 받지 않기 위해 if문 지정
 					selectedListIndex = list_my_list.getSelectedIndex();
+					String all = (String)list_my_list.getModel().getElementAt(selectedListIndex);
+					String[] allArray = all.split("  ");
+					String curNick = allArray[1];
+					tf_my_nickname.setText(curNick);
 				}
 			}
 		});

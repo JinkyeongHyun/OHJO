@@ -146,17 +146,22 @@ public class CustomerUpdateGUI {
 		btn_cUpdate_delete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//Y > 0, N > 1
-				int y_n = JOptionPane.showConfirmDialog(null, "정말 탈퇴하시겠습니까?","",JOptionPane.YES_NO_OPTION);
-				if(y_n == 0) {
-					CustomerDAO dao = new CustomerDAO();
-					int result = dao.customerDelete(loginDto);
-					if(result == 1) {	//회원탈퇴 성공
-						JOptionPane.showMessageDialog(null, "안녕히 가십시오");
-						frame.dispose();
-						MainGUI main = new MainGUI();
-					}else {				//회원탈퇴 실패
-						JOptionPane.showMessageDialog(null,"가지마세요");
+				String inputPw = JOptionPane.showInputDialog("현재 비밀번호를 입력하세요");
+				if(inputPw.equals(loginDto.getC_pw())) {
+					int y_n = JOptionPane.showConfirmDialog(null, "정말 탈퇴하시겠습니까?","",JOptionPane.YES_NO_OPTION);
+					if(y_n == 0) {
+						CustomerDAO dao = new CustomerDAO();
+						int result = dao.customerDelete(loginDto);
+						if(result == 1) {	//회원탈퇴 성공
+							JOptionPane.showMessageDialog(null, "안녕히 가십시오");
+							frame.dispose();
+							MainGUI main = new MainGUI();
+						}else {				//회원탈퇴 실패
+							JOptionPane.showMessageDialog(null,"가지마세요");
+						}
 					}
+				}else {
+					JOptionPane.showMessageDialog(null, "현재 비밀번호가 일치하지 않습니다");
 				}
 			}
 		});

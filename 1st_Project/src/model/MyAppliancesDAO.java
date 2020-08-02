@@ -56,7 +56,6 @@ public class MyAppliancesDAO {
 			pstm = conn.prepareStatement(sql);
 			pstm.setString(1, id);
 			rs = pstm.executeQuery();
-			
 			while(rs.next()) {
 				String model = rs.getString(2);
 				String nickname = rs.getString(3);
@@ -129,5 +128,35 @@ public class MyAppliancesDAO {
 			close();
 		}
 		return result;
+	}
+	
+	//내 가전 정보 조회 - 내 가전 테이블에서 닉네임과 카테고리로 모델명을 조회해서 제품 테이블에서 그 모델의 정보를 조회
+	public ProductDTO myAppliancesSelect(String id, String nickname) { 
+		ProductDTO pDto = null;
+		getConnect();
+		String sql ="select * from product where model=(select model from myappliances where id=? and nickname=?) ";
+		try {
+			pstm = conn.prepareStatement(sql);
+			pstm.setString(1, id);
+			pstm.setString(2, nickname);
+			rs = pstm.executeQuery();
+			while(rs.next()){
+				String model = rs.getString(1);
+				String name = rs.getString(2);
+				String category = rs.getString(3);
+				String pclass = rs.getString(4);
+				String maxEv = rs.getString(5);
+				int eCost = rs.getInt(6);
+				int price = rs.getInt(7);
+				String img = rs.getString(8);
+		
+				pDto = new ProductDTO(model, name, category, pclass, maxEv, eCost, price, img);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close();
+		}		
+		return pDto;
 	}
 }
