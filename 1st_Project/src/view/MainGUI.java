@@ -207,10 +207,10 @@ public class MainGUI {
 		});
 		frame.getContentPane().add(btn_main_logout);
 		
-		JTextPane textPane = new JTextPane();
-		
-		textPane.setBounds(546, 305, 238, 124);
-		frame.getContentPane().add(textPane);
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setIcon(new ImageIcon(MainGUI.class.getResource("/images/mainBGI.jpg")));
+		lblNewLabel.setBounds(0, 0, 827, 467);
+		frame.getContentPane().add(lblNewLabel);
 	}
 	
 	//로그인 성공시 작동

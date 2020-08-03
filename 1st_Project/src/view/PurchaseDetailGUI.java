@@ -17,6 +17,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
+import javax.swing.ImageIcon;
 
 public class PurchaseDetailGUI {
 
@@ -95,6 +96,11 @@ public class PurchaseDetailGUI {
 		});
 		btn_backmain.setBounds(719, 497, 97, 23);
 		frame.getContentPane().add(btn_backmain);
+		
+		JLabel lblNewLabel_1 = new JLabel("");
+		lblNewLabel_1.setIcon(new ImageIcon(PurchaseDetailGUI.class.getResource("/images/purchasedetail.jpg")));
+		lblNewLabel_1.setBounds(0, 0, 859, 544);
+		frame.getContentPane().add(lblNewLabel_1);
 	}
 	//로그인 성공시 작동
 	public void loginInfo(CustomerDTO dto) {

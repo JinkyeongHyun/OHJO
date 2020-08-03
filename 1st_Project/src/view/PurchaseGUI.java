@@ -217,7 +217,8 @@ public class PurchaseGUI {
 					String address = tf_address.getText();
 				     dao.purchaseDetailInsert(
 						new PurchaseDetailDTO(dao.numsearch().get(0).getOrderno(), model().get(0).getP_name(), amount, price, address, recip, cellnum));
-					
+				     MainGUI main = new MainGUI();
+				     main.loginInfo(logindto);
 				}
 				;
 			}
@@ -316,6 +317,11 @@ public class PurchaseGUI {
 		JLabel lbl_date = new JLabel(dao.numsearch().get(0).getDate());
 		lbl_date.setBounds(526, 87, 120, 22);
 		frame.getContentPane().add(lbl_date);
+		
+		JLabel lblNewLabel_4 = new JLabel("");
+		lblNewLabel_4.setIcon(new ImageIcon(PurchaseGUI.class.getResource("/images/purchase.jpg")));
+		lblNewLabel_4.setBounds(0, 0, 658, 681);
+		frame.getContentPane().add(lblNewLabel_4);
 		
 	}
 }

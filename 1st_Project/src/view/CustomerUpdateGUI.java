@@ -14,6 +14,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.ImageIcon;
 
 public class CustomerUpdateGUI {
 
@@ -167,8 +168,13 @@ public class CustomerUpdateGUI {
 		});
 		btn_cUpdate_delete.setBounds(325, 228, 97, 23);
 		frame.getContentPane().add(btn_cUpdate_delete);
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setIcon(new ImageIcon(CustomerUpdateGUI.class.getResource("/images/loginBGI.jpg")));
+		lblNewLabel.setBounds(0, 0, 434, 261);
+		frame.getContentPane().add(lblNewLabel);
 		
 		
+	
 	}
 	
 	//사용자 정보 세팅

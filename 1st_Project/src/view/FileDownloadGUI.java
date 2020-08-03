@@ -97,6 +97,11 @@ public class FileDownloadGUI {
 		button.setBackground(new Color(205, 92, 92));
 		button.setBounds(12, 500, 70, 35);
 		frame.getContentPane().add(button);
+		
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setIcon(new ImageIcon(new ImageIcon(EnergySavingInfoGUI.class.getResource("/images/loginBBBB.png")).getImage().getScaledInstance(914, 552, Image.SCALE_DEFAULT)));
+		lblNewLabel.setBounds(0, 0, 914, 552);
+		frame.getContentPane().add(lblNewLabel);
 	}
 
 }

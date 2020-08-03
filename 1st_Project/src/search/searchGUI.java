@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 import javax.swing.JLabel;
@@ -73,6 +74,7 @@ public class searchGUI {
 	JCheckBox ch1;
 	JCheckBox ch2;
 	JCheckBox ch3;
+	
 	String[] colName = { "모델명", "제품명", "에너지 효율 등급 ", "가격" };
 	ProductDAO dao = new ProductDAO();
 	private final ButtonGroup checkBox = new ButtonGroup();
@@ -101,6 +103,10 @@ public class searchGUI {
 	ArrayList<MyAppliancesDTO> dtos;
 	
 	MyAppliancesDAO myDao;
+	/**
+	 * @wbp.nonvisual location=18,579
+	 */
+	public JCheckBox ch4 = new JCheckBox("");
 	public searchGUI(CustomerDTO loginDto) {
 		this.loginDto = loginDto;
 		initialize();
@@ -109,6 +115,7 @@ public class searchGUI {
 	}
 
 	private void initialize() {
+		checkBox.add(ch4);
 		frame = new JFrame();
 		frame.setResizable(false);
 		frame.setBounds(100, 100, 1100, 555);
@@ -116,6 +123,7 @@ public class searchGUI {
 		frame.getContentPane().setLayout(null);
 
 		JPanel searchPanel = new JPanel();
+		searchPanel.setBackground(Color.WHITE);
 		searchPanel.setBounds(12, 89, 126, 424);
 		frame.getContentPane().add(searchPanel);
 		searchPanel.setLayout(null);
@@ -176,6 +184,7 @@ public class searchGUI {
 		});
 
 		ch1 = new JCheckBox("1\uB4F1\uAE09");
+		ch1.setBackground(Color.WHITE);
 		checkBox.add(ch1);
 		ch1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -252,6 +261,7 @@ public class searchGUI {
 		searchPanel.add(ch1);
 
 		ch2 = new JCheckBox("2\uB4F1\uAE09");
+		ch2.setBackground(Color.WHITE);
 		checkBox.add(ch2);
 		ch2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -327,6 +337,7 @@ public class searchGUI {
 		searchPanel.add(ch2);
 
 		ch3 = new JCheckBox("3\uB4F1\uAE09");
+		ch3.setBackground(Color.WHITE);
 		checkBox.add(ch3);
 		ch3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -403,11 +414,10 @@ public class searchGUI {
 		
 		// 오름차순
 		rb_desc = new JRadioButton("\uAC00\uACA9 \uB192\uC740\uC21C");
+		rb_desc.setBackground(Color.WHITE);
 		rb_desc.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				ch1.setSelected(false);
-				ch2.setSelected(false);
-				ch3.setSelected(false);	
+			public void actionPerformed(ActionEvent e) {				
+				ch4.setSelected(true);	
 				TableModelChange change = new TableModelChange(dao.priceDesc());
 				Object[][] data = change.listTypeChange();
 
@@ -431,11 +441,10 @@ public class searchGUI {
 
 		// 내림차순
 		rb_asce = new JRadioButton("\uAC00\uACA9 \uB0AE\uC740\uC21C");
+		rb_asce.setBackground(Color.WHITE);
 		rb_asce.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				ch1.setSelected(false);
-				ch2.setSelected(false);
-				ch3.setSelected(false);	
+			public void actionPerformed(ActionEvent e) {				
+				ch4.setSelected(true);	
 				TableModelChange change = new TableModelChange(dao.priceAsce());
 				Object[][] data = change.listTypeChange();
 
@@ -453,6 +462,7 @@ public class searchGUI {
 		});
 
 		JButton detailview = new JButton("\uC81C\uD488 \uC0C1\uC138 \uC815\uBCF4 \uBCF4\uAE30");
+		detailview.setBackground(Color.WHITE);
 		detailview.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
@@ -476,6 +486,7 @@ public class searchGUI {
 		frame.getContentPane().add(lblNewLabel_2);
 
 		JButton btn_back = new JButton("\uB4A4\uB85C \uAC00\uAE30");
+		btn_back.setBackground(Color.WHITE);
 		btn_back.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				frame.dispose();
@@ -490,6 +501,7 @@ public class searchGUI {
 		
 		//********************비교 추가부분********************
 		panel_search_chart = new JPanel();
+		panel_search_chart.setBackground(Color.WHITE);
 		panel_search_chart.setBounds(582, 213, 500, 300);
 		frame.getContentPane().add(panel_search_chart);
 
@@ -498,29 +510,55 @@ public class searchGUI {
 		frame.getContentPane().add(scrollPane_search_compare);
 		
 		JScrollPane scrollPane_search_list = new JScrollPane();
-		scrollPane_search_list.setBounds(582, 152, 126, 58);
+		scrollPane_search_list.setBounds(133, 548, 243, 113);
 		frame.getContentPane().add(scrollPane_search_list);
 		
+				//DefaultListModel로 리스트 생성
+				list = new JList(new DefaultListModel());
+				scrollPane_search_list.setViewportView(list);
+				lModel = (DefaultListModel)list.getModel();		
+				
+						//리스트 선택 모드 설정
+						list.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+						
+								//리스트 이벤트 처리
+								list.addListSelectionListener(new ListSelectionListener() {	
+									@Override
+									public void valueChanged(ListSelectionEvent e) {
+										if(!e.getValueIsAdjusting()) {	//이벤트를 두번 받지 않기 위해 if문 지정
+											selectedListIndex = list.getSelectedIndex();	//선택된 리스트의 인덱스
+												String all = (String)list.getModel().getElementAt(selectedListIndex);
+												String[] allArray = all.split("  ");
+												String category = allArray[0];
+												String model = allArray[1];
+												String nickname = allArray[2];
+												myLmodelChartChange(nickname);
+										}
+									}
+								});
+		
 		JLabel lbl_search_my = new JLabel("\uC990\uACA8\uCC3E\uAE30\uD55C\uC81C\uD488");
-		lbl_search_my.setBounds(514, 55, 97, 15);
+		lbl_search_my.setForeground(Color.RED);
+		lbl_search_my.setBounds(505, 71, 97, 15);
 		frame.getContentPane().add(lbl_search_my);
 		
 		JLabel lbl_search_select = new JLabel("\uC120\uD0DD\uD55C\uC81C\uD488");
-		lbl_search_select.setBounds(535, 80, 76, 15);
+		lbl_search_select.setForeground(Color.BLUE);
+		lbl_search_select.setBounds(505, 110, 76, 15);
 		frame.getContentPane().add(lbl_search_select);
 		
 		JLabel lbl_search_list = new JLabel("\uC990\uACA8\uCC3E\uAE30\uD55C\uC81C\uD488");
-		lbl_search_list.setBounds(514, 136, 97, 15);
+		lbl_search_list.setBounds(216, 523, 97, 15);
 		frame.getContentPane().add(lbl_search_list);
 		
-		JLabel lbl_search_realPrice = new JLabel("\uC2E4\uAD6C\uB9E4\uAE08\uC561");
-		lbl_search_realPrice.setBounds(811, 135, 57, 15);
+		JLabel lbl_search_realPrice = new JLabel("\uC2E4\uAD6C\uB9E4\uAE08\uC561(\uC6D0)");
+		lbl_search_realPrice.setBounds(614, 168, 107, 15);
 		frame.getContentPane().add(lbl_search_realPrice);
 		
 		tf_search_realPrice = new JTextField();
 		tf_search_realPrice.setText("0");
 		tf_search_realPrice.setColumns(10);
-		tf_search_realPrice.setBounds(881, 135, 116, 21);
+		tf_search_realPrice.setBounds(733, 165, 67, 21);
 		frame.getContentPane().add(tf_search_realPrice);
 		
 		//리스트
@@ -610,6 +648,11 @@ public class searchGUI {
 		chartPanel.setPreferredSize(new java.awt.Dimension(500,250));
 		
 		panel_search_chart.add(chartPanel);
+		
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setIcon(new ImageIcon(searchGUI.class.getResource("/images/searchBG.png")));
+		lblNewLabel.setBounds(0, 0, 1094, 526);
+		frame.getContentPane().add(lblNewLabel);
 		
 	}
 	

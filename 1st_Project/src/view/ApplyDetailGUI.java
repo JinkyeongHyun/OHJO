@@ -3,10 +3,12 @@ package view;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -96,6 +98,11 @@ public class ApplyDetailGUI {
 		
 		table = new JTable(data, colName);
 		scrollPane.setViewportView(table);
+		
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setIcon(new ImageIcon(new ImageIcon(EnergySavingInfoGUI.class.getResource("/images/loginBBBB.png")).getImage().getScaledInstance(859, 544, Image.SCALE_DEFAULT)));
+		lblNewLabel.setBounds(0, 0, 859, 544);
+		frame.getContentPane().add(lblNewLabel);
 	}
 	
 	//로그인 성공시 작동

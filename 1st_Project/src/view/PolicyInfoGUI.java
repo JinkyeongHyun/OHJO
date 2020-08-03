@@ -94,5 +94,10 @@ public class PolicyInfoGUI {
 		button.setBounds(398, 519, 70, 35);
 		panel.add(button);
 		
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setIcon(new ImageIcon(PolicyInfoGUI.class.getResource("/images/business.jpg")));
+		lblNewLabel.setBounds(0, 0, 894, 593);
+		panel.add(lblNewLabel);
+		
 	}
 }

@@ -31,6 +31,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JScrollPane;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.ImageIcon;
 
 public class MyAppliancesGUI {
 
@@ -243,6 +244,11 @@ public class MyAppliancesGUI {
 		});
 		btn_my_cancel.setBounds(128, 228, 97, 23);
 		frame.getContentPane().add(btn_my_cancel);
+		
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setIcon(new ImageIcon(MyAppliancesGUI.class.getResource("/images/loginBGI.jpg")));
+		lblNewLabel.setBounds(0, 0, 434, 261);
+		frame.getContentPane().add(lblNewLabel);
 
 	}
 

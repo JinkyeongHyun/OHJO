@@ -12,6 +12,8 @@ import javax.swing.JPasswordField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Color;
+import javax.swing.ImageIcon;
 
 public class LoginGUI {
 
@@ -21,6 +23,7 @@ public class LoginGUI {
 	private JButton btn_login_login;
 	private JButton btn_login_signUp;
 	private JButton btn_login_cancel;
+	private JLabel lblNewLabel;
 	
 	//constructor()
 	public LoginGUI() {
@@ -31,6 +34,7 @@ public class LoginGUI {
 	//initialize()
 	private void initialize() {
 		frame = new JFrame();
+		frame.getContentPane().setBackground(Color.WHITE);
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
@@ -97,5 +101,10 @@ public class LoginGUI {
 		});
 		btn_login_cancel.setBounds(166, 172, 97, 23);
 		frame.getContentPane().add(btn_login_cancel);
+		
+		lblNewLabel = new JLabel("");
+		lblNewLabel.setIcon(new ImageIcon(LoginGUI.class.getResource("/images/loginBGI.jpg")));
+		lblNewLabel.setBounds(0, 0, 434, 261);
+		frame.getContentPane().add(lblNewLabel);
 	}
 }

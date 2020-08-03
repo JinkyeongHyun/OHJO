@@ -3,6 +3,7 @@ package search;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -94,11 +95,13 @@ public class detailsGUI {
 		frame.getContentPane().setLayout(null);
 
 		JLabel lblNewLabel = new JLabel("\uC81C\uD488 \uBAA8\uB378 \uC0C1\uC138\uC815\uBCF4");
+		lblNewLabel.setBackground(Color.WHITE);
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setBounds(138, 10, 167, 37);
 		frame.getContentPane().add(lblNewLabel);
 
 		JPanel panel = new JPanel();
+		panel.setBackground(Color.WHITE);
 		panel.setBounds(12, 57, 411, 494);
 		frame.getContentPane().add(panel);
 		panel.setLayout(null);
@@ -152,14 +155,15 @@ public class detailsGUI {
 		JLabel lb_ev = new JLabel(model().get(0).getP_maxEv());
 		lb_ev.setBounds(132, 357, 81, 35);
 		panel.add(lb_ev);
-
-		String eco = Integer.toString(model().get(0).getP_eCost());
+		
+		DecimalFormat formatter = new DecimalFormat("###,###");
+		
+		String eco = formatter.format(model().get(0).getP_eCost());
 		JLabel lb_yearCost = new JLabel(eco);
 		lb_yearCost.setBounds(329, 357, 79, 35);
 		panel.add(lb_yearCost);
 
-		String price = Integer.toString(model().get(0).getP_price());
-
+		String price = formatter.format(model().get(0).getP_price());
 		JLabel lb_cost = new JLabel(price);
 		lb_cost.setBounds(342, 402, 57, 35);
 		panel.add(lb_cost);
@@ -174,6 +178,7 @@ public class detailsGUI {
 		String tempDate = date.format(nowdate);
 		
 		JButton btn_buy = new JButton("\uAD6C\uB9E4\uD558\uAE30");
+		btn_buy.setBackground(Color.WHITE);
 		btn_buy.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//System.out.println(logindto.getC_id());
@@ -189,6 +194,7 @@ public class detailsGUI {
 		panel.add(btn_buy);
 
 		JButton btn_back = new JButton("\uB4A4\uB85C\uAC00\uAE30");
+		btn_back.setBackground(Color.WHITE);
 		btn_back.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
@@ -197,9 +203,11 @@ public class detailsGUI {
 		});
 		btn_back.setBounds(301, 461, 98, 23);
 		panel.add(btn_back);
+		String im = model().get(0).getP_img();
+		
 		
 		JLabel lb_image = new JLabel();
-		lb_image.setIcon(new ImageIcon(detailsGUI.class.getResource("/images/aircon.jpg")));
+		lb_image.setIcon(new ImageIcon(detailsGUI.class.getResource("/images/" + im)));
 		lb_image.setBackground(Color.WHITE);
 		lb_image.setBounds(12, 10, 387, 241);
 		panel.add(lb_image);
@@ -207,6 +215,7 @@ public class detailsGUI {
 		
 		//즐겨찾기버튼(빈) - 즐겨찾기되지 않은 상태
 		btn_details_my1 = new JButton("\uC990\uACA8\uCC3E\uAE30");
+		btn_details_my1.setBackground(Color.WHITE);
 		btn_details_my1.setBounds(326, 17, 97, 23);
 		frame.getContentPane().add(btn_details_my1);
 		btn_details_my1.addActionListener(new ActionListener() {
@@ -226,6 +235,11 @@ public class detailsGUI {
 		btn_details_my2.setBackground(Color.GREEN);
 		btn_details_my2.setBounds(326, 17, 97, 23);
 		frame.getContentPane().add(btn_details_my2);
+		
+		JLabel lblNewLabel_1 = new JLabel("");
+		lblNewLabel_1.setIcon(new ImageIcon(detailsGUI.class.getResource("/images/detail.jpg")));
+		lblNewLabel_1.setBounds(0, 0, 445, 571);
+		frame.getContentPane().add(lblNewLabel_1);
 		btn_details_my2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				MyAppliancesDAO dao = new MyAppliancesDAO();
