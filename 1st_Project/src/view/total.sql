@@ -21,7 +21,7 @@ CREATE TABLE product
 	maxev VARCHAR2(20) NOT NULL,
 	ecost number(20) NOT NULL,
 	price number(20) NOT NULL,
-	img VARCHAR2(20),
+	img VARCHAR2(40),
 CONSTRAINT product_model_pk
 	primary key (model)
 )
@@ -29,7 +29,7 @@ CONSTRAINT product_model_pk
 CREATE TABLE purchase
 	(orderno NUMBER(10) NOT NULL,
 	id VARCHAR2(20) NOT NULL,
-	orderdate Varchar2(20) NOT NULL,
+	orderdate Varchar2(30) NOT NULL,
 CONSTRAINT purchase_orderno_id_pk
 	primary key (orderno, id)	
 )
@@ -40,8 +40,8 @@ CREATE TABLE apply
 	bank VARCHAR2(20) NOT NULL,
 	bankaccount VARCHAR2(20) NOT NULL,
 	applyamount NUMBER(10) NOT NULL,
-	doc VARCHAR2(20) NOT NULL,
-	idcard VARCHAR2(20) NOT NULL,
+	doc VARCHAR2(40) NOT NULL,
+	idcard VARCHAR2(40) NOT NULL,
 	id VARCHAR2(20) NOT NULL,
 CONSTRAINT apply_applyno_pk
     primary key (applyno)
@@ -52,9 +52,9 @@ CREATE TABLE purchasedetail
 	model VARCHAR2(20) NOT NULL,
 	amount NUMBER(10) NOT NULL,
 	totalprice VARCHAR2(20) NOT NULL,
-	address VARCHAR2(20) NOT NULL,
+	address VARCHAR2(50) NOT NULL,
 	receiver VARCHAR2(20) NOT NULL,
-	receivercell VARCHAR2(20) NOT NULL,
+	receivercell VARCHAR2(50) NOT NULL,
 CONSTRAINT pcd_orderno_model_pk
 	primary key (orderno, model)
 )

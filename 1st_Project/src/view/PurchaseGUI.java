@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 import javax.swing.ButtonGroup;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -24,6 +25,8 @@ import model.PurchaseDAO;
 import model.PurchaseDTO;
 import model.PurchaseDetailDTO;
 import search.ProductDAO;
+import search.detailsGUI;
+
 import javax.swing.event.CaretListener;
 import javax.swing.event.CaretEvent;
 
@@ -46,6 +49,7 @@ public class PurchaseGUI {
 	private String model;
 	CustomerDTO logindto;
 	private JTextField tf_amount;
+	
 
 	/**
 	 * Launch the application.
@@ -85,11 +89,13 @@ public class PurchaseGUI {
 	 */
 	private void initialize() {
 		frame = new JFrame();
+		frame.getContentPane().setBackground(new Color(204, 204, 204));
 		frame.setBounds(100, 100, 674, 720);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 
 		JLabel label_p_image = new JLabel("");
+		label_p_image.setIcon(new ImageIcon(PurchaseGUI.class.getResource("/images/"+model().get(0).getP_img())));
 		label_p_image.setForeground(Color.BLACK);
 		label_p_image.setBackground(Color.BLACK);
 		label_p_image.setBounds(12, 15, 217, 188);
@@ -121,6 +127,7 @@ public class PurchaseGUI {
 		frame.getContentPane().add(tabbedPane);
 
 		JPanel card = new JPanel();
+		card.setBackground(new Color(255, 255, 204));
 		tabbedPane.addTab("카드결제 ", null, card, null);
 		card.setLayout(null);
 
@@ -228,8 +235,19 @@ public class PurchaseGUI {
 		tf_cardnum1.setColumns(10);
 		tf_cardnum1.setBounds(201, 37, 63, 21);
 		card.add(tf_cardnum1);
+		
+		JButton cancelbutton = new JButton("\uCDE8\uC18C");
+		cancelbutton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				detailsGUI det = new detailsGUI(model, logindto);
+			}
+		});
+		cancelbutton.setBounds(351, 139, 97, 23);
+		card.add(cancelbutton);
 
 		JPanel naverpay = new JPanel();
+		naverpay.setBackground(new Color(102, 255, 0));
 		tabbedPane.addTab("네이버페이", null, naverpay, null);
 		naverpay.setLayout(null);
 
