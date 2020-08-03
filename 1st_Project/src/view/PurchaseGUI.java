@@ -20,6 +20,7 @@ import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 
 import model.CustomerDTO;
+import model.MyAppliancesDTO;
 import model.ProductDTO;
 import model.PurchaseDAO;
 import model.PurchaseDTO;
@@ -50,6 +51,7 @@ public class PurchaseGUI {
 	CustomerDTO logindto;
 	private JTextField tf_amount;
 	
+	ArrayList<MyAppliancesDTO> myDtos;
 
 	/**
 	 * Launch the application.
@@ -70,8 +72,10 @@ public class PurchaseGUI {
 	/**
 	 * Create the application.
 	 */
-	public PurchaseGUI(String model,CustomerDTO dto) {
+	public PurchaseGUI(String model,CustomerDTO dto, ArrayList<MyAppliancesDTO> myDtos) {
 		this.model = model;
+		logindto = dto;
+		this.myDtos = myDtos;
 		initialize();
 		frame.setVisible(true);
 
@@ -240,7 +244,7 @@ public class PurchaseGUI {
 		cancelbutton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
-				detailsGUI det = new detailsGUI(model, logindto);
+				detailsGUI det = new detailsGUI(model, logindto, myDtos);
 			}
 		});
 		cancelbutton.setBounds(351, 139, 97, 23);

@@ -51,9 +51,14 @@ public class detailsGUI {
 	/**
 	 * Create the application.
 	 */
-
+//	public detailsGUI(String model, CustomerDTO logindto) {
+//		this.logindto = logindto; 
+//		this.model = model;
+//		initialize();
+//		frame.setVisible(true);
+//	}
+	
 	public detailsGUI(String model, CustomerDTO logindto, ArrayList<MyAppliancesDTO> myDtos) {
-		
 		this.logindto = logindto; 
 		this.model = model;
 		this.myDtos = myDtos;
@@ -176,7 +181,7 @@ public class detailsGUI {
 				PurchaseDAO dao = new PurchaseDAO();
 				dao.PurchaseInsert(new PurchaseDTO(0, logindto.getC_id(), tempDate));
 				
-				PurchaseGUI pur = new PurchaseGUI(model, logindto);
+				PurchaseGUI pur = new PurchaseGUI(model, logindto, myDtos);
              
 			}
 		});

@@ -20,9 +20,11 @@ public class SignUpGUI {
 	private JTextField tf_signUp_id;
 	private JPasswordField pf_signUp_pw;
 	private JTextField tf_signUp_name;
-	private JTextField tf_signUp_cell;
+	private JTextField tf_signUp_cell1;
 	
 	int flag = 0;
+	private JTextField tf_signUp_cell2;
+	private JTextField tf_signUp_cell3;
 	
 	//constructor()
 	public SignUpGUI() {
@@ -67,10 +69,20 @@ public class SignUpGUI {
 		tf_signUp_name.setBounds(109, 87, 116, 21);
 		frame.getContentPane().add(tf_signUp_name);
 		
-		tf_signUp_cell = new JTextField();
-		tf_signUp_cell.setColumns(10);
-		tf_signUp_cell.setBounds(109, 112, 116, 21);
-		frame.getContentPane().add(tf_signUp_cell);
+		tf_signUp_cell1 = new JTextField();
+		tf_signUp_cell1.setColumns(10);
+		tf_signUp_cell1.setBounds(109, 112, 30, 21);
+		frame.getContentPane().add(tf_signUp_cell1);
+		
+		tf_signUp_cell2 = new JTextField();
+		tf_signUp_cell2.setColumns(10);
+		tf_signUp_cell2.setBounds(153, 112, 30, 21);
+		frame.getContentPane().add(tf_signUp_cell2);
+		
+		tf_signUp_cell3 = new JTextField();
+		tf_signUp_cell3.setColumns(10);
+		tf_signUp_cell3.setBounds(195, 112, 30, 21);
+		frame.getContentPane().add(tf_signUp_cell3);
 		
 		//회원가입
 		JButton btn_signUp_signUp = new JButton("\uAC00\uC785\uD558\uAE30");
@@ -82,7 +94,7 @@ public class SignUpGUI {
 					id = tf_signUp_id.getText();					
 					pw = pf_signUp_pw.getText();
 					name = tf_signUp_name.getText();
-					cell = tf_signUp_cell.getText();
+					cell = tf_signUp_cell1.getText()+tf_signUp_cell2.getText()+tf_signUp_cell3.getText();
 				
 					CustomerDAO dao = new CustomerDAO();
 					CustomerDTO dto = new CustomerDTO(id, pw, name, cell);

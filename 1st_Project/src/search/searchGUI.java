@@ -501,16 +501,16 @@ public class searchGUI {
 		scrollPane_search_list.setBounds(582, 152, 126, 58);
 		frame.getContentPane().add(scrollPane_search_list);
 		
-		JLabel lbl_search_my = new JLabel("\uB0B4\uAC00\uC804\uC81C\uD488");
-		lbl_search_my.setBounds(535, 55, 76, 15);
+		JLabel lbl_search_my = new JLabel("\uC990\uACA8\uCC3E\uAE30\uD55C\uC81C\uD488");
+		lbl_search_my.setBounds(514, 55, 97, 15);
 		frame.getContentPane().add(lbl_search_my);
 		
 		JLabel lbl_search_select = new JLabel("\uC120\uD0DD\uD55C\uC81C\uD488");
 		lbl_search_select.setBounds(535, 80, 76, 15);
 		frame.getContentPane().add(lbl_search_select);
 		
-		JLabel lbl_search_list = new JLabel("\uB0B4\uAC00\uC804\uC81C\uD488");
-		lbl_search_list.setBounds(514, 136, 76, 15);
+		JLabel lbl_search_list = new JLabel("\uC990\uACA8\uCC3E\uAE30\uD55C\uC81C\uD488");
+		lbl_search_list.setBounds(514, 136, 97, 15);
 		frame.getContentPane().add(lbl_search_list);
 		
 		JLabel lbl_search_realPrice = new JLabel("\uC2E4\uAD6C\uB9E4\uAE08\uC561");
@@ -684,7 +684,7 @@ public class searchGUI {
 		}
 		
 		//시리즈 생성
-		XYSeries nseries =  chart.createSeries(sum, "내 가전");
+		XYSeries nseries =  chart.createSeries(sum, "즐겨찾기한 가전");
 		series1 = nseries;
 		//차트 생성
 		ChartPanel nchartPanel = new LineChart().getchartPanel_lineChart(nseries,series2);
@@ -732,7 +732,7 @@ class LineChart {
 	  dataset2 = new XYSeriesCollection();
 	  dataset1.addSeries(series1);
 	  dataset2.addSeries(series2);
-	  chart = ChartFactory.createXYLineChart("내제품/선택제품", "년",  "제품가격 + 누적연간에너지비용(원)", dataset, org.jfree.chart.plot.PlotOrientation.VERTICAL, true, true, false);
+	  chart = ChartFactory.createXYLineChart("즐겨찾기한가전/선택가전", "년",  "제품가격 + 누적연간에너지비용(원)", dataset, org.jfree.chart.plot.PlotOrientation.VERTICAL, true, true, false);
 	  subTitle = new TextTitle("비교하기");
 
 	  Font f = new Font("Gulim", Font.BOLD, 14);

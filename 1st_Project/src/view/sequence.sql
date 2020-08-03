@@ -15,8 +15,7 @@ create table purchaseDetail (
    pcd_address varchar2(20) not null,
    pcd_Recip  varchar2(20) not null,
    pcd_recell varchar2(20) not null
-   
-    )
+   )
 DROP table purchaseDetail
 select * from purchaseDetail
 select * from purchase
