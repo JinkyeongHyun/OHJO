@@ -104,7 +104,7 @@ public class searchGUI {
 	
 	MyAppliancesDAO myDao;
 	/**
-	 * @wbp.nonvisual location=18,579
+	 * @wbp.nonvisual location=18,639
 	 */
 	public JCheckBox ch4 = new JCheckBox("");
 	public searchGUI(CustomerDTO loginDto) {
@@ -118,12 +118,11 @@ public class searchGUI {
 		checkBox.add(ch4);
 		frame = new JFrame();
 		frame.setResizable(false);
-		frame.setBounds(100, 100, 1100, 555);
+		frame.setBounds(100, 100, 1100, 700);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 
 		JPanel searchPanel = new JPanel();
-		searchPanel.setBackground(Color.WHITE);
 		searchPanel.setBounds(12, 89, 126, 424);
 		frame.getContentPane().add(searchPanel);
 		searchPanel.setLayout(null);
@@ -486,7 +485,6 @@ public class searchGUI {
 		frame.getContentPane().add(lblNewLabel_2);
 
 		JButton btn_back = new JButton("\uB4A4\uB85C \uAC00\uAE30");
-		btn_back.setBackground(Color.WHITE);
 		btn_back.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				frame.dispose();
@@ -501,8 +499,7 @@ public class searchGUI {
 		
 		//********************비교 추가부분********************
 		panel_search_chart = new JPanel();
-		panel_search_chart.setBackground(Color.WHITE);
-		panel_search_chart.setBounds(582, 213, 500, 300);
+		panel_search_chart.setBounds(535, 220, 500, 400);
 		frame.getContentPane().add(panel_search_chart);
 
 		JScrollPane scrollPane_search_compare = new JScrollPane();
@@ -572,45 +569,20 @@ public class searchGUI {
 				sum += dtos.get(i).getNickname();
 				items[i] = sum;
 		}		
-
-		//DefaultListModel로 리스트 생성
-		list = new JList(new DefaultListModel());
-		lModel = (DefaultListModel)list.getModel();		
 		
 		//리스트모델에 데이터 추가
 		for(int i=0; i<items.length; i++) {
 			lModel.addElement(items[i]);
 		}
 		
-		//패널에 리스트 추가
-		scrollPane_search_list.setViewportView(list);
-
-		//리스트 선택 모드 설정
-		list.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
-
-		//리스트 이벤트 처리
-		list.addListSelectionListener(new ListSelectionListener() {	
-			@Override
-			public void valueChanged(ListSelectionEvent e) {
-				if(!e.getValueIsAdjusting()) {	//이벤트를 두번 받지 않기 위해 if문 지정
-					selectedListIndex = list.getSelectedIndex();	//선택된 리스트의 인덱스
-						String all = (String)list.getModel().getElementAt(selectedListIndex);
-						String[] allArray = all.split("  ");
-						String category = allArray[0];
-						String model = allArray[1];
-						String nickname = allArray[2];
-						myLmodelChartChange(nickname);
-				}
-			}
-		});
-		
 		//테이블
-		String[] colName = {"이미지", "제품명", "등급", "가격", "에너지비용"};
+		//String[] colName = {"이미지", "제품명", "등급", "가격", "에너지비용"};
+		String[] colName = {"제품명", "에너지효율등급", "가격", "에너지비용"};
 		
-		Object[][] tdata = new Object[2][5];
+		Object[][] tdata = new Object[2][4];
 
 		for(int i=0; i<2; i++) {
-			for(int j=0; j<5; j++) {
+			for(int j=0; j<4; j++) {
 				tdata[i][j]= 0;
 			}
 		}
@@ -627,15 +599,16 @@ public class searchGUI {
 		
 		//차트
 		//누적합 계산
-		int myPrice = (Integer)tModel.getValueAt(0, 3);
-		int myEcost = (Integer)tModel.getValueAt(0, 4);
+		DecimalFormat formatter = new DecimalFormat("###,###");
+		int myPrice = Integer.parseInt(tModel.getValueAt(0, 2).toString().replace(",", ""))*(9/10);
+		int myEcost = Integer.parseInt(tModel.getValueAt(0, 3).toString().replace(",", ""));
 		int[] sum1 = {myPrice,myPrice,myPrice,myPrice,myPrice,myPrice,myPrice,myPrice,myPrice,myPrice};
 		for(int i=0; i<10; i++) {
 			sum1[i] += myEcost*(i+1);
 		}
 		
-		int sPrice = Integer.parseInt(tf_search_realPrice.getText());
-		int sEcost = (Integer)tModel.getValueAt(1, 4);
+		int sPrice = Integer.parseInt(tf_search_realPrice.getText().replace(",", ""));
+		int sEcost = Integer.parseInt(tModel.getValueAt(1, 3).toString().replace(",", ""));
 		int[] sum2 = {sPrice,sPrice,sPrice,sPrice,sPrice,sPrice,sPrice,sPrice,sPrice,sPrice};
 		for(int i=0; i<10; i++) {
 			sum2[i] += sEcost*(i+1);
@@ -645,7 +618,7 @@ public class searchGUI {
 		series1 =  chart.createSeries(sum1, "내 가전");
 		series2 =  chart.createSeries(sum2, "비교 가전");
 		chartPanel = new LineChart().getchartPanel_lineChart(series1,series2);
-		chartPanel.setPreferredSize(new java.awt.Dimension(500,250));
+		chartPanel.setPreferredSize(new java.awt.Dimension(500,400));
 		
 		panel_search_chart.add(chartPanel);
 		
@@ -656,7 +629,7 @@ public class searchGUI {
 		
 	}
 	
-	//검색 테이블 선택시 테이블 및 실구매가격 및 차트 변경 메서드
+	//검색 테이블 선택시 비교 테이블 및 실구매가격 및 차트 변경 메서드
 	public void searchTmodelChartChange(String model) {
 		//선택된 행의 모델명으로 제품 정보 조회 
 		ArrayList<ProductDTO> selectedDtos = dao.search(model);
@@ -666,20 +639,21 @@ public class searchGUI {
 		tModel.removeRow(1);
 		
 		//새로운 model 추가
-		Object[] newData = new Object[5];
-		newData[0] = selectedDto.getP_img();
-		newData[1] = selectedDto.getP_name();
-		newData[2] = selectedDto.getP_class();
-		newData[3] = selectedDto.getP_price();
-		newData[4] = selectedDto.getP_eCost();
+		DecimalFormat formatter = new DecimalFormat("###,###");
+		
+		Object[] newData = new Object[4];
+		newData[0] = selectedDto.getP_name();
+		newData[1] = selectedDto.getP_class();
+		newData[2] = formatter.format(selectedDto.getP_price());
+		newData[3] = formatter.format(selectedDto.getP_eCost());
 		tModel.addRow(newData);
 		
 		//실구매가격 변경
-		int selectedPrice = (Integer)table_search_compare.getValueAt(1, 3);
-		tf_search_realPrice.setText(Integer.toString(selectedPrice*9/10));
+		int selectedPrice = Integer.parseInt(table_search_compare.getValueAt(1, 2).toString().replace(",", ""));
+		tf_search_realPrice.setText(formatter.format(selectedPrice*9/10));
 
-		int sPrice = Integer.parseInt(tf_search_realPrice.getText());
-		int sEcost = (Integer)tModel.getValueAt(1, 4);
+		int sPrice = Integer.parseInt(tf_search_realPrice.getText().replace(",", ""))*(9/10);
+		int sEcost = Integer.parseInt(tModel.getValueAt(1, 3).toString().replace(",", ""));
 		int[] sum = {sPrice,sPrice,sPrice,sPrice,sPrice,sPrice,sPrice,sPrice,sPrice,sPrice};
 		for(int i=0; i<10; i++) {
 			sum[i] += sEcost*(i+1);
@@ -691,23 +665,23 @@ public class searchGUI {
 		series2 = nseries;
 		//차트생성
 		ChartPanel nchartPanel = new LineChart().getchartPanel_lineChart(series1,nseries);
-		nchartPanel.setPreferredSize(new java.awt.Dimension(500,250));
+		nchartPanel.setPreferredSize(new java.awt.Dimension(500,400));
 
 		panel_search_chart.removeAll();
 		panel_search_chart.revalidate();
 		panel_search_chart.add(nchartPanel);
 	}
 		
-	//리스트 선택시 테이블 및 차트 변경 메서드
+	//리스트 선택시 비교 테이블 및 차트 변경 메서드
 	public void myLmodelChartChange(String nickname) {
 		
+		DecimalFormat formatter = new DecimalFormat("###,###");
 		myDto = myDao.myAppliancesSelect(loginDto.getC_id(), nickname);	
-		Object[] myData = new Object[5];
-		myData[0] = myDto.getP_img();
-		myData[1] = myDto.getP_name();
-		myData[2] = myDto.getP_class();
-		myData[3] = myDto.getP_price();
-		myData[4] = myDto.getP_eCost();
+		Object[] myData = new Object[4];
+		myData[0] = myDto.getP_name();
+		myData[1] = myDto.getP_class();
+		myData[2] = formatter.format(myDto.getP_price());
+		myData[3] = formatter.format(myDto.getP_eCost());
 		
 		//테이블 첫번째 행(내 가전) 삭제
 		tModel.removeRow(0);
@@ -715,12 +689,12 @@ public class searchGUI {
 		tModel.insertRow(0, myData);
 		
 		//실구매가격 변경
-		int selectedPrice = (Integer)table_search_compare.getValueAt(1, 3);
-		tf_search_realPrice.setText(Integer.toString(selectedPrice*9/10));
+		int selectedPrice = Integer.parseInt(table_search_compare.getValueAt(1, 2).toString().replace(",", ""));
+		tf_search_realPrice.setText(formatter.format(selectedPrice*9/10));
 		
-		//시리즈 생성
-		int myPrice = (Integer)tModel.getValueAt(0, 3);
-		int myEcost = Integer.parseInt(tModel.getValueAt(0, 4).toString());
+
+		int myPrice = Integer.parseInt(tModel.getValueAt(0, 2).toString().replace(",", ""));
+		int myEcost = Integer.parseInt(tModel.getValueAt(0, 3).toString().replace(",", ""));
 		int[] sum = {myPrice,myPrice,myPrice,myPrice,myPrice,myPrice,myPrice,myPrice,myPrice,myPrice};
 		for(int i=0; i<10; i++) {
 			sum[i] += myEcost*(i+1);
@@ -731,7 +705,7 @@ public class searchGUI {
 		series1 = nseries;
 		//차트 생성
 		ChartPanel nchartPanel = new LineChart().getchartPanel_lineChart(nseries,series2);
-		nchartPanel.setPreferredSize(new java.awt.Dimension(500,250));
+		nchartPanel.setPreferredSize(new java.awt.Dimension(500,400));
 		//이전 차트 삭제
 		panel_search_chart.removeAll();
 		panel_search_chart.revalidate();
@@ -775,7 +749,7 @@ class LineChart {
 	  dataset2 = new XYSeriesCollection();
 	  dataset1.addSeries(series1);
 	  dataset2.addSeries(series2);
-	  chart = ChartFactory.createXYLineChart("즐겨찾기한가전/선택가전", "년",  "제품가격 + 누적연간에너지비용(원)", dataset, org.jfree.chart.plot.PlotOrientation.VERTICAL, true, true, false);
+	  chart = ChartFactory.createXYLineChart("즐겨찾기한가전/비교가전", "년", "제품가격 + 누적연간에너지비용(원)", dataset, org.jfree.chart.plot.PlotOrientation.VERTICAL, true, true, false);
 	  subTitle = new TextTitle("비교하기");
 
 	  Font f = new Font("Gulim", Font.BOLD, 14);
