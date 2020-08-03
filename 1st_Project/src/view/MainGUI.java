@@ -17,6 +17,8 @@ import search.searchGUI;
 import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
+import javax.swing.JPanel;
+import javax.swing.JTextPane;
 
 public class MainGUI {
 
@@ -76,9 +78,8 @@ public class MainGUI {
 		JMenuItem mni_search = new JMenuItem("\uAC00\uC804 \uC81C\uD488 \uAC80\uC0C9");
 		mni_search.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			searchGUI search = new searchGUI(loginDto);
-			
-			
+				frame.dispose();
+				searchGUI search = new searchGUI(loginDto);
 			}
 		});
 		mni_search.addMouseListener(new MouseAdapter() {
@@ -206,15 +207,10 @@ public class MainGUI {
 		});
 		frame.getContentPane().add(btn_main_logout);
 		
-		JLabel lbl_title = new JLabel("\uC81C\uBAA9");
-		lbl_title.setBounds(78, 53, 510, 105);
-		frame.getContentPane().add(lbl_title);
+		JTextPane textPane = new JTextPane();
 		
-		JLabel lbl_icon1 = new JLabel("");
-		lbl_icon1.setIcon(new ImageIcon("E:\\Bigdata\\\uD300 \uD504\uB85C\uC81D\uD2B8\\[\uC790\uB8CC] GUI\uC5D0 \uC4F0\uC778 \uC0AC\uC9C4\uB4E4\\solar-energy.png"));
-		lbl_icon1.setBounds(687, 299, 115, 158);
-		lbl_icon1.setIcon(new ImageIcon(new ImageIcon("E:\\Bigdata\\\uD300 \uD504\uB85C\uC81D\uD2B8\\[\uC790\uB8CC] GUI\uC5D0 \uC4F0\uC778 \uC0AC\uC9C4\uB4E4\\solar-energy.png").getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT)));
-		frame.getContentPane().add(lbl_icon1);
+		textPane.setBounds(546, 305, 238, 124);
+		frame.getContentPane().add(textPane);
 	}
 	
 	//로그인 성공시 작동

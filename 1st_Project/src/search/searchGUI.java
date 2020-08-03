@@ -98,6 +98,7 @@ public class searchGUI {
 	
 	ProductDTO myDto;
 	ProductDTO selectedDto;
+	ArrayList<MyAppliancesDTO> dtos;
 	
 	MyAppliancesDAO myDao;
 	public searchGUI(CustomerDTO loginDto) {
@@ -454,7 +455,8 @@ public class searchGUI {
 		JButton detailview = new JButton("\uC81C\uD488 \uC0C1\uC138 \uC815\uBCF4 \uBCF4\uAE30");
 		detailview.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				detailsGUI det = new detailsGUI(model, loginDto);
+				frame.dispose();
+				detailsGUI det = new detailsGUI(model, loginDto,dtos);
 			}
 		});
 
@@ -523,11 +525,12 @@ public class searchGUI {
 		
 		//리스트
 		myDao = new MyAppliancesDAO();
-		ArrayList<MyAppliancesDTO> dtos = myDao.myAppliancesSelectList(loginDto.getC_id());
+		dtos = myDao.myAppliancesSelectList(loginDto.getC_id());
 		String[] items = new String[dtos.size()];
 		for(int i=0; i<dtos.size(); i++) {
 			String sum =  "";
 				sum += dtos.get(i).getCategory() + "  ";
+				sum += dtos.get(i).getModel() + "  "; 
 				sum += dtos.get(i).getNickname();
 				items[i] = sum;
 		}		
@@ -553,11 +556,12 @@ public class searchGUI {
 			public void valueChanged(ListSelectionEvent e) {
 				if(!e.getValueIsAdjusting()) {	//이벤트를 두번 받지 않기 위해 if문 지정
 					selectedListIndex = list.getSelectedIndex();	//선택된 리스트의 인덱스
-					String all = (String)list.getModel().getElementAt(selectedListIndex);
-					String[] allArray = all.split("  ");
-					String category = allArray[0];
-					String nickname = allArray[1];
-					myLmodelChartChange(nickname);
+						String all = (String)list.getModel().getElementAt(selectedListIndex);
+						String[] allArray = all.split("  ");
+						String category = allArray[0];
+						String model = allArray[1];
+						String nickname = allArray[2];
+						myLmodelChartChange(nickname);
 				}
 			}
 		});
@@ -587,15 +591,15 @@ public class searchGUI {
 		//누적합 계산
 		int myPrice = (Integer)tModel.getValueAt(0, 3);
 		int myEcost = (Integer)tModel.getValueAt(0, 4);
-		int[] sum1 = {myPrice,myPrice,myPrice,myPrice,myPrice};
-		for(int i=0; i<5; i++) {
+		int[] sum1 = {myPrice,myPrice,myPrice,myPrice,myPrice,myPrice,myPrice,myPrice,myPrice,myPrice};
+		for(int i=0; i<10; i++) {
 			sum1[i] += myEcost*(i+1);
 		}
 		
 		int sPrice = Integer.parseInt(tf_search_realPrice.getText());
 		int sEcost = (Integer)tModel.getValueAt(1, 4);
-		int[] sum2 = {sPrice,sPrice,sPrice,sPrice,sPrice};
-		for(int i=0; i<5; i++) {
+		int[] sum2 = {sPrice,sPrice,sPrice,sPrice,sPrice,sPrice,sPrice,sPrice,sPrice,sPrice};
+		for(int i=0; i<10; i++) {
 			sum2[i] += sEcost*(i+1);
 		}
 		
@@ -633,8 +637,8 @@ public class searchGUI {
 
 		int sPrice = Integer.parseInt(tf_search_realPrice.getText());
 		int sEcost = (Integer)tModel.getValueAt(1, 4);
-		int[] sum = {sPrice,sPrice,sPrice,sPrice,sPrice};
-		for(int i=0; i<5; i++) {
+		int[] sum = {sPrice,sPrice,sPrice,sPrice,sPrice,sPrice,sPrice,sPrice,sPrice,sPrice};
+		for(int i=0; i<10; i++) {
 			sum[i] += sEcost*(i+1);
 		}
 		
@@ -674,8 +678,8 @@ public class searchGUI {
 		//시리즈 생성
 		int myPrice = (Integer)tModel.getValueAt(0, 3);
 		int myEcost = Integer.parseInt(tModel.getValueAt(0, 4).toString());
-		int[] sum = {myPrice,myPrice,myPrice,myPrice,myPrice};
-		for(int i=0; i<5; i++) {
+		int[] sum = {myPrice,myPrice,myPrice,myPrice,myPrice,myPrice,myPrice,myPrice,myPrice,myPrice};
+		for(int i=0; i<10; i++) {
 			sum[i] += myEcost*(i+1);
 		}
 		
@@ -714,7 +718,7 @@ class LineChart {
 	
 	 public XYSeries createSeries(int[] sum, String s) {
 		 XYSeries series = new XYSeries(s);
-		  for(int i=0; i<5; i++) {
+		  for(int i=0; i<10; i++) {
 			  series.add(i+1,sum[i]);
 		  }  
 		 return series;

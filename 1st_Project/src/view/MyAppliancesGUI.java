@@ -125,6 +125,7 @@ public class MyAppliancesGUI {
 		for(int i=0; i<dtos.size(); i++) {
 			String sum =  "";
 			sum += dtos.get(i).getCategory() + "  ";
+			sum += dtos.get(i).getModel() + "  ";
 			sum += dtos.get(i).getNickname();
 			items[i] = sum;
 		}
@@ -149,10 +150,12 @@ public class MyAppliancesGUI {
 			public void valueChanged(ListSelectionEvent e) {
 				if(!e.getValueIsAdjusting()) {	//이벤트를 두번 받지 않기 위해 if문 지정
 					selectedListIndex = list_my_list.getSelectedIndex();
-					String all = (String)list_my_list.getModel().getElementAt(selectedListIndex);
-					String[] allArray = all.split("  ");
-					String curNick = allArray[1];
-					tf_my_nickname.setText(curNick);
+					if(selectedListIndex>0) {
+						String all = (String)list_my_list.getModel().getElementAt(selectedListIndex);
+						String[] allArray = all.split("  ");
+						String curNick = allArray[2];
+						tf_my_nickname.setText(curNick);
+					}
 				}
 			}
 		});
@@ -170,7 +173,7 @@ public class MyAppliancesGUI {
 				if(result == 0) {	//추가 실패
 				}else {	//추가 성공
 					//리스트에 값 추가
-					model.addElement(selectedCategory + "  " + nickname);
+					model.addElement(selectedCategory + "  " + selectedModel + "  " + nickname);
 				}
 			}
 		});
@@ -185,7 +188,8 @@ public class MyAppliancesGUI {
 				String all = (String)list_my_list.getModel().getElementAt(selectedListIndex);
 				String[] allArray = all.split("  ");
 				String category = allArray[0];
-				String curNick = allArray[1];
+				String mymodel = allArray[1];
+				String curNick = allArray[2];
 				String newNick = tf_my_nickname.getText();
 
 				MyAppliancesDAO dao = new MyAppliancesDAO();
@@ -194,7 +198,7 @@ public class MyAppliancesGUI {
 				if(result == 0) {
 					
 				}else {
-					model.setElementAt(category + "  " + newNick, selectedListIndex);
+					model.setElementAt(category + "  " + mymodel + "  " + newNick, selectedListIndex);
 				}
 			}
 		});
@@ -208,10 +212,9 @@ public class MyAppliancesGUI {
 				int result = 0;
 				String all = (String)list_my_list.getModel().getElementAt(selectedListIndex);
 				String[] allArray = all.split("  ");
-				String category = allArray[0];
-				String curNick = allArray[1];
+				String mymodel = allArray[1];
 				MyAppliancesDAO dao = new MyAppliancesDAO();
-				result = dao.myAppliancesDelete(loginDto.getC_id(), curNick);
+				result = dao.myAppliancesDelete(loginDto.getC_id(), mymodel);
 				if(result == 0) {
 				}else {
 					model.removeElementAt(selectedListIndex);
@@ -221,8 +224,8 @@ public class MyAppliancesGUI {
 		btn_my_delete.setBounds(128, 207, 97, 23);
 		frame.getContentPane().add(btn_my_delete);
 		
-		JLabel lbl_my_list = new JLabel("내 가전 목록");
-		lbl_my_list.setBounds(285, 13, 90, 15);
+		JLabel lbl_my_list = new JLabel("\uB0B4 \uC990\uACA8\uCC3E\uAE30 \uBAA9\uB85D");
+		lbl_my_list.setBounds(285, 13, 97, 15);
 		frame.getContentPane().add(lbl_my_list);
 		
 		//취소버튼

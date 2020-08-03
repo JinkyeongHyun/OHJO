@@ -15,6 +15,8 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 import model.CustomerDTO;
+import model.MyAppliancesDAO;
+import model.MyAppliancesDTO;
 import model.ProductDTO;
 import model.PurchaseDAO;
 import model.PurchaseDTO;
@@ -27,7 +29,9 @@ public class detailsGUI {
 	private String model;
 	CustomerDTO logindto;
 	
-
+	ArrayList<MyAppliancesDTO> myDtos;
+	JButton btn_details_my1;
+	JButton btn_details_my2;
 	/**
 	 * Launch the application.
 	 */
@@ -48,11 +52,23 @@ public class detailsGUI {
 	 * Create the application.
 	 */
 
-	public detailsGUI(String model, CustomerDTO logindto) {
+	public detailsGUI(String model, CustomerDTO logindto, ArrayList<MyAppliancesDTO> myDtos) {
+		
 		this.logindto = logindto; 
 		this.model = model;
+		this.myDtos = myDtos;
 		initialize();
 		frame.setVisible(true);
+		for(int i=0; i<myDtos.size(); i++) {
+			if(myDtos.get(i).getModel().equals(model)) {	//내 가전 리스트에 해당 모델명이 있으면
+				btn_details_my1.setVisible(false);
+				btn_details_my2.setVisible(true);
+				break;
+			}else {
+				btn_details_my1.setVisible(true);
+				btn_details_my2.setVisible(false);
+			}
+		}
 
 	}
 
@@ -171,7 +187,7 @@ public class detailsGUI {
 		btn_back.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
-				MainGUI window = new MainGUI();
+				searchGUI search = new searchGUI(logindto);
 			}
 		});
 		btn_back.setBounds(301, 461, 98, 23);
@@ -182,5 +198,39 @@ public class detailsGUI {
 		lb_image.setBackground(Color.WHITE);
 		lb_image.setBounds(12, 10, 387, 241);
 		panel.add(lb_image);
+		
+		
+		//즐겨찾기버튼(빈) - 즐겨찾기되지 않은 상태
+		btn_details_my1 = new JButton("\uC990\uACA8\uCC3E\uAE30");
+		btn_details_my1.setBounds(326, 17, 97, 23);
+		frame.getContentPane().add(btn_details_my1);
+		btn_details_my1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				MyAppliancesDAO dao = new MyAppliancesDAO();
+				String id = logindto.getC_id();
+				String model = model().get(0).getP_model();
+				String nickname = model().get(0).getP_name();	//별명 대신 초기값으로 제품명을 넣어줌
+				dao.myAppliancesInsert(id, model, nickname);
+				btn_details_my1.setVisible(false);
+				btn_details_my2.setVisible(true);
+			}
+		});
+		
+		//즐겨찾기버튼 - 즐겨찾기된 상태
+		btn_details_my2 = new JButton("\uC990\uACA8\uCC3E\uAE30");
+		btn_details_my2.setBackground(Color.GREEN);
+		btn_details_my2.setBounds(326, 17, 97, 23);
+		frame.getContentPane().add(btn_details_my2);
+		btn_details_my2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				MyAppliancesDAO dao = new MyAppliancesDAO();
+				String id = logindto.getC_id();
+				String model = model().get(0).getP_model();
+				dao.myAppliancesDelete(id,model);
+				btn_details_my1.setVisible(true);
+				btn_details_my2.setVisible(false);
+			}
+		});
+		
 	}
 }

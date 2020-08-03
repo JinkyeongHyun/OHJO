@@ -73,7 +73,7 @@ public class MyAppliancesDAO {
 	//내 가전 추가
 	public int myAppliancesInsert(String id, String model, String nickname) {
 		getConnect();
-		String sql = "insert into myappliances select ?, ?, ?, product_category from product where product_model = ?";
+		String sql = "insert into myappliances select ?, ?, ?, category from product where model = ?";
 		int result = 0;
 		try {
 			pstm = conn.prepareStatement(sql);
@@ -113,14 +113,14 @@ public class MyAppliancesDAO {
 	}
 	
 	//내 가전 삭제
-	public int myAppliancesDelete(String id, String nickname) {
+	public int myAppliancesDelete(String id, String model) {
 		getConnect();
-		String sql = "delete myappliances where id = ? and nickname = ?";
+		String sql = "delete myappliances where id = ? and model = ?";
 		int result = 0;
 		try {
 			pstm = conn.prepareStatement(sql);
 			pstm.setString(1, id);
-			pstm.setString(2, nickname);
+			pstm.setString(2, model);
 			result = pstm.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
