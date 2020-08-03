@@ -112,7 +112,7 @@ public class searchGUI {
 	private void initialize() {
 		frame = new JFrame();
 		frame.setResizable(false);
-		frame.setBounds(100, 100, 1100, 555);
+		frame.setBounds(100, 100, 1100, 700);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 
@@ -491,7 +491,7 @@ public class searchGUI {
 		
 		//********************비교 추가부분********************
 		panel_search_chart = new JPanel();
-		panel_search_chart.setBounds(582, 213, 500, 300);
+		panel_search_chart.setBounds(535, 220, 500, 400);
 		frame.getContentPane().add(panel_search_chart);
 
 		JScrollPane scrollPane_search_compare = new JScrollPane();
@@ -499,29 +499,55 @@ public class searchGUI {
 		frame.getContentPane().add(scrollPane_search_compare);
 		
 		JScrollPane scrollPane_search_list = new JScrollPane();
-		scrollPane_search_list.setBounds(582, 152, 126, 58);
+		scrollPane_search_list.setBounds(133, 548, 243, 113);
 		frame.getContentPane().add(scrollPane_search_list);
 		
+				//DefaultListModel로 리스트 생성
+				list = new JList(new DefaultListModel());
+				scrollPane_search_list.setViewportView(list);
+				lModel = (DefaultListModel)list.getModel();		
+				
+						//리스트 선택 모드 설정
+						list.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+						
+								//리스트 이벤트 처리
+								list.addListSelectionListener(new ListSelectionListener() {	
+									@Override
+									public void valueChanged(ListSelectionEvent e) {
+										if(!e.getValueIsAdjusting()) {	//이벤트를 두번 받지 않기 위해 if문 지정
+											selectedListIndex = list.getSelectedIndex();	//선택된 리스트의 인덱스
+												String all = (String)list.getModel().getElementAt(selectedListIndex);
+												String[] allArray = all.split("  ");
+												String category = allArray[0];
+												String model = allArray[1];
+												String nickname = allArray[2];
+												myLmodelChartChange(nickname);
+										}
+									}
+								});
+		
 		JLabel lbl_search_my = new JLabel("\uC990\uACA8\uCC3E\uAE30\uD55C\uC81C\uD488");
-		lbl_search_my.setBounds(514, 55, 97, 15);
+		lbl_search_my.setForeground(Color.RED);
+		lbl_search_my.setBounds(505, 71, 97, 15);
 		frame.getContentPane().add(lbl_search_my);
 		
 		JLabel lbl_search_select = new JLabel("\uC120\uD0DD\uD55C\uC81C\uD488");
-		lbl_search_select.setBounds(535, 80, 76, 15);
+		lbl_search_select.setForeground(Color.BLUE);
+		lbl_search_select.setBounds(505, 110, 76, 15);
 		frame.getContentPane().add(lbl_search_select);
 		
 		JLabel lbl_search_list = new JLabel("\uC990\uACA8\uCC3E\uAE30\uD55C\uC81C\uD488");
-		lbl_search_list.setBounds(514, 136, 97, 15);
+		lbl_search_list.setBounds(216, 523, 97, 15);
 		frame.getContentPane().add(lbl_search_list);
 		
-		JLabel lbl_search_realPrice = new JLabel("\uC2E4\uAD6C\uB9E4\uAE08\uC561");
-		lbl_search_realPrice.setBounds(811, 135, 57, 15);
+		JLabel lbl_search_realPrice = new JLabel("\uC2E4\uAD6C\uB9E4\uAE08\uC561(\uC6D0)");
+		lbl_search_realPrice.setBounds(614, 168, 107, 15);
 		frame.getContentPane().add(lbl_search_realPrice);
 		
 		tf_search_realPrice = new JTextField();
 		tf_search_realPrice.setText("0");
 		tf_search_realPrice.setColumns(10);
-		tf_search_realPrice.setBounds(881, 135, 116, 21);
+		tf_search_realPrice.setBounds(733, 165, 67, 21);
 		frame.getContentPane().add(tf_search_realPrice);
 		
 		//리스트
@@ -535,45 +561,20 @@ public class searchGUI {
 				sum += dtos.get(i).getNickname();
 				items[i] = sum;
 		}		
-
-		//DefaultListModel로 리스트 생성
-		list = new JList(new DefaultListModel());
-		lModel = (DefaultListModel)list.getModel();		
 		
 		//리스트모델에 데이터 추가
 		for(int i=0; i<items.length; i++) {
 			lModel.addElement(items[i]);
 		}
 		
-		//패널에 리스트 추가
-		scrollPane_search_list.setViewportView(list);
-
-		//리스트 선택 모드 설정
-		list.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
-
-		//리스트 이벤트 처리
-		list.addListSelectionListener(new ListSelectionListener() {	
-			@Override
-			public void valueChanged(ListSelectionEvent e) {
-				if(!e.getValueIsAdjusting()) {	//이벤트를 두번 받지 않기 위해 if문 지정
-					selectedListIndex = list.getSelectedIndex();	//선택된 리스트의 인덱스
-						String all = (String)list.getModel().getElementAt(selectedListIndex);
-						String[] allArray = all.split("  ");
-						String category = allArray[0];
-						String model = allArray[1];
-						String nickname = allArray[2];
-						myLmodelChartChange(nickname);
-				}
-			}
-		});
-		
 		//테이블
-		String[] colName = {"이미지", "제품명", "등급", "가격", "에너지비용"};
+		//String[] colName = {"이미지", "제품명", "등급", "가격", "에너지비용"};
+		String[] colName = {"제품명", "에너지효율등급", "가격", "에너지비용"};
 		
-		Object[][] tdata = new Object[2][5];
+		Object[][] tdata = new Object[2][4];
 
 		for(int i=0; i<2; i++) {
-			for(int j=0; j<5; j++) {
+			for(int j=0; j<4; j++) {
 				tdata[i][j]= 0;
 			}
 		}
@@ -591,15 +592,15 @@ public class searchGUI {
 		//차트
 		//누적합 계산
 		DecimalFormat formatter = new DecimalFormat("###,###");
-		int myPrice = Integer.parseInt(tModel.getValueAt(0, 3).toString().replace(",", ""));
-		int myEcost = Integer.parseInt(tModel.getValueAt(0, 4).toString().replace(",", ""));
+		int myPrice = Integer.parseInt(tModel.getValueAt(0, 2).toString().replace(",", ""))*(9/10);
+		int myEcost = Integer.parseInt(tModel.getValueAt(0, 3).toString().replace(",", ""));
 		int[] sum1 = {myPrice,myPrice,myPrice,myPrice,myPrice,myPrice,myPrice,myPrice,myPrice,myPrice};
 		for(int i=0; i<10; i++) {
 			sum1[i] += myEcost*(i+1);
 		}
 		
 		int sPrice = Integer.parseInt(tf_search_realPrice.getText().replace(",", ""));
-		int sEcost = Integer.parseInt(tModel.getValueAt(1, 4).toString().replace(",", ""));
+		int sEcost = Integer.parseInt(tModel.getValueAt(1, 3).toString().replace(",", ""));
 		int[] sum2 = {sPrice,sPrice,sPrice,sPrice,sPrice,sPrice,sPrice,sPrice,sPrice,sPrice};
 		for(int i=0; i<10; i++) {
 			sum2[i] += sEcost*(i+1);
@@ -609,7 +610,7 @@ public class searchGUI {
 		series1 =  chart.createSeries(sum1, "내 가전");
 		series2 =  chart.createSeries(sum2, "비교 가전");
 		chartPanel = new LineChart().getchartPanel_lineChart(series1,series2);
-		chartPanel.setPreferredSize(new java.awt.Dimension(500,250));
+		chartPanel.setPreferredSize(new java.awt.Dimension(500,400));
 		
 		panel_search_chart.add(chartPanel);
 		
@@ -627,20 +628,19 @@ public class searchGUI {
 		//새로운 model 추가
 		DecimalFormat formatter = new DecimalFormat("###,###");
 		
-		Object[] newData = new Object[5];
-		newData[0] = selectedDto.getP_img();
-		newData[1] = selectedDto.getP_name();
-		newData[2] = selectedDto.getP_class();
-		newData[3] = formatter.format(selectedDto.getP_price());
-		newData[4] = formatter.format(selectedDto.getP_eCost());
+		Object[] newData = new Object[4];
+		newData[0] = selectedDto.getP_name();
+		newData[1] = selectedDto.getP_class();
+		newData[2] = formatter.format(selectedDto.getP_price());
+		newData[3] = formatter.format(selectedDto.getP_eCost());
 		tModel.addRow(newData);
 		
 		//실구매가격 변경
-		int selectedPrice = Integer.parseInt(table_search_compare.getValueAt(1, 3).toString().replace(",", ""));
+		int selectedPrice = Integer.parseInt(table_search_compare.getValueAt(1, 2).toString().replace(",", ""));
 		tf_search_realPrice.setText(formatter.format(selectedPrice*9/10));
 
-		int sPrice = Integer.parseInt(tf_search_realPrice.getText().replace(",", ""));
-		int sEcost = Integer.parseInt(tModel.getValueAt(1, 4).toString().replace(",", ""));
+		int sPrice = Integer.parseInt(tf_search_realPrice.getText().replace(",", ""))*(9/10);
+		int sEcost = Integer.parseInt(tModel.getValueAt(1, 3).toString().replace(",", ""));
 		int[] sum = {sPrice,sPrice,sPrice,sPrice,sPrice,sPrice,sPrice,sPrice,sPrice,sPrice};
 		for(int i=0; i<10; i++) {
 			sum[i] += sEcost*(i+1);
@@ -652,7 +652,7 @@ public class searchGUI {
 		series2 = nseries;
 		//차트생성
 		ChartPanel nchartPanel = new LineChart().getchartPanel_lineChart(series1,nseries);
-		nchartPanel.setPreferredSize(new java.awt.Dimension(500,250));
+		nchartPanel.setPreferredSize(new java.awt.Dimension(500,400));
 
 		panel_search_chart.removeAll();
 		panel_search_chart.revalidate();
@@ -664,12 +664,11 @@ public class searchGUI {
 		
 		DecimalFormat formatter = new DecimalFormat("###,###");
 		myDto = myDao.myAppliancesSelect(loginDto.getC_id(), nickname);	
-		Object[] myData = new Object[5];
-		myData[0] = myDto.getP_img();
-		myData[1] = myDto.getP_name();
-		myData[2] = myDto.getP_class();
-		myData[3] = formatter.format(myDto.getP_price());
-		myData[4] = formatter.format(myDto.getP_eCost());
+		Object[] myData = new Object[4];
+		myData[0] = myDto.getP_name();
+		myData[1] = myDto.getP_class();
+		myData[2] = formatter.format(myDto.getP_price());
+		myData[3] = formatter.format(myDto.getP_eCost());
 		
 		//테이블 첫번째 행(내 가전) 삭제
 		tModel.removeRow(0);
@@ -677,12 +676,12 @@ public class searchGUI {
 		tModel.insertRow(0, myData);
 		
 		//실구매가격 변경
-		int selectedPrice = Integer.parseInt(table_search_compare.getValueAt(1, 3).toString().replace(",", ""));
+		int selectedPrice = Integer.parseInt(table_search_compare.getValueAt(1, 2).toString().replace(",", ""));
 		tf_search_realPrice.setText(formatter.format(selectedPrice*9/10));
 		
 
-		int myPrice = Integer.parseInt(tModel.getValueAt(0, 3).toString().replace(",", ""));
-		int myEcost = Integer.parseInt(tModel.getValueAt(0, 4).toString().replace(",", ""));
+		int myPrice = Integer.parseInt(tModel.getValueAt(0, 2).toString().replace(",", ""));
+		int myEcost = Integer.parseInt(tModel.getValueAt(0, 3).toString().replace(",", ""));
 		int[] sum = {myPrice,myPrice,myPrice,myPrice,myPrice,myPrice,myPrice,myPrice,myPrice,myPrice};
 		for(int i=0; i<10; i++) {
 			sum[i] += myEcost*(i+1);
@@ -693,7 +692,7 @@ public class searchGUI {
 		series1 = nseries;
 		//차트 생성
 		ChartPanel nchartPanel = new LineChart().getchartPanel_lineChart(nseries,series2);
-		nchartPanel.setPreferredSize(new java.awt.Dimension(500,250));
+		nchartPanel.setPreferredSize(new java.awt.Dimension(500,400));
 		//이전 차트 삭제
 		panel_search_chart.removeAll();
 		panel_search_chart.revalidate();
