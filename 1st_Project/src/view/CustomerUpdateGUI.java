@@ -41,29 +41,29 @@ public class CustomerUpdateGUI {
 		frame.getContentPane().setLayout(null);
 		
 		JLabel lbl_cUpdate_id = new JLabel("아이디");
-		lbl_cUpdate_id.setBounds(60, 39, 57, 15);
+		lbl_cUpdate_id.setBounds(73, 64, 57, 15);
 		frame.getContentPane().add(lbl_cUpdate_id);
 		
 		tf_cUpdate_id = new JTextField();
 		tf_cUpdate_id.setEditable(false);
-		tf_cUpdate_id.setBounds(129, 36, 116, 21);
+		tf_cUpdate_id.setBounds(154, 61, 116, 21);
 		frame.getContentPane().add(tf_cUpdate_id);
 		tf_cUpdate_id.setColumns(10);
 		
 		JLabel lbl_cUpdate_pw_current = new JLabel("현재비밀번호");	//현재비밀번호를 입력해서 일치하면 새 비밀번호 변경
-		lbl_cUpdate_pw_current.setBounds(37, 64, 80, 15);
+		lbl_cUpdate_pw_current.setBounds(73, 89, 80, 15);
 		frame.getContentPane().add(lbl_cUpdate_pw_current);
 		
 		pf_cUpdate_pw_current = new JPasswordField();
-		pf_cUpdate_pw_current.setBounds(129, 61, 116, 21);
+		pf_cUpdate_pw_current.setBounds(154, 86, 116, 21);
 		frame.getContentPane().add(pf_cUpdate_pw_current);
 		
 		JLabel lbl_cUpdate_pw_new = new JLabel("새비밀번호");
-		lbl_cUpdate_pw_new.setBounds(37, 89, 80, 15);
+		lbl_cUpdate_pw_new.setBounds(73, 114, 80, 15);
 		frame.getContentPane().add(lbl_cUpdate_pw_new);
 		
 		pf_cUpdate_pw_new = new JPasswordField();
-		pf_cUpdate_pw_new.setBounds(129, 86, 116, 21);
+		pf_cUpdate_pw_new.setBounds(154, 111, 116, 21);
 		frame.getContentPane().add(pf_cUpdate_pw_new);
 		
 		//비밀번호 확인 버튼
@@ -77,24 +77,24 @@ public class CustomerUpdateGUI {
 				}
 			}
 		});
-		btn_cUpdate_pwCheck.setBounds(257, 60, 97, 23);
+		btn_cUpdate_pwCheck.setBounds(280, 85, 57, 23);
 		frame.getContentPane().add(btn_cUpdate_pwCheck);
 		
 		JLabel lbl_cUpdate_name = new JLabel("이름");
-		lbl_cUpdate_name.setBounds(60, 114, 57, 15);
+		lbl_cUpdate_name.setBounds(73, 139, 57, 15);
 		frame.getContentPane().add(lbl_cUpdate_name);
 		
 		tf_cUpdate_name = new JTextField();
-		tf_cUpdate_name.setBounds(129, 111, 116, 21);
+		tf_cUpdate_name.setBounds(154, 136, 116, 21);
 		frame.getContentPane().add(tf_cUpdate_name);
 		tf_cUpdate_name.setColumns(10);
 		
 		JLabel lbl_cUpdate_cell = new JLabel("연락처");
-		lbl_cUpdate_cell.setBounds(60, 139, 57, 15);
+		lbl_cUpdate_cell.setBounds(73, 164, 57, 15);
 		frame.getContentPane().add(lbl_cUpdate_cell);
 		
 		tf_cUpdate_cell = new JTextField();
-		tf_cUpdate_cell.setBounds(129, 136, 116, 21);
+		tf_cUpdate_cell.setBounds(154, 161, 116, 21);
 		frame.getContentPane().add(tf_cUpdate_cell);
 		tf_cUpdate_cell.setColumns(10);
 		
@@ -125,7 +125,7 @@ public class CustomerUpdateGUI {
 				
 			}
 		});
-		btn_cUpdate_update.setBounds(60, 164, 97, 23);
+		btn_cUpdate_update.setBounds(94, 200, 116, 23);
 		frame.getContentPane().add(btn_cUpdate_update);
 		
 		//취소버튼
@@ -139,7 +139,7 @@ public class CustomerUpdateGUI {
 				main.loginInfo(loginDto);
 			}
 		});
-		btn_cUpdate_cancell.setBounds(166, 164, 97, 23);
+		btn_cUpdate_cancell.setBounds(222, 200, 116, 23);
 		frame.getContentPane().add(btn_cUpdate_cancell);
 		
 		//회원탈퇴버튼
@@ -166,7 +166,7 @@ public class CustomerUpdateGUI {
 				}
 			}
 		});
-		btn_cUpdate_delete.setBounds(325, 228, 97, 23);
+		btn_cUpdate_delete.setBounds(354, 238, 80, 23);
 		frame.getContentPane().add(btn_cUpdate_delete);
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setIcon(new ImageIcon(CustomerUpdateGUI.class.getResource("/images/loginBGI.jpg")));

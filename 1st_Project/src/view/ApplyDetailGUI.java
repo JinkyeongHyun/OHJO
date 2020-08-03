@@ -69,7 +69,7 @@ public class ApplyDetailGUI {
 		frame.getContentPane().add(lbl_applydetails);
 		
 		JButton button = new JButton("\uB2EB\uAE30");
-		button.setBounds(383, 499, 70, 35);
+		button.setBounds(383, 467, 70, 35);
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();

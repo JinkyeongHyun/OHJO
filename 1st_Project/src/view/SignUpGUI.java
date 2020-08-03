@@ -37,7 +37,7 @@ public class SignUpGUI {
 	//initialize()
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
+		frame.setBounds(100, 100, 400, 260);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
@@ -107,7 +107,7 @@ public class SignUpGUI {
 				}
 			}
 		});
-		btn_signUp_signUp.setBounds(128, 162, 97, 23);
+		btn_signUp_signUp.setBounds(40, 153, 146, 23);
 		frame.getContentPane().add(btn_signUp_signUp);
 		
 		//중복체크
@@ -136,7 +136,7 @@ public class SignUpGUI {
 				LoginGUI login = new LoginGUI();
 			}
 		});
-		btn_signUp_cancel.setBounds(237, 162, 97, 23);
+		btn_signUp_cancel.setBounds(188, 153, 146, 23);
 		frame.getContentPane().add(btn_signUp_cancel);		
 		
 		lblNewLabel = new JLabel("");

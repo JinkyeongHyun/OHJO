@@ -74,7 +74,6 @@ public class searchGUI {
 	JCheckBox ch1;
 	JCheckBox ch2;
 	JCheckBox ch3;
-	
 	String[] colName = { "모델명", "제품명", "에너지 효율 등급 ", "가격" };
 	ProductDAO dao = new ProductDAO();
 	private final ButtonGroup checkBox = new ButtonGroup();
@@ -103,10 +102,6 @@ public class searchGUI {
 	ArrayList<MyAppliancesDTO> dtos;
 	
 	MyAppliancesDAO myDao;
-	/**
-	 * @wbp.nonvisual location=18,639
-	 */
-	public JCheckBox ch4 = new JCheckBox("");
 	public searchGUI(CustomerDTO loginDto) {
 		this.loginDto = loginDto;
 		initialize();
@@ -115,15 +110,14 @@ public class searchGUI {
 	}
 
 	private void initialize() {
-		checkBox.add(ch4);
 		frame = new JFrame();
 		frame.setResizable(false);
-		frame.setBounds(100, 100, 1100, 700);
+		frame.setBounds(100, 100, 1100, 720);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 
 		JPanel searchPanel = new JPanel();
-		searchPanel.setBounds(12, 89, 126, 424);
+		searchPanel.setBounds(12, 89, 126, 304);
 		frame.getContentPane().add(searchPanel);
 		searchPanel.setLayout(null);
 
@@ -138,7 +132,7 @@ public class searchGUI {
 		searchPanel.add(lbl_search_class);
 
 		JScrollPane searchScrollPane = new JScrollPane();
-		searchScrollPane.setBounds(150, 89, 343, 356);
+		searchScrollPane.setBounds(150, 132, 343, 261);
 		frame.getContentPane().add(searchScrollPane);
 		
 		ProductDAO dao = new ProductDAO();
@@ -157,7 +151,7 @@ public class searchGUI {
 		});
 
 		tf_text = new JTextField();
-		tf_text.setBounds(150, 46, 226, 33);
+		tf_text.setBounds(150, 89, 226, 33);
 		frame.getContentPane().add(tf_text);
 		tf_text.setColumns(10);
 
@@ -183,7 +177,6 @@ public class searchGUI {
 		});
 
 		ch1 = new JCheckBox("1\uB4F1\uAE09");
-		ch1.setBackground(Color.WHITE);
 		checkBox.add(ch1);
 		ch1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -260,7 +253,6 @@ public class searchGUI {
 		searchPanel.add(ch1);
 
 		ch2 = new JCheckBox("2\uB4F1\uAE09");
-		ch2.setBackground(Color.WHITE);
 		checkBox.add(ch2);
 		ch2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -336,7 +328,6 @@ public class searchGUI {
 		searchPanel.add(ch2);
 
 		ch3 = new JCheckBox("3\uB4F1\uAE09");
-		ch3.setBackground(Color.WHITE);
 		checkBox.add(ch3);
 		ch3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -413,10 +404,11 @@ public class searchGUI {
 		
 		// 오름차순
 		rb_desc = new JRadioButton("\uAC00\uACA9 \uB192\uC740\uC21C");
-		rb_desc.setBackground(Color.WHITE);
 		rb_desc.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {				
-				ch4.setSelected(true);	
+			public void actionPerformed(ActionEvent e) {
+				ch1.setSelected(false);
+				ch2.setSelected(false);
+				ch3.setSelected(false);	
 				TableModelChange change = new TableModelChange(dao.priceDesc());
 				Object[][] data = change.listTypeChange();
 
@@ -440,10 +432,11 @@ public class searchGUI {
 
 		// 내림차순
 		rb_asce = new JRadioButton("\uAC00\uACA9 \uB0AE\uC740\uC21C");
-		rb_asce.setBackground(Color.WHITE);
 		rb_asce.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {				
-				ch4.setSelected(true);	
+			public void actionPerformed(ActionEvent e) {
+				ch1.setSelected(false);
+				ch2.setSelected(false);
+				ch3.setSelected(false);	
 				TableModelChange change = new TableModelChange(dao.priceAsce());
 				Object[][] data = change.listTypeChange();
 
@@ -461,7 +454,6 @@ public class searchGUI {
 		});
 
 		JButton detailview = new JButton("\uC81C\uD488 \uC0C1\uC138 \uC815\uBCF4 \uBCF4\uAE30");
-		detailview.setBackground(Color.WHITE);
 		detailview.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
@@ -469,7 +461,7 @@ public class searchGUI {
 			}
 		});
 
-		detailview.setBounds(150, 455, 186, 58);
+		detailview.setBounds(12, 403, 240, 32);
 		frame.getContentPane().add(detailview);
 		rb_asce.setSelected(true);
 		buttonGroup.add(rb_asce);
@@ -477,12 +469,8 @@ public class searchGUI {
 		searchPanel.add(rb_asce);
 
 		btn_search.setIcon(new ImageIcon("C:\\Users\\SMT042\\Desktop\\\uAC80.jpg"));
-		btn_search.setBounds(396, 46, 97, 33);
+		btn_search.setBounds(388, 89, 105, 33);
 		frame.getContentPane().add(btn_search);
-
-		JLabel lblNewLabel_2 = new JLabel("\uBAA8\uB378\uBA85 \uC785\uB825 :");
-		lblNewLabel_2.setBounds(12, 46, 87, 33);
-		frame.getContentPane().add(lblNewLabel_2);
 
 		JButton btn_back = new JButton("\uB4A4\uB85C \uAC00\uAE30");
 		btn_back.addActionListener(new ActionListener() {
@@ -492,27 +480,27 @@ public class searchGUI {
 				main.loginInfo(loginDto);
 			}
 		});
-		btn_back.setBounds(348, 455, 157, 58);
+		btn_back.setBounds(253, 403, 240, 32);
 		frame.getContentPane().add(btn_back);
 		
 		
 		
 		//********************비교 추가부분********************
 		panel_search_chart = new JPanel();
-		panel_search_chart.setBounds(535, 220, 500, 400);
+		panel_search_chart.setBounds(562, 299, 500, 382);
 		frame.getContentPane().add(panel_search_chart);
 
 		JScrollPane scrollPane_search_compare = new JScrollPane();
-		scrollPane_search_compare.setBounds(614, 46, 402, 79);
+		scrollPane_search_compare.setBounds(651, 89, 411, 108);
 		frame.getContentPane().add(scrollPane_search_compare);
 		
 		JScrollPane scrollPane_search_list = new JScrollPane();
-		scrollPane_search_list.setBounds(133, 548, 243, 113);
+		scrollPane_search_list.setBounds(12, 541, 481, 108);
 		frame.getContentPane().add(scrollPane_search_list);
 		
 				//DefaultListModel로 리스트 생성
 				list = new JList(new DefaultListModel());
-				scrollPane_search_list.setViewportView(list);
+				scrollPane_search_list.setColumnHeaderView(list);
 				lModel = (DefaultListModel)list.getModel();		
 				
 						//리스트 선택 모드 설정
@@ -534,28 +522,28 @@ public class searchGUI {
 									}
 								});
 		
-		JLabel lbl_search_my = new JLabel("\uC990\uACA8\uCC3E\uAE30\uD55C\uC81C\uD488");
+		JLabel lbl_search_my = new JLabel("\uC990\uACA8\uCC3E\uAE30 \uC81C\uD488");
+		lbl_search_my.setFont(new Font("굴림", Font.BOLD, 15));
 		lbl_search_my.setForeground(Color.RED);
-		lbl_search_my.setBounds(505, 71, 97, 15);
+		lbl_search_my.setBounds(538, 115, 100, 40);
 		frame.getContentPane().add(lbl_search_my);
 		
-		JLabel lbl_search_select = new JLabel("\uC120\uD0DD\uD55C\uC81C\uD488");
+		JLabel lbl_search_select = new JLabel("\uC120\uD0DD\uD55C \uC81C\uD488");
+		lbl_search_select.setFont(new Font("굴림", Font.BOLD, 15));
 		lbl_search_select.setForeground(Color.BLUE);
-		lbl_search_select.setBounds(505, 110, 76, 15);
+		lbl_search_select.setBounds(538, 157, 100, 40);
 		frame.getContentPane().add(lbl_search_select);
 		
-		JLabel lbl_search_list = new JLabel("\uC990\uACA8\uCC3E\uAE30\uD55C\uC81C\uD488");
-		lbl_search_list.setBounds(216, 523, 97, 15);
-		frame.getContentPane().add(lbl_search_list);
-		
-		JLabel lbl_search_realPrice = new JLabel("\uC2E4\uAD6C\uB9E4\uAE08\uC561(\uC6D0)");
-		lbl_search_realPrice.setBounds(614, 168, 107, 15);
+		JLabel lbl_search_realPrice = new JLabel("\uD658\uAE09 \uD6C4 \uAE08\uC561(\uC6D0) =");
+		lbl_search_realPrice.setFont(new Font("굴림", Font.BOLD, 24));
+		lbl_search_realPrice.setBounds(617, 235, 220, 30);
 		frame.getContentPane().add(lbl_search_realPrice);
 		
 		tf_search_realPrice = new JTextField();
+		tf_search_realPrice.setFont(new Font("굴림", Font.BOLD, 24));
 		tf_search_realPrice.setText("0");
 		tf_search_realPrice.setColumns(10);
-		tf_search_realPrice.setBounds(733, 165, 67, 21);
+		tf_search_realPrice.setBounds(840, 235, 196, 30);
 		frame.getContentPane().add(tf_search_realPrice);
 		
 		//리스트
@@ -594,7 +582,7 @@ public class searchGUI {
 		//셀 렌더링 설정
 		TableCellRenderer renderer = new CustomTableCellRenderer();
 		table_search_compare.setDefaultRenderer(Object.class, renderer);
-		table_search_compare.setRowHeight(30);
+		table_search_compare.setRowHeight(40);
 		scrollPane_search_compare.setViewportView(table_search_compare);
 		
 		//차트
@@ -615,17 +603,22 @@ public class searchGUI {
 		}
 		
 		chart = new LineChart();
-		series1 =  chart.createSeries(sum1, "내 가전");
-		series2 =  chart.createSeries(sum2, "비교 가전");
+		series1 =  chart.createSeries(sum1, "즐겨찾기 제품");
+		series2 =  chart.createSeries(sum2, "선택한 제품");
 		chartPanel = new LineChart().getchartPanel_lineChart(series1,series2);
-		chartPanel.setPreferredSize(new java.awt.Dimension(500,400));
+		chartPanel.setPreferredSize(new java.awt.Dimension(500,340));
 		
 		panel_search_chart.add(chartPanel);
 		
-		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon(searchGUI.class.getResource("/images/searchBG.png")));
-		lblNewLabel.setBounds(0, 0, 1094, 526);
+		JLabel lblNewLabel = new JLabel("\uC81C\uD488 \uAC80\uC0C9");
+		lblNewLabel.setFont(new Font("굴림", Font.BOLD, 24));
+		lblNewLabel.setBounds(12, 29, 140, 50);
 		frame.getContentPane().add(lblNewLabel);
+		
+		JLabel lbl_search_list = new JLabel("\uB0B4 \uC990\uACA8\uCC3E\uAE30");
+		lbl_search_list.setFont(new Font("굴림", Font.BOLD, 24));
+		lbl_search_list.setBounds(12, 481, 140, 50);
+		frame.getContentPane().add(lbl_search_list);
 		
 	}
 	
@@ -652,7 +645,7 @@ public class searchGUI {
 		int selectedPrice = Integer.parseInt(table_search_compare.getValueAt(1, 2).toString().replace(",", ""));
 		tf_search_realPrice.setText(formatter.format(selectedPrice*9/10));
 
-		int sPrice = Integer.parseInt(tf_search_realPrice.getText().replace(",", ""))*(9/10);
+		int sPrice = Integer.parseInt(tf_search_realPrice.getText().replace(",", ""));
 		int sEcost = Integer.parseInt(tModel.getValueAt(1, 3).toString().replace(",", ""));
 		int[] sum = {sPrice,sPrice,sPrice,sPrice,sPrice,sPrice,sPrice,sPrice,sPrice,sPrice};
 		for(int i=0; i<10; i++) {
@@ -701,7 +694,7 @@ public class searchGUI {
 		}
 		
 		//시리즈 생성
-		XYSeries nseries =  chart.createSeries(sum, "즐겨찾기한 가전");
+		XYSeries nseries =  chart.createSeries(sum, "즐겨찾기 제품");
 		series1 = nseries;
 		//차트 생성
 		ChartPanel nchartPanel = new LineChart().getchartPanel_lineChart(nseries,series2);
@@ -749,7 +742,7 @@ class LineChart {
 	  dataset2 = new XYSeriesCollection();
 	  dataset1.addSeries(series1);
 	  dataset2.addSeries(series2);
-	  chart = ChartFactory.createXYLineChart("즐겨찾기한가전/비교가전", "년", "제품가격 + 누적연간에너지비용(원)", dataset, org.jfree.chart.plot.PlotOrientation.VERTICAL, true, true, false);
+	  chart = ChartFactory.createXYLineChart("즐겨찾기 제품/선택한 제품", "년", "제품가격 + 누적연간에너지비용(원)", dataset, org.jfree.chart.plot.PlotOrientation.VERTICAL, true, true, false);
 	  subTitle = new TextTitle("비교하기");
 
 	  Font f = new Font("Gulim", Font.BOLD, 14);

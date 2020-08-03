@@ -40,20 +40,20 @@ public class LoginGUI {
 		frame.getContentPane().setLayout(null);
 		
 		JLabel lbl_login_id = new JLabel("ID");
-		lbl_login_id.setBounds(41, 44, 57, 15);
+		lbl_login_id.setBounds(101, 82, 44, 15);
 		frame.getContentPane().add(lbl_login_id);
 		
 		JLabel lbl_login_pw = new JLabel("PW");
-		lbl_login_pw.setBounds(41, 69, 57, 15);
+		lbl_login_pw.setBounds(101, 108, 44, 15);
 		frame.getContentPane().add(lbl_login_pw);
 		
 		tf_login_id = new JTextField();
-		tf_login_id.setBounds(166, 41, 116, 21);
+		tf_login_id.setBounds(147, 79, 157, 21);
 		frame.getContentPane().add(tf_login_id);
 		tf_login_id.setColumns(10);
 		
 		pf_login_pw = new JPasswordField();
-		pf_login_pw.setBounds(166, 66, 116, 21);
+		pf_login_pw.setBounds(147, 105, 157, 21);
 		frame.getContentPane().add(pf_login_pw);
 		
 		//로그인
@@ -77,7 +77,7 @@ public class LoginGUI {
 				}
 			}
 		});
-		btn_login_login.setBounds(166, 127, 97, 23);
+		btn_login_login.setBounds(119, 136, 97, 23);
 		frame.getContentPane().add(btn_login_login);
 		
 		//회원가입
@@ -88,7 +88,7 @@ public class LoginGUI {
 				SignUpGUI signUp = new SignUpGUI();
 			}
 		});
-		btn_login_signUp.setBounds(166, 150, 97, 23);
+		btn_login_signUp.setBounds(228, 136, 97, 23);
 		frame.getContentPane().add(btn_login_signUp);
 		
 		//취소
@@ -99,7 +99,7 @@ public class LoginGUI {
 				MainGUI main = new MainGUI();
 			}
 		});
-		btn_login_cancel.setBounds(166, 172, 97, 23);
+		btn_login_cancel.setBounds(337, 228, 97, 23);
 		frame.getContentPane().add(btn_login_cancel);
 		
 		lblNewLabel = new JLabel("");

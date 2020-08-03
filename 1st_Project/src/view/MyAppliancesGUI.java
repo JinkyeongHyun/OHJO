@@ -67,7 +67,7 @@ public class MyAppliancesGUI {
 		frame.getContentPane().add(scrollPane_my_1);
 
 		scrollPane_my_2 = new JScrollPane();
-		scrollPane_my_2.setBounds(237, 43, 185, 208);
+		scrollPane_my_2.setBounds(237, 43, 185, 175);
 		frame.getContentPane().add(scrollPane_my_2);
 
 		tf_my_search = new JTextField();
@@ -182,7 +182,7 @@ public class MyAppliancesGUI {
 				}
 			}
 		});
-		btn_my_add.setBounds(12, 207, 97, 23);
+		btn_my_add.setBounds(135, 175, 90, 23);
 		frame.getContentPane().add(btn_my_add);
 
 		// 수정버튼
@@ -207,7 +207,7 @@ public class MyAppliancesGUI {
 				}
 			}
 		});
-		btn_my_update.setBounds(12, 228, 97, 23);
+		btn_my_update.setBounds(135, 195, 90, 23);
 		frame.getContentPane().add(btn_my_update);
 
 		// 삭제버튼
@@ -226,7 +226,7 @@ public class MyAppliancesGUI {
 				}
 			}
 		});
-		btn_my_delete.setBounds(128, 207, 97, 23);
+		btn_my_delete.setBounds(135, 216, 90, 23);
 		frame.getContentPane().add(btn_my_delete);
 
 		JLabel lbl_my_list = new JLabel("\uB0B4 \uC990\uACA8\uCC3E\uAE30 \uBAA9\uB85D");
@@ -242,7 +242,7 @@ public class MyAppliancesGUI {
 				main.loginInfo(loginDto);
 			}
 		});
-		btn_my_cancel.setBounds(128, 228, 97, 23);
+		btn_my_cancel.setBounds(332, 228, 90, 23);
 		frame.getContentPane().add(btn_my_cancel);
 		
 		JLabel lblNewLabel = new JLabel("");
