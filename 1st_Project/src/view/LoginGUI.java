@@ -66,7 +66,7 @@ public class LoginGUI {
 				CustomerDTO dto = dao.loginSelect(id, pw);
 				if(dto == null) {
 					//로그인 실패
-					JOptionPane.showMessageDialog(null,"아이디 혹은 비밀번호가 일치하지 않습니다.", "login", JOptionPane.ERROR_MESSAGE); 
+					JOptionPane.showMessageDialog(null,"아이디 혹은 비밀번호가 일치하지 않습니다.", "", JOptionPane.ERROR_MESSAGE); 
 					pf_login_pw.setText(""); //비밀번호 지우기
 				}else {
 					//로그인 성공

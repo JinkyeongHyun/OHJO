@@ -171,10 +171,7 @@ public class CustomerUpdateGUI {
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setIcon(new ImageIcon(CustomerUpdateGUI.class.getResource("/images/loginBGI.jpg")));
 		lblNewLabel.setBounds(0, 0, 434, 261);
-		frame.getContentPane().add(lblNewLabel);
-		
-		
-	
+		frame.getContentPane().add(lblNewLabel);		
 	}
 	
 	//사용자 정보 세팅
@@ -182,7 +179,6 @@ public class CustomerUpdateGUI {
 		tf_cUpdate_id.setText(dto.getC_id());
 		tf_cUpdate_name.setText(dto.getC_name());
 		tf_cUpdate_cell.setText(dto.getC_cell());		
-		
 		loginDto = dto;
 	}
 }

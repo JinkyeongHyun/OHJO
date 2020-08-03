@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 import javax.swing.ButtonGroup;
@@ -179,7 +180,8 @@ public class PurchaseGUI {
 		lb_name.setBounds(525, 55, 121, 22);
 		frame.getContentPane().add(lb_name);
 		
-		String price = Integer.toString((model().get(0).getP_price()) );
+		DecimalFormat formatter = new DecimalFormat("###,###");
+		String price = formatter.format(model().get(0).getP_price());
 		int price1 = model().get(0).getP_price();
 		
 		JLabel lb_price = new JLabel(price);
@@ -190,7 +192,7 @@ public class PurchaseGUI {
 		tf_amount = new JTextField();
 		tf_amount.addCaretListener(new CaretListener() {
 			public void caretUpdate(CaretEvent arg0) {
-				lb_price.setText(""+((Integer.parseInt(tf_amount.getText())*price1)));
+				lb_price.setText(formatter.format(Integer.parseInt(tf_amount.getText())*price1));
 			}
 		});
 		
