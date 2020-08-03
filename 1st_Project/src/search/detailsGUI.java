@@ -89,6 +89,7 @@ public class detailsGUI {
 	 */
 	private void initialize() {
 		frame = new JFrame();
+		frame.getContentPane().setBackground(Color.WHITE);
 		frame.setResizable(false);
 		frame.setBounds(100, 100, 451, 600);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -113,7 +114,7 @@ public class detailsGUI {
 
 		JLabel label = new JLabel("\uC81C\uD488\uBA85  : ");
 		label.setHorizontalAlignment(SwingConstants.RIGHT);
-		label.setBounds(203, 261, 59, 35);
+		label.setBounds(203, 256, 59, 35);
 		panel.add(label);
 
 		JLabel label_1 = new JLabel("\uBD84\uB958  : ");
@@ -123,7 +124,7 @@ public class detailsGUI {
 
 		JLabel label_2 = new JLabel("\uC5D0\uB108\uC9C0 \uD6A8\uC728 \uB4F1\uAE09  : ");
 		label_2.setHorizontalAlignment(SwingConstants.RIGHT);
-		label_2.setBounds(194, 306, 123, 35);
+		label_2.setBounds(194, 312, 123, 35);
 		panel.add(label_2);
 
 		JLabel label_4 = new JLabel("\uC5F0\uAC04 \uBE44\uC6A9 : ");
@@ -141,7 +142,7 @@ public class detailsGUI {
 		panel.add(lb_model);
 
 		JLabel lb_name = new JLabel(model().get(0).getP_name());
-		lb_name.setBounds(274, 258, 125, 41);
+		lb_name.setBounds(274, 253, 125, 41);
 		panel.add(lb_name);
 
 		JLabel lb_cate = new JLabel(model().get(0).getP_category());
@@ -149,7 +150,7 @@ public class detailsGUI {
 		panel.add(lb_cate);
 
 		JLabel lb_rank = new JLabel(model().get(0).getP_class());
-		lb_rank.setBounds(342, 306, 57, 35);
+		lb_rank.setBounds(342, 312, 57, 35);
 		panel.add(lb_rank);
 
 		JLabel lb_ev = new JLabel(model().get(0).getP_maxEv());
@@ -235,11 +236,6 @@ public class detailsGUI {
 		btn_details_my2.setBackground(Color.GREEN);
 		btn_details_my2.setBounds(326, 17, 97, 23);
 		frame.getContentPane().add(btn_details_my2);
-		
-		JLabel lblNewLabel_1 = new JLabel("");
-		lblNewLabel_1.setIcon(new ImageIcon(detailsGUI.class.getResource("/images/detail.jpg")));
-		lblNewLabel_1.setBounds(0, 0, 445, 571);
-		frame.getContentPane().add(lblNewLabel_1);
 		btn_details_my2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				MyAppliancesDAO dao = new MyAppliancesDAO();

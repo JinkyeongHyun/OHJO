@@ -9,6 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -22,6 +23,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 import model.ApplyDAO;
+import model.ApplyDetailDTO;
 import model.CustomerDTO;
 
 public class FileUploadGUI {
@@ -134,9 +136,9 @@ public class FileUploadGUI {
 			public void actionPerformed(ActionEvent e) {
 				JFileChooser chooser = new JFileChooser();
 				if (JFileChooser.APPROVE_OPTION == chooser.showOpenDialog(null)) {
-					lbl_previewDoc.setIcon(new ImageIcon(chooser.getSelectedFile().getAbsolutePath()));
+					lbl_previewDoc.setIcon( new ImageIcon(chooser.getSelectedFile().getAbsolutePath()));
 					String a = chooser.getSelectedFile().getAbsolutePath();
-			              tf_docPath.setText(a);
+			              tf_docPath.setText(a);			              
 				}
 			}
 		});
@@ -167,7 +169,7 @@ public class FileUploadGUI {
 				String bank = (String) cb_banks.getSelectedItem();
 				String bankaccount = bankaccountInsert.getText();
 				ApplyDAO dao = new ApplyDAO();
-				dao.bankInfo(loginDto.getC_id(), bank, bankaccount); 
+				dao.applyDetailInfo(new ApplyDetailDTO(0, bank, bankaccount));
 						
 				if (bankaccount.equals("") || tf_idcardPath.getText().equals("") || tf_docPath.getText().equals("")) {
 					JOptionPane.showMessageDialog(null, "비어있는 항목을 채우십시오.");
@@ -175,6 +177,7 @@ public class FileUploadGUI {
 					JOptionPane.showMessageDialog(null, "저장을 완료하였습니다.");
 					frame.dispose();
 					MainGUI main = new MainGUI();
+					main.loginInfo(loginDto);
 					return;
 				}
 			}
@@ -184,10 +187,5 @@ public class FileUploadGUI {
 		btn_save.setBackground(new Color(205, 92, 92));
 		btn_save.setBounds(357, 533, 70, 35);
 		screen2_fileUpload.add(btn_save);
-		
-		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon(new ImageIcon(EnergySavingInfoGUI.class.getResource("/images/loginBBBB.png")).getImage().getScaledInstance(894, 593, Image.SCALE_DEFAULT)));
-		lblNewLabel.setBounds(0, 0, 894, 593);
-		screen2_fileUpload.add(lblNewLabel);
 	}
 }

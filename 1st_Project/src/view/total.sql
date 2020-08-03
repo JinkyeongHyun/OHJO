@@ -66,5 +66,13 @@ CREATE TABLE applydetail
 CONSTRAINT applydetail_applyno_model_pk
     primary key (applyno, model)
 )
+CREATE SEQUENCE  SEQ_BOARD
+MINVALUE 1
+MAXVALUE 999999
+INCREMENT BY 1
+START WITH 1
+CACHE 20
+NOORDER
+NOCYCLE ;
 
 

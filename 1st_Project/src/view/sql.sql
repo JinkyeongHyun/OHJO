@@ -85,6 +85,9 @@ CONSTRAINT applydetail_applyno_model_pk
     primary key (applyno, model)
 )
 
+
+drop table applydetail
+
 select * from customer
 select * from product
 select * from purchase

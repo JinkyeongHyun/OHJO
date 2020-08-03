@@ -111,12 +111,14 @@ public class searchGUI {
 
 	private void initialize() {
 		frame = new JFrame();
+		frame.getContentPane().setBackground(Color.WHITE);
 		frame.setResizable(false);
 		frame.setBounds(100, 100, 1100, 720);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 
 		JPanel searchPanel = new JPanel();
+		searchPanel.setBackground(Color.WHITE);
 		searchPanel.setBounds(12, 89, 126, 304);
 		frame.getContentPane().add(searchPanel);
 		searchPanel.setLayout(null);
@@ -177,6 +179,7 @@ public class searchGUI {
 		});
 
 		ch1 = new JCheckBox("1\uB4F1\uAE09");
+		ch1.setBackground(Color.WHITE);
 		checkBox.add(ch1);
 		ch1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -253,6 +256,7 @@ public class searchGUI {
 		searchPanel.add(ch1);
 
 		ch2 = new JCheckBox("2\uB4F1\uAE09");
+		ch2.setBackground(Color.WHITE);
 		checkBox.add(ch2);
 		ch2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -328,6 +332,7 @@ public class searchGUI {
 		searchPanel.add(ch2);
 
 		ch3 = new JCheckBox("3\uB4F1\uAE09");
+		ch3.setBackground(Color.WHITE);
 		checkBox.add(ch3);
 		ch3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -404,6 +409,7 @@ public class searchGUI {
 		
 		// 오름차순
 		rb_desc = new JRadioButton("\uAC00\uACA9 \uB192\uC740\uC21C");
+		rb_desc.setBackground(Color.WHITE);
 		rb_desc.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ch1.setSelected(false);
@@ -432,6 +438,7 @@ public class searchGUI {
 
 		// 내림차순
 		rb_asce = new JRadioButton("\uAC00\uACA9 \uB0AE\uC740\uC21C");
+		rb_asce.setBackground(Color.WHITE);
 		rb_asce.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ch1.setSelected(false);

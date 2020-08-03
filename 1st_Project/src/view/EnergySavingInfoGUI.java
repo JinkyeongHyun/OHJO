@@ -73,7 +73,6 @@ public class EnergySavingInfoGUI {
 		frame.getContentPane().add(button);
 		
 		JLabel lblNewLabel_1 = new JLabel("");
-		lblNewLabel_1.setIcon(new ImageIcon(EnergySavingInfoGUI.class.getResource("/images/energysavinginfo.jpg")));
 		lblNewLabel_1.setBounds(0, 0, 959, 570);
 		frame.getContentPane().add(lblNewLabel_1);
 		

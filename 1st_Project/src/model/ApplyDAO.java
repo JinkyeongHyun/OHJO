@@ -73,7 +73,7 @@ public class ApplyDAO {
 	public int bankInfo (String id, String bank, String bankaccount) {
 		int result = 0;
 		getConnect();
-		String sql = "insert into apply(applyno, id, bank, bankaccount) values (applyno_seq.nextval, ¤¤?, ?, ?)";
+		String sql = "insert into applydetail(applyno, id, bank, bankaccount) values (applyno_seq.nextval, ?, ?, ?)";
 		
 		System.out.println(id + " " + bank + " " + bankaccount);
 		try {
@@ -92,4 +92,23 @@ public class ApplyDAO {
 		return result;
 	}
 
+	
+	public void applyDetailInfo(ApplyDetailDTO dto) {
+	      getConnect();
+	      int cnt = 0;
+	      String sql= "insert into applydetail values (SEQ_BOARD.NEXTVAL, ?, ?)";
+	      try {
+	         pstm = conn.prepareStatement(sql);
+	         
+	         pstm.setString(1, dto.getModel());
+	         pstm.setString(2, dto.getApplyamount());
+	         cnt = pstm.executeUpdate();   
+	            
+	      } catch (SQLException e) {
+	         e.printStackTrace();
+	         
+	      } finally {
+	         close();
+	      }
+	   }
 }

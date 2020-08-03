@@ -169,7 +169,6 @@ public class CustomerUpdateGUI {
 		btn_cUpdate_delete.setBounds(354, 238, 80, 23);
 		frame.getContentPane().add(btn_cUpdate_delete);
 		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon(CustomerUpdateGUI.class.getResource("/images/loginBGI.jpg")));
 		lblNewLabel.setBounds(0, 0, 434, 261);
 		frame.getContentPane().add(lblNewLabel);		
 	}

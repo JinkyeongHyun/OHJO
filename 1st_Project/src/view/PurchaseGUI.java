@@ -94,7 +94,7 @@ public class PurchaseGUI {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.getContentPane().setBackground(new Color(204, 204, 204));
+		frame.getContentPane().setBackground(Color.WHITE);
 		frame.setBounds(100, 100, 674, 720);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
@@ -123,8 +123,8 @@ public class PurchaseGUI {
 		frame.getContentPane().add(label_2);
 
 		JLabel label_3 = new JLabel("\uACB0\uC81C \uBC29\uBC95");
-		label_3.setFont(new Font("±¼¸²", Font.PLAIN, 18));
-		label_3.setBounds(12, 437, 80, 22);
+		label_3.setFont(new Font("±¼¸²", Font.BOLD, 18));
+		label_3.setBounds(12, 437, 88, 22);
 		frame.getContentPane().add(label_3);
 
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
@@ -282,7 +282,7 @@ public class PurchaseGUI {
 		tabbedPane.addTab("Ä«Ä«¿ÀÆäÀÌ", null, kakaopay, null);
 
 		JLabel label_4 = new JLabel("\uBC30\uC1A1\uC9C0");
-		label_4.setFont(new Font("±¼¸²", Font.PLAIN, 18));
+		label_4.setFont(new Font("±¼¸²", Font.BOLD, 18));
 		label_4.setBounds(12, 279, 63, 22);
 		frame.getContentPane().add(label_4);
 
@@ -299,7 +299,7 @@ public class PurchaseGUI {
 		frame.getContentPane().add(label_7);
 
 		JLabel label_9 = new JLabel("\uAD6C\uB9E4\uC815\uBCF4");
-		label_9.setFont(new Font("±¼¸²", Font.PLAIN, 19));
+		label_9.setFont(new Font("±¼¸²", Font.BOLD, 19));
 		label_9.setBounds(434, 23, 80, 22);
 		frame.getContentPane().add(label_9);
 
@@ -319,11 +319,6 @@ public class PurchaseGUI {
 		JLabel lbl_date = new JLabel(dao.numsearch().get(0).getDate());
 		lbl_date.setBounds(526, 87, 120, 22);
 		frame.getContentPane().add(lbl_date);
-		
-		JLabel lblNewLabel_4 = new JLabel("");
-		lblNewLabel_4.setIcon(new ImageIcon(PurchaseGUI.class.getResource("/images/purchase.jpg")));
-		lblNewLabel_4.setBounds(0, 0, 658, 681);
-		frame.getContentPane().add(lblNewLabel_4);
 		
 	}
 }

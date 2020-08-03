@@ -23,7 +23,6 @@ public class LoginGUI {
 	private JButton btn_login_login;
 	private JButton btn_login_signUp;
 	private JButton btn_login_cancel;
-	private JLabel lblNewLabel;
 	
 	//constructor()
 	public LoginGUI() {
@@ -101,10 +100,5 @@ public class LoginGUI {
 		});
 		btn_login_cancel.setBounds(337, 228, 97, 23);
 		frame.getContentPane().add(btn_login_cancel);
-		
-		lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon(LoginGUI.class.getResource("/images/loginBGI.jpg")));
-		lblNewLabel.setBounds(0, 0, 434, 261);
-		frame.getContentPane().add(lblNewLabel);
 	}
 }

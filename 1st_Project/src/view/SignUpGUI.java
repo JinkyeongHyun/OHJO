@@ -14,6 +14,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.ImageIcon;
+import java.awt.Color;
 
 public class SignUpGUI {
 
@@ -26,7 +27,6 @@ public class SignUpGUI {
 	int flag = 0;
 	private JTextField tf_signUp_cell2;
 	private JTextField tf_signUp_cell3;
-	private JLabel lblNewLabel;
 	
 	//constructor()
 	public SignUpGUI() {
@@ -37,6 +37,7 @@ public class SignUpGUI {
 	//initialize()
 	private void initialize() {
 		frame = new JFrame();
+		frame.getContentPane().setBackground(Color.WHITE);
 		frame.setBounds(100, 100, 400, 260);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
@@ -137,12 +138,7 @@ public class SignUpGUI {
 			}
 		});
 		btn_signUp_cancel.setBounds(188, 153, 146, 23);
-		frame.getContentPane().add(btn_signUp_cancel);		
-		
-		lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon(SignUpGUI.class.getResource("/images/loginBGI.jpg")));
-		lblNewLabel.setBounds(0, 0, 434, 261);
-		frame.getContentPane().add(lblNewLabel);
+		frame.getContentPane().add(btn_signUp_cancel);
 	}
 
 }

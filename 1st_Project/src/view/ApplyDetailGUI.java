@@ -59,6 +59,7 @@ public class ApplyDetailGUI {
 	 */
 	private void initialize() {
 		frame = new JFrame();
+		frame.getContentPane().setBackground(Color.WHITE);
 		frame.setBounds(100, 100, 875, 583);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
@@ -97,12 +98,8 @@ public class ApplyDetailGUI {
 		}
 		
 		table = new JTable(data, colName);
+		table.setBackground(Color.WHITE);
 		scrollPane.setViewportView(table);
-		
-		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon(new ImageIcon(EnergySavingInfoGUI.class.getResource("/images/loginBBBB.png")).getImage().getScaledInstance(859, 544, Image.SCALE_DEFAULT)));
-		lblNewLabel.setBounds(0, 0, 859, 544);
-		frame.getContentPane().add(lblNewLabel);
 	}
 	
 	//로그인 성공시 작동

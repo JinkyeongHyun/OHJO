@@ -58,6 +58,7 @@ public class MyAppliancesGUI {
 
 	private void initialize() {
 		frame = new JFrame();
+		frame.getContentPane().setBackground(Color.WHITE);
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
@@ -244,11 +245,6 @@ public class MyAppliancesGUI {
 		});
 		btn_my_cancel.setBounds(332, 228, 90, 23);
 		frame.getContentPane().add(btn_my_cancel);
-		
-		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon(MyAppliancesGUI.class.getResource("/images/loginBGI.jpg")));
-		lblNewLabel.setBounds(0, 0, 434, 261);
-		frame.getContentPane().add(lblNewLabel);
 
 	}
 
