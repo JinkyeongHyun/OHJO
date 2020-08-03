@@ -171,7 +171,7 @@ public class detailsGUI {
 		btn_back.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
-				MainGUI window = new MainGUI();
+				searchGUI search = new searchGUI(logindto);
 			}
 		});
 		btn_back.setBounds(301, 461, 98, 23);

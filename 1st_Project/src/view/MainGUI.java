@@ -206,10 +206,6 @@ public class MainGUI {
 		});
 		frame.getContentPane().add(btn_main_logout);
 		
-		JLabel lbl_title = new JLabel("\uC81C\uBAA9");
-		lbl_title.setBounds(78, 53, 510, 105);
-		frame.getContentPane().add(lbl_title);
-		
 		JLabel lbl_icon1 = new JLabel("");
 		lbl_icon1.setIcon(new ImageIcon("E:\\Bigdata\\\uD300 \uD504\uB85C\uC81D\uD2B8\\[\uC790\uB8CC] GUI\uC5D0 \uC4F0\uC778 \uC0AC\uC9C4\uB4E4\\solar-energy.png"));
 		lbl_icon1.setBounds(687, 299, 115, 158);

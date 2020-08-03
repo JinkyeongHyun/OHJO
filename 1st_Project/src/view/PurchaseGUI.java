@@ -24,6 +24,8 @@ import model.PurchaseDAO;
 import model.PurchaseDTO;
 import model.PurchaseDetailDTO;
 import search.ProductDAO;
+import search.detailsGUI;
+
 import javax.swing.event.CaretListener;
 import javax.swing.event.CaretEvent;
 
@@ -46,6 +48,7 @@ public class PurchaseGUI {
 	private String model;
 	CustomerDTO logindto;
 	private JTextField tf_amount;
+	
 
 	/**
 	 * Launch the application.
@@ -228,6 +231,16 @@ public class PurchaseGUI {
 		tf_cardnum1.setColumns(10);
 		tf_cardnum1.setBounds(201, 37, 63, 21);
 		card.add(tf_cardnum1);
+		
+		JButton cancelbutton = new JButton("\uCDE8\uC18C");
+		cancelbutton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				detailsGUI det = new detailsGUI(model, logindto);
+			}
+		});
+		cancelbutton.setBounds(351, 139, 97, 23);
+		card.add(cancelbutton);
 
 		JPanel naverpay = new JPanel();
 		tabbedPane.addTab("네이버페이", null, naverpay, null);
