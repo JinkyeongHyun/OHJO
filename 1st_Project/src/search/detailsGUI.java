@@ -3,6 +3,7 @@ package search;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -152,14 +153,15 @@ public class detailsGUI {
 		JLabel lb_ev = new JLabel(model().get(0).getP_maxEv());
 		lb_ev.setBounds(132, 357, 81, 35);
 		panel.add(lb_ev);
-
-		String eco = Integer.toString(model().get(0).getP_eCost());
+		
+		DecimalFormat formatter = new DecimalFormat("###,###");
+		
+		String eco = formatter.format(model().get(0).getP_eCost());
 		JLabel lb_yearCost = new JLabel(eco);
 		lb_yearCost.setBounds(329, 357, 79, 35);
 		panel.add(lb_yearCost);
 
-		String price = Integer.toString(model().get(0).getP_price());
-
+		String price = formatter.format(model().get(0).getP_price());
 		JLabel lb_cost = new JLabel(price);
 		lb_cost.setBounds(342, 402, 57, 35);
 		panel.add(lb_cost);

@@ -20,7 +20,7 @@ public class SignUpGUI {
 	private JTextField tf_signUp_id;
 	private JPasswordField pf_signUp_pw;
 	private JTextField tf_signUp_name;
-	private JTextField tf_signUp_cell1;
+	private JTextField tf_signUp_cell;
 	
 	int flag = 0;
 	private JTextField tf_signUp_cell2;
@@ -69,20 +69,10 @@ public class SignUpGUI {
 		tf_signUp_name.setBounds(109, 87, 116, 21);
 		frame.getContentPane().add(tf_signUp_name);
 		
-		tf_signUp_cell1 = new JTextField();
-		tf_signUp_cell1.setColumns(10);
-		tf_signUp_cell1.setBounds(109, 112, 30, 21);
-		frame.getContentPane().add(tf_signUp_cell1);
-		
-		tf_signUp_cell2 = new JTextField();
-		tf_signUp_cell2.setColumns(10);
-		tf_signUp_cell2.setBounds(153, 112, 30, 21);
-		frame.getContentPane().add(tf_signUp_cell2);
-		
-		tf_signUp_cell3 = new JTextField();
-		tf_signUp_cell3.setColumns(10);
-		tf_signUp_cell3.setBounds(195, 112, 30, 21);
-		frame.getContentPane().add(tf_signUp_cell3);
+		tf_signUp_cell = new JTextField();
+		tf_signUp_cell.setColumns(10);
+		tf_signUp_cell.setBounds(109, 112, 116, 21);
+		frame.getContentPane().add(tf_signUp_cell);
 		
 		//회원가입
 		JButton btn_signUp_signUp = new JButton("\uAC00\uC785\uD558\uAE30");
@@ -94,7 +84,7 @@ public class SignUpGUI {
 					id = tf_signUp_id.getText();					
 					pw = pf_signUp_pw.getText();
 					name = tf_signUp_name.getText();
-					cell = tf_signUp_cell1.getText()+tf_signUp_cell2.getText()+tf_signUp_cell3.getText();
+					cell = tf_signUp_cell.getText();
 				
 					CustomerDAO dao = new CustomerDAO();
 					CustomerDTO dto = new CustomerDTO(id, pw, name, cell);
@@ -107,11 +97,11 @@ public class SignUpGUI {
 						LoginGUI login = new LoginGUI();
 					}else if(result == 0){
 						//회원가입 실패
-						JOptionPane.showMessageDialog(null, "정확한 정보를 입력해주세요", "check", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(null, "정확한 정보를 입력해주세요", "", JOptionPane.ERROR_MESSAGE);
 					}	
 				}else {	
 					//중복체크를 하지 않은 경우
-					JOptionPane.showMessageDialog(null,"아이디 중복체크를 해주세요", "check", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null,"아이디 중복체크를 해주세요", "", JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		});
@@ -126,7 +116,7 @@ public class SignUpGUI {
 				boolean result = dao.signUpCheck(tf_signUp_id.getText());
 				
 				if(result) {	
-					JOptionPane.showMessageDialog(null,"중복되는 아이디입니다", "check", JOptionPane.ERROR_MESSAGE);	//중복인 경우
+					JOptionPane.showMessageDialog(null,"중복되는 아이디입니다", "", JOptionPane.ERROR_MESSAGE);	//중복인 경우
 				}else {	
 					JOptionPane.showMessageDialog(null,"사용가능한 아이디입니다");	//중복되지 않은 경우
 					flag = 1;

@@ -166,9 +166,7 @@ public class CustomerUpdateGUI {
 			}
 		});
 		btn_cUpdate_delete.setBounds(325, 228, 97, 23);
-		frame.getContentPane().add(btn_cUpdate_delete);
-		
-		
+		frame.getContentPane().add(btn_cUpdate_delete);	
 	}
 	
 	//사용자 정보 세팅
@@ -176,7 +174,6 @@ public class CustomerUpdateGUI {
 		tf_cUpdate_id.setText(dto.getC_id());
 		tf_cUpdate_name.setText(dto.getC_name());
 		tf_cUpdate_cell.setText(dto.getC_cell());		
-		
 		loginDto = dto;
 	}
 }

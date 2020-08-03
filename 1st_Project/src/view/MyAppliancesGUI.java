@@ -107,7 +107,7 @@ public class MyAppliancesGUI {
 						}
 					});
 				}else {
-					JOptionPane.showMessageDialog(null, "한 글자 이상 입력해주세요", "check", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, "한 글자 이상 입력해주세요", "", JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		});
