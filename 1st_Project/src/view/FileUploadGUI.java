@@ -58,16 +58,19 @@ public class FileUploadGUI {
 		screen2_fileUpload.setBackground(Color.WHITE);
 		frame.getContentPane().add(screen2_fileUpload, "name_1336119195484900");
 		
+		// "신분증 사본 업로드" 제목
 		JLabel lbl_idCardUpload = new JLabel("\uC2E0\uBD84\uC99D \uC0AC\uBCF8 (jpg\uD30C\uC77C)");
 		lbl_idCardUpload.setFont(new Font("맑은 고딕", Font.BOLD, 20));
 		lbl_idCardUpload.setBounds(31, 172, 313, 45);
 		screen2_fileUpload.add(lbl_idCardUpload);
 		
+		// "위임장 사본 업로드" 제목
 		JLabel lbl_docUpload = new JLabel("\uC704\uC784\uC7A5 \uC0AC\uBCF8 (jpg\uD30C\uC77C)");
 		lbl_docUpload.setFont(new Font("맑은 고딕", Font.BOLD, 20));
 		lbl_docUpload.setBounds(485, 172, 313, 45);
 		screen2_fileUpload.add(lbl_docUpload);
 		
+		// "계좌번호 입력" 제목
 		JLabel lbl_bankAccountUpload = new JLabel("\uD658\uAE09 \uBC1B\uC744 \uBCF8\uC778 \uBA85\uC758 \uACC4\uC88C\uBC88\uD638\uB97C \uC785\uB825\uD558\uC138\uC694 (\"-\" \uC81C\uC678).");
 		lbl_bankAccountUpload.setFont(new Font("맑은 고딕", Font.BOLD, 20));
 		lbl_bankAccountUpload.setBounds(31, 22, 523, 45);
@@ -100,7 +103,7 @@ public class FileUploadGUI {
 		screen2_fileUpload.add(tf_idcardPath);
 		tf_idcardPath.setColumns(10);
 		
-		// 신분증 사본 업로드
+		// 신분증 사본 업로드 버튼
 		JButton btn_fileUpload_idCard = new JButton("\uC774\uBBF8\uC9C0 \uD30C\uC77C \uC5C5\uB85C\uB4DC");
 		btn_fileUpload_idCard.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

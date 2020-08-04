@@ -50,6 +50,7 @@ public class PolicyInfoGUI {
 		panel.setBackground(Color.WHITE);
 		frame.getContentPane().add(panel, "name_1334762828370600");
 		
+		// 닫기 버튼
 		JButton button = new JButton("\uB2EB\uAE30");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -64,6 +65,7 @@ public class PolicyInfoGUI {
 		button.setBounds(750, 528, 70, 35);
 		panel.add(button);
 		
+		// 환급제도 정보 이미지
 		JLabel label = new JLabel("");	
 		label.setIcon(new ImageIcon(new ImageIcon(EnergySavingInfoGUI.class.getResource("/images/(design)PolicyInfo.jpg")).getImage().getScaledInstance(894, 593, Image.SCALE_DEFAULT)));
 		label.setBounds(0, 0, 894, 593);

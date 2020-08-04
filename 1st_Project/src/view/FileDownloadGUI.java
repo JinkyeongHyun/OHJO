@@ -82,7 +82,7 @@ public class FileDownloadGUI {
 		btn_downloadDoc.setBounds(82, 53, 358, 37);
 		frame.getContentPane().add(btn_downloadDoc);
 		
-		// "´Ý±â" ¹öÆ°
+		// ´Ý±â ¹öÆ°
 		JButton button = new JButton("\uB2EB\uAE30");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

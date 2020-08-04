@@ -57,7 +57,7 @@ public class EnergySavingInfoGUI {
 		comboBox.setBounds(74, 134, 212, 47);
 		frame.getContentPane().add(comboBox);
 		
-		// "닫기" 버튼
+		// 닫기 버튼
 		JButton button = new JButton("\uB2EB\uAE30");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -76,7 +76,7 @@ public class EnergySavingInfoGUI {
 		lblNewLabel_1.setBounds(0, 0, 959, 570);
 		frame.getContentPane().add(lblNewLabel_1);
 		
-		// 가전제품 종류 고르면 그에 맞는 이미지가 출력되게 하는 부분
+		// 가전제품 종류 고르면 그에 맞는 이미지가 출력
 		comboBox.addActionListener(new ActionListener () {
 			public void actionPerformed (ActionEvent e) {
 				if ("냉장고".equals(comboBox.getSelectedItem())) {	

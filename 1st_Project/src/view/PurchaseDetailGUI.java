@@ -70,6 +70,7 @@ public class PurchaseDetailGUI {
 		scrollPane.setBounds(61, 76, 741, 400);
 		frame.getContentPane().add(scrollPane);
 		
+		//테이블에 표를 불러온다.
 		String[] colName = {"주문","모델명","구매수량","총 가격","배송지 주소","수취인","전화번호"};
 		 PurchaseDAO dao = new PurchaseDAO();
 		ArrayList<PurchaseDetailDTO> purchaseList=dao.search();
@@ -92,6 +93,7 @@ public class PurchaseDetailGUI {
 		btn_backmain.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
+				//메인 창을 로그인 정보에 유지하고 불러온다
 				MainGUI main = new MainGUI();
 				main.loginInfo(loginDto);
 			}

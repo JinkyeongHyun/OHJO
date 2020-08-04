@@ -28,9 +28,9 @@ public class ProductDAO {
 			conn = DriverManager.getConnection(url, user_id, user_pw);
 
 			if (conn != null) {
-				System.out.println("연결성공");
+				//System.out.println("연결성공");
 			} else {
-				System.out.println("연결 실패");
+				//System.out.println("연결 실패");
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

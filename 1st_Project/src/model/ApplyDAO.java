@@ -22,9 +22,9 @@ public class ApplyDAO {
 			conn = DriverManager.getConnection(url,user_id,user_pw);
 			
 			if(conn != null) {
-				System.out.println("연결 성공");
+				//System.out.println("연결 성공");
 			} else {
-				System.out.println("연결 실패");
+				//System.out.println("연결 실패");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -47,6 +47,7 @@ public class ApplyDAO {
 		}
 	}
 	
+	// 신청 테이블에 데이터 삽입
 	public void applyInfo(ApplyDTO dto) {
 		getConnect();
 		String sql= "insert into apply values (?, ?, ?, ?, ?, ?, ?, ?)";
@@ -92,7 +93,7 @@ public class ApplyDAO {
 		return result;
 	}
 
-	
+	// 신청 상세 테이블에 데이터 삽입
 	public void applyDetailInfo(ApplyDetailDTO dto) {
 	      getConnect();
 	      int cnt = 0;

@@ -136,7 +136,7 @@ public class searchGUI {
 		JScrollPane searchScrollPane = new JScrollPane();
 		searchScrollPane.setBounds(150, 132, 343, 261);
 		frame.getContentPane().add(searchScrollPane);
-		
+		//search 창이 처음 뜰때 보여주는 테이블
 		ProductDAO dao = new ProductDAO();
 		TableModelChange change = new TableModelChange(dao.priceAsce());
 		Object[][] data = change.listTypeChange();
@@ -151,12 +151,12 @@ public class searchGUI {
 				searchTmodelChartChange(model);	//바꾼부분
 			}
 		});
-
+		//검색창
 		tf_text = new JTextField();
 		tf_text.setBounds(150, 89, 226, 33);
 		frame.getContentPane().add(tf_text);
 		tf_text.setColumns(10);
-
+		//검색버튼
 		JButton btn_search = new JButton("\uAC80\uC0C9");
 		btn_search.addMouseListener(new MouseAdapter() {
 			@Override
@@ -167,6 +167,7 @@ public class searchGUI {
 				
 			}
 		});
+		//텍스트 필드에 입력후 버튼 클릭시 검색
 		btn_search.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ProductDAO dao = new ProductDAO();
@@ -177,7 +178,7 @@ public class searchGUI {
 				searchScrollPane.setViewportView(searchTable);
 			}
 		});
-
+		//체크박스 1등급
 		ch1 = new JCheckBox("1\uB4F1\uAE09");
 		ch1.setBackground(Color.WHITE);
 		checkBox.add(ch1);
@@ -185,7 +186,7 @@ public class searchGUI {
 			public void actionPerformed(ActionEvent e) {
 				if (rb_asce.isSelected()) {
 					if (ch1.isSelected()) {
-						// 체크박스 1등급,2등급 체크
+						//오름차순 체크가 되었을때 체크박스 1등급 체크시 나오는 테이블
 						TableModelChange change = new TableModelChange(dao.eclss("1등급", ""));
 						Object[][] data = change.listTypeChange();
 
@@ -201,6 +202,7 @@ public class searchGUI {
 						});
 
 					}
+					//오름차순 체크가 되었을때 체크박스 1등급 체크가 해제시 나오는 테이블
 					if (ch1.isSelected() == false) {
 						TableModelChange change = new TableModelChange(dao.priceAsce());
 						Object[][] data = change.listTypeChange();
@@ -218,6 +220,7 @@ public class searchGUI {
 					}
 
 				} else {
+					//오름차순이 선택이 안되어있을때 체크박스 1등급 체크시 나오는 테이블
 					if (ch1.isSelected()) {
 						TableModelChange change = new TableModelChange(dao.eclss("1등급", "desc"));
 						Object[][] data = change.listTypeChange();
@@ -233,6 +236,7 @@ public class searchGUI {
 							}
 						});
 					}
+					//오름차순이 선택이 안되었을때 체크박스 1등급 해제시 나오는 테이블
 					if (ch1.isSelected() == false) {
 						TableModelChange change = new TableModelChange(dao.priceDesc());
 						Object[][] data = change.listTypeChange();
@@ -253,8 +257,9 @@ public class searchGUI {
 			}
 		});
 		ch1.setBounds(8, 114, 106, 23);
-		searchPanel.add(ch1);
-
+		searchPanel.add(ch1);	
+		
+		//체크박스 2등급
 		ch2 = new JCheckBox("2\uB4F1\uAE09");
 		ch2.setBackground(Color.WHITE);
 		checkBox.add(ch2);
@@ -262,6 +267,7 @@ public class searchGUI {
 			public void actionPerformed(ActionEvent e) {
 
 				if (rb_asce.isSelected()) {
+					//오름차순이 선택이 되었을때 체크박스 2등급 체크시 나오는 테이블
 					if (ch2.isSelected()) {
 						TableModelChange change = new TableModelChange(dao.eclss("2등급", ""));
 						Object[][] data = change.listTypeChange();
@@ -277,6 +283,7 @@ public class searchGUI {
 							}
 						});
 					}
+					//오름차순이 선택이 되었을때 체크박스 2등급 체크해제시 나오는 테이블
 					if (ch2.isSelected() == false) {
 						TableModelChange change = new TableModelChange(dao.priceAsce());
 						Object[][] data = change.listTypeChange();
@@ -294,6 +301,7 @@ public class searchGUI {
 					}
 
 				} else {
+					//오름차순이 선택이 해제 되었을때 체크박스 2등급 체크시 나오는 테이블
 					if (ch2.isSelected()) {
 						TableModelChange change = new TableModelChange(dao.eclss("2등급", "desc"));
 						Object[][] data = change.listTypeChange();
@@ -309,6 +317,7 @@ public class searchGUI {
 							}
 						});
 					}
+					//오름차순이 선택이 해제 되었을때 체크박스 2등급 체크 해제시나오는 테이블
 					if (ch2.isSelected() == false) {
 						TableModelChange change = new TableModelChange(dao.priceDesc());
 						Object[][] data = change.listTypeChange();
@@ -330,7 +339,7 @@ public class searchGUI {
 		});
 		ch2.setBounds(8, 139, 106, 23);
 		searchPanel.add(ch2);
-
+		//체크박스 3등급
 		ch3 = new JCheckBox("3\uB4F1\uAE09");
 		ch3.setBackground(Color.WHITE);
 		checkBox.add(ch3);
@@ -338,6 +347,7 @@ public class searchGUI {
 			public void actionPerformed(ActionEvent e) {
 
 				if (rb_asce.isSelected()) {
+					//오름차순이 선택이  되었을때 체크박스 3등급 체크시 나오는 테이블
 					if (ch3.isSelected()) {
 						TableModelChange change = new TableModelChange(dao.eclss("3등급", ""));
 						Object[][] data = change.listTypeChange();
@@ -353,6 +363,7 @@ public class searchGUI {
 							}
 						});
 					}
+					//오름차순이 선택이  되었을때 체크박스 3등급 체크 해제시 나오는 테이블
 					if (ch3.isSelected() == false) {
 						TableModelChange change = new TableModelChange(dao.priceAsce());
 						Object[][] data = change.listTypeChange();
@@ -370,6 +381,7 @@ public class searchGUI {
 					}
 
 				} else {
+					//오름차순이 선택이 해제 되었을때 체크박스 3등급 체크시 나오는 테이블
 					if (ch3.isSelected()) {
 						TableModelChange change = new TableModelChange(dao.eclss("3등급", "desc"));
 						Object[][] data = change.listTypeChange();
@@ -386,6 +398,7 @@ public class searchGUI {
 						});
 					}
 					if (ch3.isSelected() == false) {
+						//오름차순이 선택이 해제 되었을때 체크박스 3등급 체크 해제시 나오는 테이블
 						TableModelChange change = new TableModelChange(dao.priceDesc());
 						Object[][] data = change.listTypeChange();
 
@@ -407,7 +420,7 @@ public class searchGUI {
 		ch3.setBounds(8, 164, 106, 23);
 		searchPanel.add(ch3);
 		
-		// 오름차순
+		// 오름차순 라디오버튼
 		rb_desc = new JRadioButton("\uAC00\uACA9 \uB192\uC740\uC21C");
 		rb_desc.setBackground(Color.WHITE);
 		rb_desc.addActionListener(new ActionListener() {
@@ -436,7 +449,7 @@ public class searchGUI {
 		rb_desc.setBounds(8, 28, 106, 23);
 		searchPanel.add(rb_desc);
 
-		// 내림차순
+		// 내림차순 라디오버튼
 		rb_asce = new JRadioButton("\uAC00\uACA9 \uB0AE\uC740\uC21C");
 		rb_asce.setBackground(Color.WHITE);
 		rb_asce.addActionListener(new ActionListener() {
@@ -459,7 +472,7 @@ public class searchGUI {
 				});
 			}
 		});
-
+		// 상세정보창으로 가는 버튼
 		JButton detailview = new JButton("\uC81C\uD488 \uC0C1\uC138 \uC815\uBCF4 \uBCF4\uAE30");
 		detailview.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -467,7 +480,7 @@ public class searchGUI {
 				detailsGUI det = new detailsGUI(model, loginDto,dtos);
 			}
 		});
-
+		
 		detailview.setBounds(12, 403, 240, 32);
 		frame.getContentPane().add(detailview);
 		rb_asce.setSelected(true);
@@ -494,7 +507,7 @@ public class searchGUI {
 		
 		//********************비교 추가부분********************
 		panel_search_chart = new JPanel();
-		panel_search_chart.setBounds(562, 299, 500, 382);
+		panel_search_chart.setBounds(562, 299, 500, 400);
 		frame.getContentPane().add(panel_search_chart);
 
 		JScrollPane scrollPane_search_compare = new JScrollPane();
@@ -571,7 +584,6 @@ public class searchGUI {
 		}
 		
 		//테이블
-		//String[] colName = {"이미지", "제품명", "등급", "가격", "에너지비용"};
 		String[] colName = {"제품명", "에너지효율등급", "가격", "에너지비용"};
 		
 		Object[][] tdata = new Object[2][4];
@@ -595,14 +607,32 @@ public class searchGUI {
 		//차트
 		//누적합 계산
 		DecimalFormat formatter = new DecimalFormat("###,###");
-		int myPrice = Integer.parseInt(tModel.getValueAt(0, 2).toString().replace(",", ""))*(9/10);
+		
+		int selecteeMyPrice = Integer.parseInt(tModel.getValueAt(0, 2).toString().replace(",", ""));
+		int myPrice = 0;
+		if(selecteeMyPrice<3000000) {
+			myPrice = selecteeMyPrice*9/10;
+		}else {
+			myPrice = selecteeMyPrice - 300000;
+		}
+		
 		int myEcost = Integer.parseInt(tModel.getValueAt(0, 3).toString().replace(",", ""));
+		
 		int[] sum1 = {myPrice,myPrice,myPrice,myPrice,myPrice,myPrice,myPrice,myPrice,myPrice,myPrice};
 		for(int i=0; i<10; i++) {
 			sum1[i] += myEcost*(i+1);
 		}
+
 		
-		int sPrice = Integer.parseInt(tf_search_realPrice.getText().replace(",", ""));
+		
+		int selectedPrice = Integer.parseInt(table_search_compare.getValueAt(1, 2).toString().replace(",", ""));		
+		int sPrice = 0;
+		if(selectedPrice<3000000) {
+			sPrice = selectedPrice*9/10;
+		}else {
+			sPrice = selectedPrice - 300000;
+		}
+
 		int sEcost = Integer.parseInt(tModel.getValueAt(1, 3).toString().replace(",", ""));
 		int[] sum2 = {sPrice,sPrice,sPrice,sPrice,sPrice,sPrice,sPrice,sPrice,sPrice,sPrice};
 		for(int i=0; i<10; i++) {
@@ -613,8 +643,8 @@ public class searchGUI {
 		series1 =  chart.createSeries(sum1, "즐겨찾기 제품");
 		series2 =  chart.createSeries(sum2, "선택한 제품");
 		chartPanel = new LineChart().getchartPanel_lineChart(series1,series2);
-		chartPanel.setPreferredSize(new java.awt.Dimension(500,340));
-		
+		chartPanel.setPreferredSize(new java.awt.Dimension(450,350));
+		panel_search_chart.setBackground(Color.WHITE);
 		panel_search_chart.add(chartPanel);
 		
 		JLabel lblNewLabel = new JLabel("\uC81C\uD488 \uAC80\uC0C9");
@@ -649,10 +679,15 @@ public class searchGUI {
 		tModel.addRow(newData);
 		
 		//실구매가격 변경
-		int selectedPrice = Integer.parseInt(table_search_compare.getValueAt(1, 2).toString().replace(",", ""));
-		tf_search_realPrice.setText(formatter.format(selectedPrice*9/10));
-
-		int sPrice = Integer.parseInt(tf_search_realPrice.getText().replace(",", ""));
+		int selectedPrice = Integer.parseInt(table_search_compare.getValueAt(1, 2).toString().replace(",", ""));		
+		int sPrice = 0;
+		if(selectedPrice<3000000) {
+			sPrice = selectedPrice*9/10;
+		}else {
+			sPrice = selectedPrice - 300000;
+		}
+		tf_search_realPrice.setText(formatter.format(sPrice));
+		
 		int sEcost = Integer.parseInt(tModel.getValueAt(1, 3).toString().replace(",", ""));
 		int[] sum = {sPrice,sPrice,sPrice,sPrice,sPrice,sPrice,sPrice,sPrice,sPrice,sPrice};
 		for(int i=0; i<10; i++) {
@@ -665,7 +700,7 @@ public class searchGUI {
 		series2 = nseries;
 		//차트생성
 		ChartPanel nchartPanel = new LineChart().getchartPanel_lineChart(series1,nseries);
-		nchartPanel.setPreferredSize(new java.awt.Dimension(500,400));
+		nchartPanel.setPreferredSize(new java.awt.Dimension(450,350));
 
 		panel_search_chart.removeAll();
 		panel_search_chart.revalidate();
@@ -688,13 +723,16 @@ public class searchGUI {
 		//테이블 첫번째 행(내 가전) 삽입
 		tModel.insertRow(0, myData);
 		
-		//실구매가격 변경
-		int selectedPrice = Integer.parseInt(table_search_compare.getValueAt(1, 2).toString().replace(",", ""));
-		tf_search_realPrice.setText(formatter.format(selectedPrice*9/10));
+		int selecteeMyPrice = Integer.parseInt(tModel.getValueAt(0, 2).toString().replace(",", ""));
+		int myPrice = 0;
+		if(selecteeMyPrice<3000000) {
+			myPrice = selecteeMyPrice*9/10;
+		}else {
+			myPrice = selecteeMyPrice - 300000;
+		}
 		
-
-		int myPrice = Integer.parseInt(tModel.getValueAt(0, 2).toString().replace(",", ""));
 		int myEcost = Integer.parseInt(tModel.getValueAt(0, 3).toString().replace(",", ""));
+		
 		int[] sum = {myPrice,myPrice,myPrice,myPrice,myPrice,myPrice,myPrice,myPrice,myPrice,myPrice};
 		for(int i=0; i<10; i++) {
 			sum[i] += myEcost*(i+1);
@@ -705,7 +743,7 @@ public class searchGUI {
 		series1 = nseries;
 		//차트 생성
 		ChartPanel nchartPanel = new LineChart().getchartPanel_lineChart(nseries,series2);
-		nchartPanel.setPreferredSize(new java.awt.Dimension(500,400));
+		nchartPanel.setPreferredSize(new java.awt.Dimension(450,350));
 		//이전 차트 삭제
 		panel_search_chart.removeAll();
 		panel_search_chart.revalidate();

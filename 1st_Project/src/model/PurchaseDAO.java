@@ -138,7 +138,7 @@ public class PurchaseDAO {
 			close();
 		}
 		return pdetailList;
-}
+}  //구매 테이블 정보를 불러와 2차배열에 기입한다.
 	public ArrayList<PurchaseDTO> numsearch() {
 		getConn();
 		String sql = "select * from purchase";

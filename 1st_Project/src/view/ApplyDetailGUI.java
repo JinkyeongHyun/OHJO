@@ -30,33 +30,13 @@ public class ApplyDetailGUI {
 	JMenu main_mn_myPage;
 	private JTable table;
 
-	/**
-	 * Launch the application.
-//	 */
-//	public static void main(String[] args) {
-//		EventQueue.invokeLater(new Runnable() {
-//			public void run() {
-//				try {
-//					ApplyDetailGUI window = new ApplyDetailGUI();
-//					window.frame.setVisible(true);
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//				}
-//			}
-//		});
-//	}
 
-	/**
-	 * Create the application.
-	 */
 	public ApplyDetailGUI() {
 		initialize();
      	frame.setVisible(true);
 	}
 
-	/**
-	 * Initialize the contents of the frame.
-	 */
+
 	private void initialize() {
 		frame = new JFrame();
 		frame.getContentPane().setBackground(Color.WHITE);
@@ -64,11 +44,13 @@ public class ApplyDetailGUI {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
+		// "신청 내역" 제목
 		JLabel lbl_applydetails = new JLabel("\uC2E0\uCCAD\uB0B4\uC5ED");
 		lbl_applydetails.setBounds(22, 10, 91, 56);
 		lbl_applydetails.setFont(new Font("맑은 고딕", Font.BOLD, 20));
 		frame.getContentPane().add(lbl_applydetails);
 		
+		// 닫기 버튼
 		JButton button = new JButton("\uB2EB\uAE30");
 		button.setBounds(383, 467, 70, 35);
 		button.addActionListener(new ActionListener() {
@@ -83,6 +65,7 @@ public class ApplyDetailGUI {
 		button.setBackground(new Color(205, 92, 92));
 		frame.getContentPane().add(button);
 		
+		// 신청 내역 표 출력
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(83, 117, 680, 316);
 		frame.getContentPane().add(scrollPane);
@@ -102,7 +85,7 @@ public class ApplyDetailGUI {
 		scrollPane.setViewportView(table);
 	}
 	
-	//로그인 성공시 작동
+		// 로그인 성공 시 작동
 		public void loginInfo(CustomerDTO dto) {
 			loginDto = dto;
 		}

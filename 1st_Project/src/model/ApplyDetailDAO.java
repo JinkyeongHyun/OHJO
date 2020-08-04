@@ -23,9 +23,9 @@ public class ApplyDetailDAO {
 			conn = DriverManager.getConnection(url,user_id,user_pw);
 			
 			if(conn != null) {
-				System.out.println("연결 성공");
+				//System.out.println("연결 성공");
 			} else {
-				System.out.println("연결 실패");
+				//System.out.println("연결 실패");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -48,10 +48,11 @@ public class ApplyDetailDAO {
 		}
 	}
 	
+	// 신청 상세 테이블에 데이터 삽입
 	public void applyDetailInfo(ApplyDetailDTO dto) {
 		getConnect();
 		int cnt = 0;
-		String sql= "insert into apply values (SEQ_BOARD.NEXTVAL, ?, ?)";
+		String sql= "insert into applydetail values (SEQ_BOARD.NEXTVAL, ?, ?)";
 		try {
 			pstm = conn.prepareStatement(sql);
 			
@@ -67,6 +68,7 @@ public class ApplyDetailDAO {
 		}
 	}
 	
+	// 신청 내역 리스트 불러오기
 	public ArrayList<ApplyDetailDTO> applyInfoSelect() {
 		ArrayList<ApplyDetailDTO> applyDetailList = new ArrayList<ApplyDetailDTO>();
 		getConnect();

@@ -175,7 +175,7 @@ public class PurchaseGUI {
 		tf_cell.setBounds(143, 343, 215, 21);
 		frame.getContentPane().add(tf_cell);
 		tf_cell.setColumns(10);
-
+        // 제품명 db에서 가져오기 
 		JLabel lb_name = new JLabel(model().get(0).getP_name());
 		lb_name.setBounds(525, 55, 121, 22);
 		frame.getContentPane().add(lb_name);
@@ -183,6 +183,7 @@ public class PurchaseGUI {
 		DecimalFormat formatter = new DecimalFormat("###,###");
 		String price = formatter.format(model().get(0).getP_price());
 		int price1 = model().get(0).getP_price();
+		
 		
 		JLabel lb_price = new JLabel(price);
 		lb_price.setBounds(526, 155, 120, 22);
@@ -192,12 +193,13 @@ public class PurchaseGUI {
 		tf_amount = new JTextField();
 		tf_amount.addCaretListener(new CaretListener() {
 			public void caretUpdate(CaretEvent arg0) {
+				//입력받은 수량과 제품가격을 불러와 전체가격을 구하고 스트링 값으로 변화하여 출력한다.
 				lb_price.setText(formatter.format(Integer.parseInt(tf_amount.getText())*price1));
 			}
 		});
 		
 		
-		
+		//스트링 데이터로 입력된 수량을 변환하여 정수로 불러온다.
 		tf_amount.setText("1");
 		tf_amount.setBounds(526, 120, 63, 21);
 		frame.getContentPane().add(tf_amount);
@@ -217,8 +219,10 @@ public class PurchaseGUI {
 					String recip = tf_name.getText();
 					String cellnum = tf_cell.getText();
 					String address = tf_address.getText();
+					//결제 완료 버튼을 누르면 purchasedetail 테이블로 인서트하는 모델을 불러와 기입한다.
 				     dao.purchaseDetailInsert(
 						new PurchaseDetailDTO(dao.numsearch().get(0).getOrderno(), model().get(0).getP_name(), amount, price, address, recip, cellnum));
+				    // 결제완료후 메인으로 돌아가는데 로그인 정보를 유지하여 돌아간다.
 				     MainGUI main = new MainGUI();
 				     main.loginInfo(logindto);
 				}
@@ -248,6 +252,7 @@ public class PurchaseGUI {
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
 				detailsGUI det = new detailsGUI(model, logindto, myDtos);
+				//취소를 누르면 구매상세 테이블로 모델정보, 로그인 정보, 즐겨찾기 정보를 유지하고 돌아간다.
 			}
 		});
 		cancelbutton.setBounds(351, 139, 97, 23);
@@ -315,7 +320,7 @@ public class PurchaseGUI {
 		JLabel label_12 = new JLabel("");
 		label_12.setBounds(333, 79, 143, 22);
 		frame.getContentPane().add(label_12);
-		
+		//오늘 날짜 기입 - db에서 날짜 스트링 데이터 불러온다.
 		JLabel lbl_date = new JLabel(dao.numsearch().get(0).getDate());
 		lbl_date.setBounds(526, 87, 120, 22);
 		frame.getContentPane().add(lbl_date);

@@ -136,34 +136,34 @@ public class detailsGUI {
 		label_5.setHorizontalAlignment(SwingConstants.RIGHT);
 		label_5.setBounds(194, 402, 123, 35);
 		panel.add(label_5);
-
+		//모델명을 보여줌
 		JLabel lb_model = new JLabel(model().get(0).getP_model());
 		lb_model.setBounds(83, 253, 108, 41);
 		panel.add(lb_model);
-
+		//제품 상품명 보여줌
 		JLabel lb_name = new JLabel(model().get(0).getP_name());
 		lb_name.setBounds(274, 253, 125, 41);
 		panel.add(lb_name);
-
+		//제품 카테고리 보여줌
 		JLabel lb_cate = new JLabel(model().get(0).getP_category());
 		lb_cate.setBounds(83, 309, 82, 41);
 		panel.add(lb_cate);
-
+		//제품 에너지효율등급 보여줌
 		JLabel lb_rank = new JLabel(model().get(0).getP_class());
 		lb_rank.setBounds(342, 312, 57, 35);
 		panel.add(lb_rank);
-
+		//연간 사용 비용 보여줌
 		JLabel lb_ev = new JLabel(model().get(0).getP_maxEv());
 		lb_ev.setBounds(132, 357, 81, 35);
 		panel.add(lb_ev);
 		
 		DecimalFormat formatter = new DecimalFormat("###,###");
-		
+		//제품 연간소비량 보여줌
 		String eco = formatter.format(model().get(0).getP_eCost());
 		JLabel lb_yearCost = new JLabel(eco);
 		lb_yearCost.setBounds(329, 357, 79, 35);
 		panel.add(lb_yearCost);
-
+		//제품 가격 보여줌
 		String price = formatter.format(model().get(0).getP_price());
 		JLabel lb_cost = new JLabel(price);
 		lb_cost.setBounds(342, 402, 57, 35);
@@ -173,11 +173,12 @@ public class detailsGUI {
 		label_3.setHorizontalAlignment(SwingConstants.RIGHT);
 		label_3.setBounds(12, 357, 108, 35);
 		panel.add(label_3);
-
+        
+		//시스템에서 날짜를 불러온다.
 		SimpleDateFormat date = new SimpleDateFormat("yyyymmdd");
 		Date nowdate = new Date();
 		String tempDate = date.format(nowdate);
-		
+		//결제창으로 넘겨주는 버튼
 		JButton btn_buy = new JButton("\uAD6C\uB9E4\uD558\uAE30");
 		btn_buy.setBackground(Color.WHITE);
 		btn_buy.addActionListener(new ActionListener() {
@@ -185,6 +186,7 @@ public class detailsGUI {
 				//System.out.println(logindto.getC_id());
 				frame.dispose();
 				PurchaseDAO dao = new PurchaseDAO();
+				//purchase테이블에 구매번호와 아이디 날짜를 기입한다.
 				dao.PurchaseInsert(new PurchaseDTO(0, logindto.getC_id(), tempDate));
 				
 				PurchaseGUI pur = new PurchaseGUI(model, logindto, myDtos);
@@ -193,7 +195,7 @@ public class detailsGUI {
 		});
 		btn_buy.setBounds(12, 461, 108, 23);
 		panel.add(btn_buy);
-
+		//메인화면으로 이동 버튼
 		JButton btn_back = new JButton("\uB4A4\uB85C\uAC00\uAE30");
 		btn_back.setBackground(Color.WHITE);
 		btn_back.addActionListener(new ActionListener() {
@@ -206,7 +208,7 @@ public class detailsGUI {
 		panel.add(btn_back);
 		String im = model().get(0).getP_img();
 		
-		
+		//제품 이미지를 보여주는 창
 		JLabel lb_image = new JLabel();
 		lb_image.setIcon(new ImageIcon(detailsGUI.class.getResource("/images/" + im)));
 		lb_image.setBackground(Color.WHITE);
